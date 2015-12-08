@@ -94,7 +94,7 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
     font-size: 16px;
 }
 
-#block-block-10 .mlsSearchContainer .frontMLSSearchPriceRangeHigh {
+#block-block-10 .chContainer .frontMLSSearchPriceRangeHigh {
     display: inline-block;
 }
 
@@ -134,7 +134,7 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
 
 #block-block-10 .mlsSearchInner {
     padding: 20px;
-    float: left;
+    /*float: left;*/
     width: 100%;
 }
 .frontPageMLSSearchBlurb {
@@ -147,11 +147,14 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
 }
 #block-block-10 .mlsSearchContainer {
     padding: 0;
-    float: right;
+    float: left;
     border: 1px solid #676767;
     border-radius: 5px;
     /*margin: 121px 0 0;*/
-    margin:0;
+    margin:0 auto;
+    left:50%;
+    position:relative;
+    transform:translateX(-50%);
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(147, 147, 147, 0.5))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* Chrome10+,Safari5.1+ */
@@ -203,7 +206,7 @@ nav ul.sf-menu > li > a {
     font-size: 16px;
     font-weight: 600;
     line-height: 36px;
-    padding: 0 10px;
+    padding: 0 9px;
     position: relative;
     transition: all 0.5s ease 0s;
     z-index: 2;
@@ -227,7 +230,7 @@ nav ul.sf-depth-2 a:hover {
 nav ul.sf-depth-2 a {
     display: block;
     font-family: "OpenSansRegular", sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     color: #ffffff;
     line-height: 24px;
     padding: 6px 12px;
@@ -270,7 +273,8 @@ nav ul.sf-depth-2 a {
 }
 #block-block-10 {
     position:relative;
-    top:77px;
+    padding-top:30px;
+    float:left;
 }
 .header-container {
     /*background: url('images/header_image.jpg') no-repeat scroll center bottom / cover rgba(0, 0, 0, 0);*/

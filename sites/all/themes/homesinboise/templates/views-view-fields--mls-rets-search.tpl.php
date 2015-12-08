@@ -35,12 +35,13 @@ $userNode = node_load($nids[0]);
 
 //kpr($fields);
 //kpr($userNode);
-$agentMID = $userNode->field_mls_agent_id['und'][0]['value'];
-$agentNID = $userNode->nid;
-$agentName = $userNode->field_name['und'][0]['value'];
-$agentEmail = $userNode->field_email['und'][0]['email'];
-$agentPhone = $userNode->field_phone['und'][0]['value'];
-$agentImage = image_style_url('agent_picture_on_listing_results', $userNode->field_agent_image['und'][0]['uri']);
+
+if(isset($userNode->field_mls_agent_id['und'][0]['value'])) { $agentMID = $userNode->field_mls_agent_id['und'][0]['value']; }
+if(isset($userNode->nid)) { $agentNID = $userNode->nid; }
+if(isset($userNode->field_name['und'][0]['value'])) { $agentName = $userNode->field_name['und'][0]['value']; }
+if(isset($userNode->field_email['und'][0]['email'])) { $agentEmail = $userNode->field_email['und'][0]['email']; }
+if(isset($userNode->field_phone['und'][0]['value'])) { $agentPhone = $userNode->field_phone['und'][0]['value']; }
+if(isset($userNode->field_agent_image['und'][0]['uri'])) { $agentImage = image_style_url('agent_picture_on_listing_results', $userNode->field_agent_image['und'][0]['uri']); }
 $path = path_to_theme('homesinboise') . '/images/';
 ?>
     <div class="mlsResultRow col-xs-12">
@@ -90,7 +91,7 @@ $path = path_to_theme('homesinboise') . '/images/';
                     <div class="agentImage"><img src="<?php print $agentImage;?>"/></div>
                 </div>
                 <div class="mlsResultAgentName"><a href="<?php print drupal_get_path_alias('node/' .$agentNID); ?>"/><?php print $agentName; ?></a></div>
-                <div class="mlsResultAgentPhone"><?php print $agentPhone; ?></div>
+           <?php if(isset($agentPhone)) { ?> <div class="mlsResultAgentPhone"><?php print $agentPhone; ?></div><? } ?>
             </div>
         </div>
     </div>
