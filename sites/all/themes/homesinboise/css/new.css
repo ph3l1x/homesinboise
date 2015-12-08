@@ -1,0 +1,486 @@
+.page-drealty-listing #content-area-wrapper #content-container h1.page-header.title {
+  display: none; }
+
+a.defaultButton, a.views-more-link {
+  background-color: #dedede;
+  border-color: #999;
+  color: #222222;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap; }
+
+a.defaultButton:hover, a.views-more-link:hover {
+  background-image: url("shades/1px-darken-35.png");
+  border-color: #999;
+  color: #fff; }
+
+#block-block-9 a {
+  color: white;
+  text-decoraction: none; }
+#block-block-9 a:hover {
+  color: #C6C6C6;
+  text-decoration: none; }
+
+.view-our-team .view-footer {
+  clear: both; }
+  .view-our-team .view-footer div {
+    float: left;
+    width: 300px; }
+.view-our-team .view-content {
+  margin-top: 30px; }
+  .view-our-team .view-content .views-row {
+    float: left;
+    width: 45%;
+    border: 1px solid #caced2;
+    border-radius: 5px;
+    padding: 10px;
+    height: 760px;
+    margin-bottom: 20px; }
+    .view-our-team .view-content .views-row .views-field-field-agent-image img {
+      width: 100%;
+      border-radius: 5px; }
+    .view-our-team .view-content .views-row .views-field-field-bio a.views-more-link {
+      margin-top: 10px;
+      width: 100%;
+      display: block; }
+    .view-our-team .view-content .views-row .views-field-field-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0; }
+  .view-our-team .view-content .views-row-first {
+    margin-right: 20px; }
+
+.node-page .field-type-image {
+  float: none;
+  height: inherit;
+  margin: 0 0 20px 0;
+  width: 100%; }
+
+.agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaLeft {
+  float: left;
+  width: 25%; }
+  .agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaLeft .agentPicture img {
+    border-radius: 5px; }
+  .agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaLeft .agentPhones div {
+    font-family: Arial;
+    font-size: 12px;
+    margin-top: 4px;
+    color: #999; }
+  .agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaLeft .agentSocialMedia {
+    margin-top: 10px; }
+    .agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaLeft .agentSocialMedia div {
+      display: inline-block;
+      padding-right: 5px;
+      width: 25px; }
+      .agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaLeft .agentSocialMedia div span {
+        display: none; }
+.agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaRight {
+  float: left;
+  margin-left: 15px;
+  width: 70%; }
+  .agentProfileContainer .agentProfileContainerInner .agentTopAreaContainer .agentTopAreaInner .agentTopAreaRight hr {
+    background: #bbb;
+    height: 1px; }
+
+.listingContainer {
+  font-family: Arial;
+  color: #333;
+  font-size: 15px; }
+  .listingContainer .listingContainerInner .listingHeaderContainer {
+    border: 1px solid #caced2;
+    border-radius: 5px;
+    background-color: #f4f4f4; }
+    .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner {
+      padding: 25px; }
+      .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .top {
+        margin-bottom: 20px; }
+        .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .top h3 {
+          margin: 0;
+          font-size: 1.75em;
+          color: #555; }
+      .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle {
+        display: inline-block;
+        padding-left: 0; }
+        .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle .listPrice {
+          font-size: 1.4em; }
+        .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle .forSale {
+          color: green;
+          background: url('images/dot.png') repeat-y;
+          background-position: 125px 0; }
+          .listingContainer .listingContainerInner .listingHeaderContainer .listingHeaderContainerInner .middle .forSale i {
+            font-size: 36px;
+            margin-left: 19px; }
+  .listingContainer .listingContainerInner .listingContentContainer {
+    margin-top: 20px;
+    float: left;
+    width: 100%;
+    clear: both; }
+    .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer {
+      padding-left: 0;
+      padding-right: 0; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner {
+        border: 1px solid #caced2;
+        border-radius: 5px;
+        background: #f4f4f4;
+        padding: 20px;
+        float: left;
+        width: 100%; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul {
+          float: left;
+          list-style: inside none none;
+          padding-left: 0; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li {
+            border-top: 1px solid #caced2;
+            border-bottom: 1px solid #caced2;
+            border-right: 1px solid #caced2;
+            float: left;
+            padding: 10px;
+            cursor: pointer;
+            transition: .5s; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li:hover, .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul .tabButtonActive {
+            background: #f3e1e1; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li:first-of-type {
+            border-radius: 5px 0 0 5px;
+            border-left: 1px solid #caced2; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .imageMapTabs ul li:last-of-type {
+            border-radius: 0 5px 5px 0;
+            border-right: 1px solid #caced2; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .tabbedContent {
+          clear: both;
+          width: 100%;
+          overflow: hidden; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapImages {
+          position: relative; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapStreet {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapMap {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingLeftContentContainerInner .imageMapsContainer .imageMapContainerInner .mapSatellite {
+          position: relative;
+          display: none; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .description {
+        margin-bottom: 20px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentLeft {
+        padding-left: 0; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentLeft ul {
+          margin: 0;
+          list-style: none;
+          padding: 0; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentLeft ul li label {
+            display: inline-block;
+            margin-right: 15px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentRight ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .contentRight ul li label {
+          display: inline-block;
+          margin-right: 15px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer h2.moreInfoBlock {
+        clear: both;
+        color: #555;
+        float: left;
+        font-size: 23px;
+        margin: 19px 0 -12px;
+        width: 100%; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock {
+        clear: both;
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+        border: 1px solid #caced2;
+        background: #fff;
+        padding: 15px;
+        border-radius: 5px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-markup .moreInfoContainer .moreInfoContainerInner .moreInfoLeft {
+          float: left;
+          width: 30%; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-markup .moreInfoContainer .moreInfoContainerInner .moreInfoRight {
+          float: left;
+          width: 65%;
+          padding-left: 10px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component--first-name {
+          float: left;
+          width: 49%;
+          margin-top: 15px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component--last-name {
+          float: right;
+          width: 49%;
+          margin-top: 15px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component--email-address {
+          clear: both; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .moreInformationBlock form .webform-component-textarea {
+          clear: both;
+          position: relative;
+          top: 10px; }
+      .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer {
+        clear: both;
+        float: left;
+        width: 100%;
+        margin-top: 20px; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul {
+          float: left;
+          list-style: inside none none;
+          padding-left: 0; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li {
+            border-top: 1px solid #caced2;
+            border-bottom: 1px solid #caced2;
+            border-right: 1px solid #caced2;
+            float: left;
+            padding: 10px;
+            cursor: pointer;
+            transition: .5s; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li:hover, .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul .tabButtonActive1 {
+            background: #f3e1e1; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li:first-of-type {
+            border-radius: 5px 0 0 5px;
+            border-left: 1px solid #caced2; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingDetailsTabs ul li:last-of-type {
+            border-radius: 0 5px 5px 0;
+            border-right: 1px solid #caced2; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabbedContent {
+          clear: both;
+          width: 100%;
+          overflow: hidden; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingTabContent dl {
+          clear: both;
+          margin: 5px 0;
+          float: left;
+          width: 100%; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingTabContent dl dt {
+            float: left;
+            width: 25%;
+            padding-right: 5%;
+            font-weight: bold; }
+          .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .listingTabContent dl dd {
+            float: left;
+            width: 70%;
+            margin: 0; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabInteriorInfo {
+          position: relative; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabExteriorInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabMoreInfoInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabTaxesInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabUtilitiesInfo {
+          position: relative;
+          display: none; }
+        .listingContainer .listingContainerInner .listingContentContainer .listingContentContainerInner .listingLeftContentContainer .listingDetailsContainer .listingDetailsContainerInner .tabSchoolInfo {
+          position: relative;
+          display: none; }
+
+aside.sidebar-last #block-webform-client-block-29 {
+  border: 1px solid #caced2;
+  background: #f4f4f4;
+  border-radius: 5px; }
+  aside.sidebar-last #block-webform-client-block-29 .block-inner {
+    padding: 10px; }
+    aside.sidebar-last #block-webform-client-block-29 .block-inner h2 {
+      margin: 10px 0 0 0;
+      font-size: 23px;
+      color: #555; }
+    aside.sidebar-last #block-webform-client-block-29 .block-inner form .moreInfoLeft {
+      float: left;
+      width: 45%; }
+    aside.sidebar-last #block-webform-client-block-29 .block-inner form .moreInfoRight {
+      float: left;
+      width: 49%;
+      padding-left: 10px; }
+    aside.sidebar-last #block-webform-client-block-29 .block-inner form .webform-component-textarea {
+      clear: both;
+      position: relative;
+      top: 10px; }
+
+.mlsSearchContainer .mlsSearchInner form input {
+  color: #999; }
+.mlsSearchContainer .mlsSearchInner form select {
+  color: #999; }
+.mlsSearchContainer .mlsSearchInner form .frontMLSSearchPriceRange {
+  text-align: center; }
+.mlsSearchContainer .mlsSearchInner form .frontMLSSearchSubmit button {
+  margin-top: 28px !important;
+  padding: 3px 0; }
+.mlsSearchContainer .MLSSearchBottomLeft a {
+  color: #fff; }
+.mlsSearchContainer .MLSSearchBottomLeft a:hover {
+  color: #ffffff;
+  text-decoration: underline; }
+
+.contactLeft {
+  float: left;
+  width: 45%; }
+  .contactLeft .contactContent {
+    padding-right: 15px; }
+    .contactLeft .contactContent span {
+      margin-top: 15px;
+      font-size: 15px;
+      font-weight: bold;
+      float: left;
+      width: 100%; }
+
+.contactRight {
+  float: left;
+  width: 55%; }
+
+.submitted {
+  display: none; }
+
+#edit-field-mls-listing-agent-value-wrapper {
+  display: none; }
+
+#block-webform-client-block-28 h2.block-title {
+  display: none; }
+
+.view-testimonials .views-row {
+  margin-bottom: 20px; }
+.view-testimonials .views-field-title {
+  color: #a5a5a5;
+  font-size: 17px;
+  font-weight: bold; }
+.view-testimonials .views-field-nothing {
+  background: #f4f4f4 none repeat scroll 0 0;
+  border: 1px solid #caced2;
+  border-radius: 5px;
+  padding: 10px; }
+  .view-testimonials .views-field-nothing .testimonialName:before {
+    content: '--'; }
+  .view-testimonials .views-field-nothing .testimonialName {
+    text-indent: 28px;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 5px; }
+
+a.ui-state-focus {
+  background: #000; }
+
+form#views-exposed-form-mls-rets-search-page {
+  margin-bottom: 25px; }
+  form#views-exposed-form-mls-rets-search-page .compact-form-label {
+    top: 15px; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-list-price-value-wrapper {
+    width: 33%; }
+    form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-list-price-value-wrapper input {
+      color: #999; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-list-price-value-1-wrapper {
+    width: 33%; }
+    form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-list-price-value-1-wrapper input {
+      color: #999; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-city-tid-wrapper {
+    width: 33%; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-baths-value-wrapper {
+    clear: both;
+    width: 33%; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-beds-value-wrapper {
+    width: 33%; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-sqft-value-wrapper {
+    width: 33%; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-listing-type-tid-wrapper {
+    clear: both;
+    width: 35%; }
+    form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-field-mls-listing-type-tid-wrapper select {
+      color: #999; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-sort-bef-combine-wrapper {
+    width: 35%; }
+    form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-sort-bef-combine-wrapper select {
+      color: #999; }
+    form#views-exposed-form-mls-rets-search-page .views-exposed-form #edit-sort-bef-combine-wrapper label {
+      display: none;
+      color: #999; }
+  form#views-exposed-form-mls-rets-search-page .views-exposed-form .views-submit-button {
+    width: 30%; }
+    form#views-exposed-form-mls-rets-search-page .views-exposed-form .views-submit-button button {
+      float: right;
+      margin-right: 7px;
+      margin-top: 0; }
+
+.mlsListingResultsContainer {
+  border: 1px solid #caced2;
+  background: #f4f4f4;
+  border-radius: 5px;
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0; }
+  .mlsListingResultsContainer .mlsListingResultsContainerInner {
+    padding: 10px; }
+    .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow {
+      clear: both;
+      float: left;
+      margin: 0 0 30px 0;
+      padding: 0 0 15px 0;
+      border-bottom: 2px solid #caced2; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResult {
+        margin: 0;
+        padding-left: 0;
+        padding-top: 0;
+        padding-bottom: 0; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResult .amountPictures {
+          font-size: 11px;
+          width: 250px;
+          padding-top: 3px;
+          text-align: center;
+          font-style: italic; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultListPrice {
+        font-weight: bold; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress {
+        margin-top: 10px;
+        margin-bottom: 10px; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress a, .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress a:hover {
+          color: #000;
+          text-decoration: none; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress .address_state {
+          display: inline-block; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress .address_city {
+          display: inline-block; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress .address_zip {
+          display: inline-block; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultType {
+        margin-bottom: 10px;
+        color: #999; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultBeds {
+        display: inline-block;
+        color: #999; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultBeds img {
+          width: 30px;
+          display: inline-block; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultBeds .field-content {
+          display: inline-block; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultBaths {
+        margin-left: 10px;
+        display: inline-block;
+        color: #999; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultBaths img {
+          width: 30px;
+          display: inline-block; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultBaths .field-content {
+          display: inline-block; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultButton {
+        margin-top: 11px; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn3 {
+        text-align: right; }
+        .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn3 .mlsResultAgentPicture .hibLogo img {
+          width: 100px;
+          margin-bottom: 10px; }
+
+@media screen and (max-width: 990px) {
+  .forSale {
+    background-position: 100px 0 !important; }
+    .forSale .forSaleText {
+      font-size: 15px !important; }
+  nav #main-navigation ul.sf-menu li a {
+    font-size: 12px;
+    padding: 0 8px; } }

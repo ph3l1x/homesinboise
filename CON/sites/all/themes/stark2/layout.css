@@ -1,0 +1,127 @@
+
+/**
+ * @file
+ * Stark layout method
+ *
+ * To avoid obscuring CSS added to the page by Drupal or a contrib module, the
+ * Stark theme itself has no styling, except just enough CSS to arrange the page
+ * in a traditional "Header, sidebars, content, and footer" layout.
+ *
+ * This layout method works reasonably well, but shouldn't be used on a
+ * production site because it can break. For example, if an over-large image
+ * (one that is wider than 20% of the viewport) is in the left sidebar, the
+ * image will overlap with the #content to the right. The exception to this
+ * is IE6 which will just hide the navigation block completely in these
+ * instances due to a positioning bug.
+ */
+
+#content,
+#sidebar-first,
+#sidebar-second {
+  float: left;
+  display: inline;
+  position: relative;
+}
+.construction img {
+  width:100%;
+  
+}
+.block-webform {
+  left: 50%;
+  outline: medium none;
+  position: relative;
+  transform: translateX(-50%);
+  margin-top:77px;
+  margin-bottom:-56px;
+}
+.logo > img {
+  width: 35%;
+  margin-left: 61px;
+}
+#content h1#page-title {
+  display:none;
+}
+#block-webform-client-block-2 h2 {
+  display:none;
+}
+form {
+  width:50%;
+}
+#webform-client-form-2 {
+  position:relative;
+  left:50%;
+  position:relative;
+  transform: translateX(-50%);
+  width:80%;
+}
+#webform-client-form-2 .email {
+  border-radius:10px;
+  height:20px;
+  padding: 7px;
+  border: 1px solid #ddd;
+  background: #fafafa;
+  font: bold 0.95em arial, sans-serif;
+  width:100%;
+}
+#webform-client-form-2 .webform-submit {
+  background: #ac1f2d;
+  background: -moz-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ac1f2d), color-stop(100%,#cd4250));
+  background: -webkit-linear-gradient(top, #ac1f2d 0%,#cd4250 100%);
+  background: -o-linear-gradient(top, #ac1f2d 0%,#cd4250 100%); 
+  background: -ms-linear-gradient(top, #ac1f2d 0%,#cd4250 100%); 
+  background: linear-gradient(to bottom, #ac1f2d 0%,#cd4250 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ac1f2d', endColorstr='#cd4250',GradientType=0 );
+  position: absolute;
+  right: -12px;
+  top: 4px;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 5px;
+  cursor:pointer;
+}
+#webform-client-form-2 .compact-form-label {
+  margin-top:8px;
+  color:#cdcdcd;
+  margin-left:10px;
+}
+#webform-client-form-2 .webform-submit:hover {
+  background:#ac1f2d;
+}
+.form-required {
+  display:none;
+}
+#content {
+  width: 100%;
+  position:relative;
+}
+body.sidebar-first #content {
+  width: 80%;
+  left: 20%; /* LTR */
+}
+body.sidebar-second #content {
+  width: 80%;
+}
+body.two-sidebars #content {
+  width: 60%;
+  left: 20%;
+}
+
+#sidebar-first {
+  width: 20%;
+  left: -80%; /* LTR */
+}
+
+body.two-sidebars #sidebar-first {
+  left: -60%; /* LTR */
+}
+
+#sidebar-second {
+  float: right; /* LTR */
+  width: 20%;
+}
+
+.section {
+  margin: 10px;
+}
