@@ -896,4 +896,41 @@ form#views-exposed-form-mls-rets-search-page {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#80939393', GradientType=0); /* IE6-9 */
 }
 
+select#edit-field-mls-listing-type-tid, select#edit-sort-bef-combine {
+    width: 94%;
+  }
+
+#edit-field-mls-year-built-value-wrapper {
+  margin-left:-17px;
+  width: 33%;
+}
+
+.blueButton {
+  display: inline-block;
+  background-color: #3276b1;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #3276b1;
+}
+.blueButton:hover {
+  background-color: rgba(50, 118, 177, 0.67);
+  color: white;
+}
+.view-mls-rets-search .view-filters {
+  clear:both;
+}
+.specialContainer {
+  float: left;
+  position: relative;
+  top: -43px;
+  left: 245px;
+  ul {
+    list-style: none;
+    li {
+      float:left;
+      margin: 0 10px;
+    }
+  }
+}
 

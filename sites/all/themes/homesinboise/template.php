@@ -1,5 +1,9 @@
 <?php
 
+//function homesinboise_views_exposed_form($variables) {
+//    kpr($variables);
+//}
+
 function homesinboise_theme($existing, $type, $path)
 {
     $themes['drealty_listing'] = array(
