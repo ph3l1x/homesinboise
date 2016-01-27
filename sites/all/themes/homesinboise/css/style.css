@@ -463,6 +463,7 @@ nav ul.sf-depth-2 a {
 }
 #block-block-3 {
     /*display:none;*/
+    clear:both;
 }
 .views-field-field-mls-list-price {
     clear:both;
@@ -490,7 +491,7 @@ nav ul.sf-depth-2 a {
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
     color: white;
     font-family: "Signika", sans-serif;
-    font-size: 31px;
+    font-size: 25px;
     font-weight: 300;
     left: 50%;
     line-height: 131px;

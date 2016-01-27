@@ -476,8 +476,12 @@ form#views-exposed-form-mls-rets-search-page {
           width: 100px;
           margin-bottom: 10px; }
 
-#block-views-fde1cec65cccb7d7624b2ecb459cfcbb {
+#block-views-fde1cec65cccb7d7624b2ecb459cfcbb, #block-views-22a3796482c943a2c900ba6f050d8eb9 {
   clear: both; }
+
+#block-views-22a3796482c943a2c900ba6f050d8eb9 {
+  margin-bottom: 30px;
+  float: left; }
 
 @media screen and (max-width: 990px) {
   .forSale {
