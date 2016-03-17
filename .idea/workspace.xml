@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2ac689c-0ab2-49b7-8157-a994e034b56f" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/images/header_image.jpg" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/images/header_image.bak1.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/images/header_image.jpg" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/images/header_image.jpg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/default/settings.php" afterPath="$PROJECT_DIR$/sites/default/settings.php" />
     </list>
     <ignored path="homesinboise.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +46,7 @@
           <file leaf-file-name="new.min.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.32409012">
+                <state vertical-scroll-proportion="0.57712305">
                   <caret line="0" column="19511" selection-start-line="0" selection-start-column="19511" selection-end-line="0" selection-end-column="19511" />
                   <folding />
                 </state>
@@ -76,10 +77,10 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="new.scss" pinned="false" current-in-tab="true">
+          <file leaf-file-name="new.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.21837088">
+                <state vertical-scroll-proportion="-6.5185184">
                   <caret line="774" column="119" selection-start-line="774" selection-start-column="119" selection-end-line="774" selection-end-column="119" />
                   <folding />
                 </state>
@@ -99,8 +100,18 @@
           <file leaf-file-name="views-view-fields--mls-rets-search.tpl.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="93" column="118" selection-start-line="93" selection-start-column="118" selection-end-line="93" selection-end-column="118" />
+                <state vertical-scroll-proportion="-57.333332">
+                  <caret line="108" column="1" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="settings.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/sites/default/settings.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.7032967">
+                  <caret line="582" column="16" selection-start-line="582" selection-start-column="16" selection-end-line="585" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -131,7 +142,7 @@
           <file leaf-file-name="mls_search.module" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/modules/custom/mls_search/mls_search.module">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-4.6666665">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
                   <folding>
                     <marker date="1454643675041" expanded="true" signature="1400:1480" placeholder="SELECT name,..taxonomy_term_data..." />
@@ -176,7 +187,6 @@
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/search_box.php" />
-        <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--isotope-grid-demo-.tpl.php" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/template.php" />
@@ -185,6 +195,8 @@
         <option value="$PROJECT_DIR$/sites/all/modules/custom/mls_search/mls_search.module" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss" />
+        <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php" />
+        <option value="$PROJECT_DIR$/sites/default/settings.php" />
       </list>
     </option>
   </component>
@@ -236,6 +248,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -393,6 +406,40 @@
               <option name="myItemId" value="themes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="homesinboise" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="homesinboise" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="homesinboise" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sites" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="all" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="themes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -414,7 +461,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -508,26 +554,26 @@
     <layout>
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32696897" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24343675" sideWeight="0.49776036" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24343675" sideWeight="0.49776036" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293556" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19036955" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19260918" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.50223964" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -551,14 +597,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="105" column="51" selection-start-line="105" selection-start-column="37" selection-end-line="105" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/search_box.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -928,14 +966,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="93" column="118" selection-start-line="93" selection-start-column="118" selection-end-line="93" selection-end-column="118" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -954,7 +984,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/modules/custom/mls_search/mls_search.module">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6666665">
+        <state vertical-scroll-proportion="0.0">
           <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
           <folding>
             <marker date="1454643675041" expanded="true" signature="1400:1480" placeholder="SELECT name,..taxonomy_term_data..." />
@@ -964,7 +994,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32409012">
+        <state vertical-scroll-proportion="0.57712305">
           <caret line="0" column="19511" selection-start-line="0" selection-start-column="19511" selection-end-line="0" selection-end-column="19511" />
           <folding />
         </state>
@@ -972,8 +1002,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21837088">
+        <state vertical-scroll-proportion="-6.5185184">
           <caret line="774" column="119" selection-start-line="774" selection-start-column="119" selection-end-line="774" selection-end-column="119" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/views-view-fields--mls-rets-search.tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-57.333332">
+          <caret line="108" column="1" selection-start-line="108" selection-start-column="1" selection-end-line="108" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/default/settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7032967">
+          <caret line="582" column="16" selection-start-line="582" selection-start-column="16" selection-end-line="585" selection-end-column="16" />
           <folding />
         </state>
       </provider>

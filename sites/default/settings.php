@@ -217,8 +217,8 @@ $databases = array (
   array (
     'default' => 
     array (
-      'database' => 'homes_homesinboise',
-      'username' => 'homes_user',
+      'database' => 'homesinboise',
+      'username' => 'homesinboise',
       'password' => 'h0m3s1nb01s3',
       'host' => 'localhost',
       'port' => '',
@@ -579,3 +579,8 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  * Remove the leading hash signs to disable.
  */
 # $conf['allow_authorize_operations'] = FALSE;
+
+//error_reporting(-1);  // Have PHP complain about absolutely everything
+//$conf['error_level'] = 2;  // Show all messages on your screen, 2 = ERROR_REPORTING_DISPLAY_ALL.
+//ini_set('display_errors', TRUE);  // These lines just give you content on WSOD pages.
+//ini_set('display_startup_errors', TRUE);

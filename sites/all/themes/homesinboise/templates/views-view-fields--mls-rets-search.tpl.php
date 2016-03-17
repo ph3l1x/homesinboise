@@ -24,7 +24,6 @@
  * @ingroup views_templates
  */
 
-
 $nids = db_select('node', 'n')
     ->fields('n', array('nid'))
     ->condition('n.type', 'homesinboise_team')
@@ -105,4 +104,7 @@ $path = path_to_theme('homesinboise') . '/images/';
     <!--    --><?php //print $field->label_html; ?>
     <!--    --><?php //print $field->content; ?>
     <!--    --><?php //print $field->wrapper_suffix; ?>
-<?php //endforeach; ?>
+<?php //endforeach;
+
+}
+?>
