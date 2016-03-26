@@ -29,11 +29,15 @@ $nids = db_select('node', 'n')
     ->condition('n.type', 'homesinboise_team')
     ->execute()
     ->fetchCol(); // returns an indexed array
+
+$removePaigeNID = array_search('69', $nids);
+unset($nids[$removePaigeNID]);
 shuffle($nids);
+
 $userNode = node_load($nids[0]);
 
 //kpr($fields);
-//kpr($userNode);
+//kpr($userNode->nid);
 
 if(isset($userNode->field_mls_agent_id['und'][0]['value'])) { $agentMID = $userNode->field_mls_agent_id['und'][0]['value']; }
 if(isset($userNode->nid)) { $agentNID = $userNode->nid; }

@@ -10,6 +10,10 @@ $bg: #f4f4f4;
   }
 }
 
+div.logo {
+  position:relative;
+  top:100px;
+}
 a.defaultButton, a.views-more-link {
   background-color: #dedede;
   border-color: #999;
@@ -785,6 +789,7 @@ form#views-exposed-form-mls-rets-search-page {
 }
 #block-block-3 {
   clear:both;
+  top:40px;
 }
 
 @media screen and (max-width: 990px) {
