@@ -201,7 +201,6 @@ $('.p2').each(function () {
 
 var bedSelector = $('.bed-container');
 bedSelector.mouseenter(function () {
-    console.log('hi');
     $('.bed.off').addClass('remove');
     $('.bed.on').removeClass('remove');
     $(this).find('ul.isotope-filters').removeClass('remove');
@@ -214,7 +213,6 @@ bedSelector.mouseleave(function () {
 
 var bathSelector = $('.bath-container');
 bathSelector.mouseenter(function () {
-    console.log('hi');
     $('.bath.off').addClass('remove');
     $('.bath.on').removeClass('remove');
     $(this).find('ul.isotope-filters').removeClass('remove');

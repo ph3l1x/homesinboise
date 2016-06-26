@@ -1,7 +1,243 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2ac689c-0ab2-49b7-8157-a994e034b56f" name="Default" comment="" />
+    <list default="true" id="b2ac689c-0ab2-49b7-8157-a994e034b56f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/boom/images/boom.png" afterPath="$PROJECT_DIR$/node_modules/boom/images/boom.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/images/hawk.png" afterPath="$PROJECT_DIR$/node_modules/hawk/images/hawk.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/images/logo.png" afterPath="$PROJECT_DIR$/node_modules/hawk/images/logo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/images/boom.png" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/images/boom.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/images/hawk.png" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/images/hawk.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/images/logo.png" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/images/logo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/images/hoek.png" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/images/hoek.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ansi/examples/beep/index.js" afterPath="$PROJECT_DIR$/node_modules/ansi/examples/beep/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ansi/examples/clear/index.js" afterPath="$PROJECT_DIR$/node_modules/ansi/examples/clear/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ansi/examples/cursorPosition.js" afterPath="$PROJECT_DIR$/node_modules/ansi/examples/cursorPosition.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/boom/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/boom/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/boom/LICENSE" afterPath="$PROJECT_DIR$/node_modules/boom/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/boom/README.md" afterPath="$PROJECT_DIR$/node_modules/boom/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/boom/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/boom/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/boom/test/index.js" afterPath="$PROJECT_DIR$/node_modules/boom/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/bufferstreams/.npmignore" afterPath="$PROJECT_DIR$/node_modules/bufferstreams/.npmignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/bufferstreams/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/bufferstreams/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/bufferstreams/LICENCE" afterPath="$PROJECT_DIR$/node_modules/bufferstreams/LICENCE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/bufferstreams/README.md" afterPath="$PROJECT_DIR$/node_modules/bufferstreams/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/bufferstreams/tests/index.mocha.js" afterPath="$PROJECT_DIR$/node_modules/bufferstreams/tests/index.mocha.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/clean-css/bin/cleancss" afterPath="$PROJECT_DIR$/node_modules/clean-css/bin/cleancss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/clean-css/node_modules/source-map/test/run-tests.js" afterPath="$PROJECT_DIR$/node_modules/clean-css/node_modules/source-map/test/run-tests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/cat.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/cat.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/command.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/command.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/echo.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/echo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/glob.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/glob.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/long_desc.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/long_desc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/progress.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/progress.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/sort.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/sort.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/spinner.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/spinner.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/static.coffee" afterPath="$PROJECT_DIR$/node_modules/cli/examples/static.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/examples/static.js" afterPath="$PROJECT_DIR$/node_modules/cli/examples/static.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/progress.js" afterPath="$PROJECT_DIR$/node_modules/cli/progress.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cli/spinner.js" afterPath="$PROJECT_DIR$/node_modules/cli/spinner.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/config-chain/index.js" afterPath="$PROJECT_DIR$/node_modules/config-chain/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cryptiles/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/cryptiles/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cryptiles/LICENSE" afterPath="$PROJECT_DIR$/node_modules/cryptiles/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cryptiles/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/cryptiles/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/cryptiles/test/index.js" afterPath="$PROJECT_DIR$/node_modules/cryptiles/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ctype/tools/jsl.conf" afterPath="$PROJECT_DIR$/node_modules/ctype/tools/jsl.conf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/ctype/tools/jsstyle" afterPath="$PROJECT_DIR$/node_modules/ctype/tools/jsstyle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/dateformat/bin/cli.js" afterPath="$PROJECT_DIR$/node_modules/dateformat/bin/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deap/index.js" afterPath="$PROJECT_DIR$/node_modules/deap/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deap/lib/deap.js" afterPath="$PROJECT_DIR$/node_modules/deap/lib/deap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deap/lib/typeof.js" afterPath="$PROJECT_DIR$/node_modules/deap/lib/typeof.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deap/test/deap.test.js" afterPath="$PROJECT_DIR$/node_modules/deap/test/deap.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deap/test/extend.test.js" afterPath="$PROJECT_DIR$/node_modules/deap/test/extend.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deap/test/update.test.js" afterPath="$PROJECT_DIR$/node_modules/deap/test/update.test.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/deprecated/LICENSE" afterPath="$PROJECT_DIR$/node_modules/deprecated/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/duplexer2/example.js" afterPath="$PROJECT_DIR$/node_modules/duplexer2/example.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/exit/test/fixtures/create-files.sh" afterPath="$PROJECT_DIR$/node_modules/exit/test/fixtures/create-files.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/glob-stream/LICENSE" afterPath="$PROJECT_DIR$/node_modules/glob-stream/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/glob-watcher/LICENSE" afterPath="$PROJECT_DIR$/node_modules/glob-watcher/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/glob2base/LICENSE" afterPath="$PROJECT_DIR$/node_modules/glob2base/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/gulp-concat/LICENSE" afterPath="$PROJECT_DIR$/node_modules/gulp-concat/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/gulp-jshint/LICENSE" afterPath="$PROJECT_DIR$/node_modules/gulp-jshint/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/gulp-minify-css/LICENSE" afterPath="$PROJECT_DIR$/node_modules/gulp-minify-css/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/gulp-util/LICENSE" afterPath="$PROJECT_DIR$/node_modules/gulp-util/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/gulp/bin/gulp.js" afterPath="$PROJECT_DIR$/node_modules/gulp/bin/gulp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/har-validator/bin/har-validator" afterPath="$PROJECT_DIR$/node_modules/har-validator/bin/har-validator" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/hawk/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/LICENSE" afterPath="$PROJECT_DIR$/node_modules/hawk/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/README.md" afterPath="$PROJECT_DIR$/node_modules/hawk/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/example/usage.js" afterPath="$PROJECT_DIR$/node_modules/hawk/example/usage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/lib/browser.js" afterPath="$PROJECT_DIR$/node_modules/hawk/lib/browser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/lib/client.js" afterPath="$PROJECT_DIR$/node_modules/hawk/lib/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/lib/crypto.js" afterPath="$PROJECT_DIR$/node_modules/hawk/lib/crypto.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/hawk/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/lib/server.js" afterPath="$PROJECT_DIR$/node_modules/hawk/lib/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/lib/utils.js" afterPath="$PROJECT_DIR$/node_modules/hawk/lib/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/browser.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/browser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/client.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/crypto.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/crypto.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/index.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/readme.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/readme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/server.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/uri.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/uri.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/hawk/test/utils.js" afterPath="$PROJECT_DIR$/node_modules/hawk/test/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/is-utf8/ansi.txt" afterPath="$PROJECT_DIR$/node_modules/is-utf8/ansi.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/is-utf8/utf8.txt" afterPath="$PROJECT_DIR$/node_modules/is-utf8/utf8.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jade/bin/jade" afterPath="$PROJECT_DIR$/node_modules/jade/bin/jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jshint/bin/apply" afterPath="$PROJECT_DIR$/node_modules/jshint/bin/apply" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jshint/bin/build" afterPath="$PROJECT_DIR$/node_modules/jshint/bin/build" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jshint/bin/changelog" afterPath="$PROJECT_DIR$/node_modules/jshint/bin/changelog" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jshint/bin/jshint" afterPath="$PROJECT_DIR$/node_modules/jshint/bin/jshint" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jshint/bin/land" afterPath="$PROJECT_DIR$/node_modules/jshint/bin/land" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/jshint/dist/jshint-rhino.js" afterPath="$PROJECT_DIR$/node_modules/jshint/dist/jshint-rhino.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mkdirp/bin/cmd.js" afterPath="$PROJECT_DIR$/node_modules/mkdirp/bin/cmd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mocha/bin/_mocha" afterPath="$PROJECT_DIR$/node_modules/mocha/bin/_mocha" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mocha/bin/mocha" afterPath="$PROJECT_DIR$/node_modules/mocha/bin/mocha" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mocha/node_modules/mkdirp/bin/cmd.js" afterPath="$PROJECT_DIR$/node_modules/mocha/node_modules/mkdirp/bin/cmd.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/mocha/node_modules/supports-color/cli.js" afterPath="$PROJECT_DIR$/node_modules/mocha/node_modules/supports-color/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/bin/node-sass" afterPath="$PROJECT_DIR$/node_modules/node-sass/bin/node-sass" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/node_modules/has-ansi/cli.js" afterPath="$PROJECT_DIR$/node_modules/node-sass/node_modules/has-ansi/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/node_modules/strip-ansi/cli.js" afterPath="$PROJECT_DIR$/node_modules/node-sass/node_modules/strip-ansi/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/node_modules/supports-color/cli.js" afterPath="$PROJECT_DIR$/node_modules/node-sass/node_modules/supports-color/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/bootstrap" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/bootstrap" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/branding" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/branding" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-libsass" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-build-libsass" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-compiler" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-compiler" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-deps" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-install-deps" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-report-coverage" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/ci-report-coverage" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/coveralls-debug" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/coveralls-debug" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/spec" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/spec" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-driver" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-driver" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-runner" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/script/tap-runner" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/test-driver" afterPath="$PROJECT_DIR$/node_modules/node-sass/src/libsass/test-driver" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-sass/test/fixtures/spec/sass-spec.rb" afterPath="$PROJECT_DIR$/node_modules/node-sass/test/fixtures/spec/sass-spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-uuid/benchmark/bench.sh" afterPath="$PROJECT_DIR$/node_modules/node-uuid/benchmark/bench.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/node-uuid/bin/uuid" afterPath="$PROJECT_DIR$/node_modules/node-uuid/bin/uuid" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" afterPath="$PROJECT_DIR$/node_modules/nopt/bin/nopt.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" afterPath="$PROJECT_DIR$/node_modules/nopt/examples/my-program.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/bin/node-gyp.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/bin/node-gyp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/buildbot/buildbot_run.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/buildbot/buildbot_run.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyp" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyp.bat" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyp.bat" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyp_main.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyp_main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyptest.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/gyptest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/MSVSSettings_test.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/MSVSSettings_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/__init__.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/__init__.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/common_test.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/common_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/easy_xml_test.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/easy_xml_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/flock_tool.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/flock_tool.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/generator/msvs_test.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/generator/msvs_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/input_test.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/input_test.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/mac_tool.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/mac_tool.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/win_tool.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/pylib/gyp/win_tool.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/samples/samples" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/samples/samples" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/setup.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/setup.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/emacs/run-unit-tests.sh" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/emacs/run-unit-tests.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/graphviz.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/graphviz.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/pretty_gyp.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/pretty_gyp.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/pretty_sln.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/pretty_sln.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/pretty_vcproj.py" afterPath="$PROJECT_DIR$/node_modules/pangyp/gyp/tools/pretty_vcproj.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/async/support/sync-package-managers.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/async/support/sync-package-managers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/LICENSE" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/Makefile" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/README.md" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/test/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/boom/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/LICENSE" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/Makefile" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/test/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/cryptiles/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/delayed-stream/test/run.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/delayed-stream/test/run.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/LICENSE" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/Makefile" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/README.md" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/example/usage.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/example/usage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/browser.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/browser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/client.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/crypto.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/crypto.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/server.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/utils.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/lib/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/browser.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/browser.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/client.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/client.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/crypto.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/crypto.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/message.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/message.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/readme.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/readme.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/server.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/server.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/uri.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/uri.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/utils.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hawk/test/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/LICENSE" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/Makefile" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/README.md" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/lib/escape.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/lib/escape.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/modules/test1.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/modules/test1.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/modules/test2.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/modules/test2.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/modules/test3.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/hoek/test/modules/test3.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/LICENSE" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/README.md" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/parse.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/parse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/stringify.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/stringify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/utils.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/lib/utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/test/parse.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/test/parse.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/test/stringify.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/qs/test/stringify.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/request/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/request/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/request/release.sh" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/request/release.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/rimraf/bin.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/rimraf/bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/LICENSE" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/Makefile" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/README.md" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/examples/offset.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/examples/offset.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/examples/time.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/examples/time.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/test/index.js" afterPath="$PROJECT_DIR$/node_modules/pangyp/node_modules/sntp/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/replace-ext/LICENSE" afterPath="$PROJECT_DIR$/node_modules/replace-ext/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/request/index.js" afterPath="$PROJECT_DIR$/node_modules/request/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/rimraf/bin.js" afterPath="$PROJECT_DIR$/node_modules/rimraf/bin.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sass-graph/bin/sassgraph" afterPath="$PROJECT_DIR$/node_modules/sass-graph/bin/sassgraph" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/semver/bin/semver" afterPath="$PROJECT_DIR$/node_modules/semver/bin/semver" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/shelljs/bin/shjs" afterPath="$PROJECT_DIR$/node_modules/shelljs/bin/shjs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/shelljs/scripts/generate-docs.js" afterPath="$PROJECT_DIR$/node_modules/shelljs/scripts/generate-docs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/shelljs/scripts/run-tests.js" afterPath="$PROJECT_DIR$/node_modules/shelljs/scripts/run-tests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/.travis.yml" afterPath="$PROJECT_DIR$/node_modules/sntp/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/LICENSE" afterPath="$PROJECT_DIR$/node_modules/sntp/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/Makefile" afterPath="$PROJECT_DIR$/node_modules/sntp/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/README.md" afterPath="$PROJECT_DIR$/node_modules/sntp/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/examples/offset.js" afterPath="$PROJECT_DIR$/node_modules/sntp/examples/offset.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/examples/time.js" afterPath="$PROJECT_DIR$/node_modules/sntp/examples/time.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/index.js" afterPath="$PROJECT_DIR$/node_modules/sntp/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/lib/index.js" afterPath="$PROJECT_DIR$/node_modules/sntp/lib/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/sntp/test/index.js" afterPath="$PROJECT_DIR$/node_modules/sntp/test/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/spdx-license-ids/README.md" afterPath="$PROJECT_DIR$/node_modules/spdx-license-ids/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/strip-indent/cli.js" afterPath="$PROJECT_DIR$/node_modules/strip-indent/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/strip-json-comments/cli.js" afterPath="$PROJECT_DIR$/node_modules/strip-json-comments/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/uglify-js/bin/extract-props.js" afterPath="$PROJECT_DIR$/node_modules/uglify-js/bin/extract-props.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/uglify-js/bin/uglifyjs" afterPath="$PROJECT_DIR$/node_modules/uglify-js/bin/uglifyjs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/uglify-js/node_modules/async/lib/async.js" afterPath="$PROJECT_DIR$/node_modules/uglify-js/node_modules/async/lib/async.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/uid-number/get-uid-gid.js" afterPath="$PROJECT_DIR$/node_modules/uid-number/get-uid-gid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/user-home/cli.js" afterPath="$PROJECT_DIR$/node_modules/user-home/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/vinyl-fs/LICENSE" afterPath="$PROJECT_DIR$/node_modules/vinyl-fs/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/vinyl-fs/node_modules/strip-bom/cli.js" afterPath="$PROJECT_DIR$/node_modules/vinyl-fs/node_modules/strip-bom/cli.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/vinyl-sourcemaps-apply/node_modules/source-map/test/run-tests.js" afterPath="$PROJECT_DIR$/node_modules/vinyl-sourcemaps-apply/node_modules/source-map/test/run-tests.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/node_modules/which/bin/which" afterPath="$PROJECT_DIR$/node_modules/which/bin/which" />
+    </list>
     <ignored path="homesinboise.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -26,11 +262,11 @@
   <component name="FileEditorManager">
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/gulpfile.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state relative-caret-position="18">
                   <caret line="10" column="94" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
                   <folding />
                 </state>
@@ -40,7 +276,7 @@
           <file leaf-file-name="new.min.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state relative-caret-position="0">
                   <caret line="0" column="555" selection-start-line="0" selection-start-column="555" selection-end-line="0" selection-end-column="555" />
                   <folding />
                 </state>
@@ -50,7 +286,7 @@
           <file leaf-file-name="homesinboise.info" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state relative-caret-position="936">
                   <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
                   <folding />
                 </state>
@@ -60,7 +296,7 @@
           <file leaf-file-name="new.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state relative-caret-position="450">
                   <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
                   <folding />
                 </state>
@@ -70,12 +306,22 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
-          <file leaf-file-name="new.scss" pinned="false" current-in-tab="true">
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="new.scss" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state relative-caret-position="18">
                   <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -84,6 +330,9 @@
         </leaf>
       </split-second>
     </splitter>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -96,6 +345,9 @@
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true">
+    <package-json value="$PROJECT_DIR$/package.json" />
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <gulpfiles>
@@ -104,17 +356,14 @@
       </GulpfileState>
     </gulpfiles>
   </component>
-  <component name="NamedScopeManager">
-    <order />
-  </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="51" />
+    <option name="x" value="110" />
+    <option name="y" value="1160" />
     <option name="width" value="1832" />
     <option name="height" value="963" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -135,8 +384,12 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -152,123 +405,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -281,12 +422,10 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -304,6 +443,7 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
@@ -313,41 +453,49 @@
       <method />
     </configuration>
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="b2ac689c-0ab2-49b7-8157-a994e034b56f" name="Default" comment="" />
       <created>1445199443367</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1445199443367</updated>
+      <workItem from="1466980892422" duration="438000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="438000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="51" width="1832" height="963" extended-state="0" />
+    <frame x="110" y="1160" width="1832" height="963" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32896304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21573302" sideWeight="0.49776036" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17469205" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32896304" sideWeight="0.50223964" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1769317" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.50223964" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21573302" sideWeight="0.49776036" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -360,7 +508,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="180">
           <caret line="10" column="94" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
           <folding />
         </state>
@@ -368,7 +516,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="555" selection-start-line="0" selection-start-column="555" selection-end-line="0" selection-end-column="555" />
           <folding />
         </state>
@@ -376,7 +524,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="936">
           <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
           <folding />
         </state>
@@ -384,7 +532,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="450">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
@@ -392,7 +540,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="10" column="94" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="555" selection-start-line="0" selection-start-column="555" selection-end-line="0" selection-end-column="555" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -400,14 +588,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74851483">
+        <state relative-caret-position="0">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="450">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
@@ -415,7 +603,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="0">
           <caret line="0" column="555" selection-start-line="0" selection-start-column="555" selection-end-line="0" selection-end-column="555" />
           <folding />
         </state>
@@ -423,7 +611,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="936">
           <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
           <folding />
         </state>
@@ -431,7 +619,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="18">
           <caret line="10" column="94" selection-start-line="10" selection-start-column="94" selection-end-line="10" selection-end-column="94" />
           <folding />
         </state>
@@ -439,8 +627,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state relative-caret-position="18">
           <caret line="42" column="24" selection-start-line="42" selection-start-column="24" selection-end-line="42" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
