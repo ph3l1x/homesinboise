@@ -1,0 +1,331 @@
+<?php
+/**
+ * @file
+ * Default theme implementation to display a single Drupal page.
+ *
+ * The doctype, html, head and body tags are not in this template. Instead they
+ * can be found in the html.tpl.php template in this directory.
+ *
+ * Available variables:
+ *
+ * General utility variables:
+ * - $base_path: The base URL path of the Drupal installation. At the very
+ *   least, this will always default to /.
+ * - $directory: The directory the template is located in, e.g. modules/system
+ *   or themes/bartik.
+ * - $is_front: TRUE if the current page is the front page.
+ * - $logged_in: TRUE if the user is registered and signed in.
+ * - $is_admin: TRUE if the user has permission to access administration pages.
+ *
+ * Site identity:
+ * - $front_page: The URL of the front page. Use this instead of $base_path,
+ *   when linking to the front page. This includes the language domain or
+ *   prefix.
+ * - $logo: The path to the logo image, as defined in theme configuration.
+ * - $site_name: The name of the site, empty when display has been disabled
+ *   in theme settings.
+ * - $site_slogan: The slogan of the site, empty when display has been disabled
+ *   in theme settings.
+ *
+ * Navigation:
+ * - $main_menu (array): An array containing the Main menu links for the
+ *   site, if they have been configured.
+ * - $secondary_menu (array): An array containing the Secondary menu links for
+ *   the site, if they have been configured.
+ * - $breadcrumb: The breadcrumb trail for the current page.
+ *
+ * Page content (in order of occurrence in the default page.tpl.php):
+ * - $title_prefix (array): An array containing additional output populated by
+ *   modules, intended to be displayed in front of the main title tag that
+ *   appears in the template.
+ * - $title: The page title, for use in the actual HTML content.
+ * - $title_suffix (array): An array containing additional output populated by
+ *   modules, intended to be displayed after the main title tag that appears in
+ *   the template.
+ * - $messages: HTML for status and error messages. Should be displayed
+ *   prominently.
+ * - $tabs (array): Tabs linking to any sub-pages beneath the current page
+ *   (e.g., the view and edit tabs when displaying a node).
+ * - $action_links (array): Actions local to the page, such as 'Add menu' on the
+ *   menu administration interface.
+ * - $feed_icons: A string of all feed icons for the current page.
+ * - $node: The node object, if there is an automatically-loaded node
+ *   associated with the page, and the node ID is the second argument
+ *   in the page's path (e.g. node/12345 and node/12345/revisions, but not
+ *   comment/reply/12345).
+ *
+ * Regions:
+ * - $page['help']: Dynamic help text, mostly for admin pages.
+ * - $page['highlighted']: Items for the highlighted content region.
+ * - $page['content']: The main content of the current page.
+ * - $page['sidebar_first']: Items for the first sidebar.
+ * - $page['sidebar_second']: Items for the second sidebar.
+ * - $page['header']: Items for the header region.
+ * - $page['footer']: Items for the footer region.
+ *
+ * @see bootstrap_preprocess_page()
+ * @see template_preprocess()
+ * @see template_preprocess_page()
+ * @see bootstrap_process_page()
+ * @see template_process()
+ * @see html.tpl.php
+ *
+ * @ingroup themeable
+ */
+?>
+<div class="<?php print $bento_classes; print ' '; print $bento_dark; print ' '; print $bento_dark_b; print ' '; print $bento_bp; print ' '; print $bento_bc; print ' '; print $bento_br;?>">
+	
+    <div class="page">	
+	<div class="page-inner">
+	   <?php if ($page['header']): ?>
+	   <div class="header-container" data-speed="4" data-type="background">
+		<div class="header-inner container">
+            <?php if($logo): ?>
+                <div class="logo col-sm-3 col-xs-12">
+                    <a class="logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
+                </div> <!-- .logo -->
+            <?php endif; ?>
+
+            <?php if ($page['navigation']): ?>
+                <nav id="main-navigation-wrapper" class="col-xs-12 col-sm-9 main-navigation-wrapper wrapper desktop <?php print $bento_m_dark; ?>">
+                    <div id="main-navigation" class="main-navigation">
+                        <div class="inner">
+                            <?php print render($main_menu_expanded);  ?>
+                        </div> <!-- .inner -->
+                    </div> <!-- .main-navigation -->
+                </nav> <!-- .main-navigation-wrapper -->
+            <?php endif; ?>
+
+
+			<?php print render($page['header']); ?>
+		</div><!-- /header-inner -->
+	   </div><!-- /header-container -->
+	   <?php endif; ?>
+
+								
+
+	   
+	   <div id="content-area-wrapper" class="content-area-wrapper <?php print $bento_cw_dark; ?>">
+
+		<?php if ($page['preface']): ?>
+		<section id="preface-wrapper" class="preface-wrapper wrapper <?php print $bento_pre_dark; print ' '; print $bento_bppre; ?>">
+			<div id="preface-container" class="container<?php print $bento_fluid;?> <?php print $bento_bcpre;?>">
+				<div id="preface" class="region <?php print $bento_brpre;?> clearfix">
+					<div class="inner">
+					<?php print render($page['preface']); ?>
+					</div><!-- .inner -->
+				</div> <!-- #preface -->
+			</div>  <!-- #preface-container -->
+		</section>
+		<?php endif; ?>
+		
+		<?php if ($page['isotope_filters']): ?>
+		<section id="isotope-filters-wrapper" class="isotope-filters-wrapper wrapper container <?php print $bento_pre_dark; print ' '; print $bento_bppre; ?>">
+			<div id="isotope-filters-container" class="container<?php print $bento_fluid;?> <?php print $bento_bcpre;?>">
+				<div id="isotope-filters-region" class="region <?php print $bento_brpre;?> clearfix">
+					<div class="inner">
+					<?php print render($page['isotope_filters']); ?>
+					</div><!-- .inner -->
+				</div> <!-- #isotope-filters-region -->
+			</div>  <!-- #isotope-filters-container -->
+		</section>
+		<?php endif; ?>
+		
+		<?php if ($page['isotope_grid']): ?>
+		<section id="isotope-grid-wrapper" class="isotope-grid-wrapper wrapper container <?php print $bento_pre_dark; print ' '; print $bento_bppre; ?>">
+			<div id="isotope-grid-container" class="container<?php print $bento_fluid;?> <?php print $bento_bcpre;?>">
+				<div id="isotope-grid-region" class="region <?php print $bento_brpre;?> clearfix">
+					<div class="inner">
+					<?php print render($page['isotope_grid']); ?>
+					</div><!-- .inner -->
+				</div> <!-- #isotope-grid-region -->
+			</div>  <!-- #isotope-grid-container -->
+		</section>
+		<?php endif; ?>
+		
+
+		
+		<div id="content-wrapper" class="content-wrapper wrapper">
+			<div id="content-container" class="container <?php print $bento_bcc;?>">	
+
+				<?php if (!empty($page['sidebar_first'])): ?>
+				<aside class="col-sm-3 sidebar-first sidebar region <?php print $bento_sl_dark; print ' '; print $bento_bpside; print ' '; print $bento_brside;?>" role="complementary">
+					<div class="inner">
+						<?php print render($page['sidebar_first']); ?>
+					</div> <!-- .inner -->
+				</aside>  <!-- /#sidebar-first -->
+				<?php endif; ?>
+
+				<section<?php print $content_column_class; ?>> <!-- begin content column-->
+
+
+					<?php if (!empty($page['content_top'])): ?>
+					<section id="content-top-wrapper" class="content-top-wrapper wrapper <?php print $bento_ct_dark; print ' '; print $bento_bpct; ?>">
+						<div class="content-top-wrapper-inner">
+							<div id="content-top" class="region <?php print $bento_brct;?> clearfix">
+								<div class="inner">
+									<?php print render($page['content_top']); ?>
+								</div><!-- .inner -->
+							</div>  <!-- #content-top -->
+						</div> <!-- .content-top-wrapper-inner -->
+					</section>
+					<?php endif; ?>    
+
+
+					<?php if (!empty($page['highlighted'])): ?>
+					<section id="highlighted-wrapper" class="highlighted-wrapper wrapper">
+						<div class="highlighted-wrapper-inner">
+							<div id="highlighted" class="highlighted region clearfix">
+								<div class="inner">
+									<div class="jumbotron">
+										<?php print render($page['highlighted']); ?>
+									</div> <!-- .jumbotron -->
+								</div><!-- .inner -->
+							</div> <!-- #highlighted -->
+						</div>  <!-- .highlighted-wrapper-inner -->
+					</section>				
+					<?php endif; ?>
+					
+					<div class="content-region <?php print $bento_c_dark; ?>">
+
+						<a id="main-content"></a>
+
+							<?php print render($title_prefix); ?>
+
+							<?php if (!empty($title)): ?>
+								<h1 class="page-header title"><?php print $title; ?></h1>
+							<?php endif; ?>
+
+							<?php print render($title_suffix); ?>
+
+							<?php print $messages; ?>
+
+							<?php if (!empty($tabs)): ?>
+								<?php print render($tabs); ?>
+							<?php endif; ?>
+
+							<?php if (!empty($page['help'])): ?>
+								<?php print render($page['help']); ?>
+							<?php endif; ?>
+
+							<?php if (!empty($action_links)): ?>
+								<ul class="action-links"><?php print render($action_links); ?></ul>
+							<?php endif; ?>
+
+							<?php print render($page['content']); ?>
+							
+						    <?php if(!empty($feed_icons)): ?>
+							<div class="rssFeed"><?php print $feed_icons; ?></div>
+						    <?php endif; ?>
+						</div> <!-- .content-region -->
+						<?php if (!empty($page['content_bottom'])): ?>
+						<section id="content-bottom-wrapper" class="content-bottom-wrapper wrapper <?php print $bento_cb_dark; print ' '; print $bento_bpcb; ?>">
+							<div class="content-bottom-wrapper-inner">
+								<div id="content-bottom" class="region <?php print $bento_brcb;?> clearfix">
+									<div class="inner">
+										<?php print render($page['content_bottom']); ?>
+									</div><!-- .inner -->
+								</div>  <!-- #content-bottom -->
+							</div> <!-- .content-bottom-wrapper-inner -->
+						</section>				
+						<?php endif; ?>
+
+				</section> <!-- /content column -->
+
+
+
+				<?php if (!empty($page['sidebar_second'])): ?>
+				<aside class="col-sm-3 sidebar-last sidebar region <?php print $bento_sr_dark; print ' '; print $bento_bpside; print ' '; print $bento_brside; ?>" role="complementary">
+					<div class="inner">
+						<?php print render($page['sidebar_second']); ?>
+					</div> <!-- .inner -->
+				</aside>  <!-- /#sidebar-second -->
+				<?php endif; ?>
+			
+			</div> <!-- #content-container -->
+		</div> <!-- #content-wrapper -->
+		
+		
+		
+		
+		
+	</div> <!-- /content-area-wrapper -->
+	
+	
+	
+	
+	
+	
+			<?php if ($page['postscript']): ?>
+			<section id="postscript-wrapper" class="postscript-wrapper wrapper <?php print $bento_post_dark; print ' '; print $bento_bppost; ?>">
+				<div class="postscript-wrapper-inner">
+					<div id="postscript-container" class="container <?php print $bento_bcpost;?>">
+						<div id="postscript" class="region <?php print $bento_brpost;?> clearfix">
+							<div class="inner">
+								<?php print render($page['postscript']); ?>
+							</div> <!-- .inner -->
+						</div> <!-- #postscript -->
+					</div> <!-- #postscript-container -->
+				</div> <!-- .postscript-wrapper-inner -->
+			</section>
+			<?php endif; ?>
+
+			<footer class="footer-outer <?php print $bento_f_dark; print ' '; print $bento_bppost; ?>">
+				<div class="footer-outer-inner">
+				
+					<?php if ($page['footer']): ?>
+					<div id="footer-wrapper" class="footer-wrapper wrapper">
+						<div class="footer-wrapper-inner">
+							<div id="footer-container" class="container <?php print $bento_bcf;?>">
+								<div id="footer" class="region <?php print $bento_brf;?> clearfix" >
+									<div class="inner">
+										<?php print render($page['footer']); ?>
+									</div> <!-- .inner -->
+								</div> <!-- #footer -->
+							</div> <!-- #footer-container -->
+						</div> <!-- .footer-wrapper-inner -->
+					</div> <!-- .footer-wrapper -->
+					<?php endif; ?>
+					
+
+					<div id="footer-information" class="footer-information-wrapper wrapper">
+						<div class="footer-information-wrapper-inner">
+							<div id="footer-information-container" class="container <?php print $bento_bcf;?>">
+								<div id="footer-information" class="region <?php print $bento_brf;?> clearfix" >
+									<div class="inner">
+										<div>&copy;<?php echo date("Y"); print ' '; print $site_name; ?></div>
+
+										<?php if ($page['information']): ?>
+											<?php print render($page['information']); ?>
+										<?php endif; ?>
+									</div> <!-- .inner -->
+								</div> <!-- #footer-information -->
+							</div> <!-- #footer-information-container -->
+						</div> <!-- .footer-information-wrapper-inner -->
+					</div> <!-- .footer-information-wrapper -->
+				</div> <!-- .footer-outer-inner -->
+			</footer> <!-- .footer-outer -->
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	</div> <!-- /page-inner -->
+    </div><!-- /page -->
+</div> <!-- .bento -->
+
+
+

@@ -1,0 +1,704 @@
+@font-face {
+    font-family: 'SignikaRegular';
+    src: url('fonts/SignikaRegular.eot');
+    src: url('fonts/SignikaRegular.eot') format('embedded-opentype'),
+    url('fonts/SignikaRegular.woff2') format('woff2'),
+    url('fonts/SignikaRegular.woff') format('woff'),
+    url('fonts/SignikaRegular.ttf') format('truetype'),
+    url('fonts/SignikaRegular.svg#SignikaRegular') format('svg');
+}
+
+@font-face {
+    font-family: 'SignikaBold';
+    src: url('fonts/SignikaBold.eot');
+    src: url('fonts/SignikaBold.eot') format('embedded-opentype'),
+    url('fonts/SignikaBold.woff2') format('woff2'),
+    url('fonts/SignikaBold.woff') format('woff'),
+    url('fonts/SignikaBold.ttf') format('truetype'),
+    url('fonts/SignikaBold.svg#SignikaBold') format('svg');
+}
+
+@font-face {
+    font-family: 'OpenSansRegular';
+    src: url('fonts/OpenSansRegular.eot');
+    src: url('fonts/OpenSansRegular.eot') format('embedded-opentype'),
+    url('fonts/OpenSansRegular.woff2') format('woff2'),
+    url('fonts/OpenSansRegular.woff') format('woff'),
+    url('fonts/OpenSansRegular.ttf') format('truetype'),
+    url('fonts/OpenSansRegular.svg#OpenSansRegular') format('svg');
+}
+
+ul#flexslider_views_slideshow_homepage_slideshow-block {
+    padding: 0px;
+    margin: 0px;
+}
+
+#block-views-homepage-slideshow-block h2.block-title {
+    display: none;
+}
+
+#block-views-homepage-slideshow-block img {
+    /*min-height:420px;*/
+}
+
+.logo a:hover {
+    transform: scale(1.2);
+}
+
+.logo a {
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    transition: all 0.5s ease 0s;
+}
+
+.logo img {
+    padding-top: 10px;
+}
+
+#block-block-10 button.MLSSearch:hover {
+    background: rgb(205, 66, 80); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(205, 66, 80, 1)), color-stop(100%, rgba(204, 104, 112, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cd4250', endColorstr='#cc6870', GradientType=0); /* IE6-9 */
+    color: #fff;
+    border: 1px solid #cd4250;
+    box-shadow: 0 1px 0 #cc6870 inset;
+}
+
+#block-block-10 button.MLSSearch {
+    background: -moz-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ac1f2d), color-stop(100%, #cd4250));
+    background: -webkit-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -o-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -ms-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: linear-gradient(to bottom, #ac1f2d 0%, #cd4250 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ac1f2d', endColorstr='#cd4250', GradientType=0);
+    border: 1px solid #ac1f2d;
+    box-shadow: 0 1px 0 #cd4250 inset;
+    font-family: georgia;
+    font-size: 1.9rem;
+    font-weight: normal;
+    color: #fff;
+    margin-top: 20px;
+    transition-duration: 1s;
+    width: 100%;
+}
+
+#block-block-10 .mlsSearchContainer label {
+    color: #fff;
+    font-size: 16px;
+}
+
+#block-block-10 .mlsSearchContainer .frontMLSSearchPriceRangeHigh {
+    display: inline-block;
+}
+
+#block-block-10 .mlsSearchContainer .frontMLSSearchOr {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+#block-block-10 .mlsSearchContainer .frontMLSSearchPriceRangeLow {
+    display: inline-block;
+}
+
+.frontMLSSearchOr {
+    margin-top: 29px;
+}
+
+#block-block-10 .mlsSearchContainer .MLSSearchBottom {
+    float: left;
+    width: 100%;
+    padding: 0;
+    border-top: 1px solid #676767;
+    color: #ffffff;
+    padding:10px 0;
+    font-weight:bold;
+
+}
+
+#block-block-10 .mlsSearchContainer .MLSSearchBottomLeft {
+    float: left;
+    margin-left:20px;
+}
+
+#block-block-10 .mlsSearchContainer .MLSSearchBottomRight {
+    float: right;
+    margin-right:20px;
+}
+
+#block-block-10 .mlsSearchInner {
+    padding: 20px;
+    float: left;
+    width: 100%;
+}
+.frontPageMLSSearchBlurb {
+    text-align:center;
+    color:#ffffff;
+    text-shadow:1px 1px 1px #000000;
+    font-weight:bold;
+    font-size:18px;
+    padding-bottom:20px;
+}
+#block-block-10 .mlsSearchContainer {
+    padding: 0;
+    float: right;
+    border: 1px solid #676767;
+    border-radius: 5px;
+    /*margin: 121px 0 0;*/
+    margin:0;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(147, 147, 147, 0.5))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#80939393', GradientType=0); /* IE6-9 */
+}
+
+nav ul.sf-menu li {
+    /*padding-right: 5px;*/
+}
+
+.header-inner {
+    margin: 0 auto;
+}
+
+nav ul.sf-menu > li > a:hover, nav ul.sf-menu > li > a.active {
+    color: #ffffff;
+    background: #ac1f2d;
+    background: -moz-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ac1f2d), color-stop(100%, #cd4250));
+    background: -webkit-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -o-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -ms-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: linear-gradient(to bottom, #ac1f2d 0%, #cd4250 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ac1f2d', endColorstr='#cd4250', GradientType=0);
+    background-repeat: no-repeat;
+    background-position: 0 0px;
+    transition: all 0.5s ease 0s;
+}
+
+nav ul.sf-menu > li > a {
+    background: #ac1f2d;
+    background: -moz-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ac1f2d), color-stop(100%, #cd4250));
+    background: -webkit-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -o-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: -ms-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+    background: linear-gradient(to bottom, #ac1f2d 0%, #cd4250 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ac1f2d', endColorstr='#cd4250', GradientType=0);
+    background-repeat: no-repeat;
+    background-position: 0 40px;
+    /*color: #0f1413;*/
+    color:#fff;
+    text-shadow: 1px 1px 1px #000;
+    display: block;
+    font-family: "OpenSansRegular", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 36px;
+    padding: 0 10px;
+    position: relative;
+    transition: all 0.5s ease 0s;
+    z-index: 2;
+}
+
+.sf-arrows .sf-with-ul::after {
+    content: '' !important;
+}
+
+nav ul.sf-depth-2 {
+    background: #555555;
+    padding: 12px 0;
+    width: 100%;
+    margin-top: 3px;
+}
+
+nav ul.sf-depth-2 a:hover {
+    color: #ffffff !important;
+}
+
+nav ul.sf-depth-2 a {
+    display: block;
+    font-family: "OpenSansRegular", sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    line-height: 24px;
+    padding: 6px 12px;
+    text-decoration: none;
+    transition: all 0.5s ease 0s;
+}
+
+.front #block-views-homepage-slideshow-block h2.block-title {
+    display: none;
+}
+
+#block-superfish-1 h2.block-title {
+    display: none;
+}
+
+.flexslider-views-slideshow-main-frame-row {
+    position: relative;
+}
+
+.views-field-field-slideshow-text {
+    position: absolute;
+    bottom: 30px;
+    background: rgba(0, 0, 0, .58);
+    left: 50%;
+    padding: 10px;
+    transform: translateX(-50%);
+    color: #ffffff;
+}
+
+.views-field-field-slideshow-text .field-content {
+    text-align: center;
+}
+
+.views-field-field-slideshow-text .field-content h2 {
+    line-height: normal;
+    margin: 0;
+    padding: 0;
+    font-family: 'SignikaBold';
+    font-size: 50px;
+}
+#block-block-10 {
+    position:relative;
+    top:77px;
+}
+.header-container {
+    /*background: url('images/header_image.jpg') no-repeat scroll center bottom / cover rgba(0, 0, 0, 0);*/
+    background: url('images/header_image.jpg')  no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    position: relative;
+    /*padding-bottom: 150px;*/
+    min-height:377px;
+    background-size: cover;
+}
+
+.p2 {
+    /*background: url('images/middle_image.jpg') repeat-y scroll center bottom / cover rgba(0, 0, 0, 0);*/
+    background:url('images/middle_image.jpg') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    position: relative;
+    padding-bottom: 36px;
+    min-height:527px;
+}
+
+#main-navigation-wrapper {
+    margin-top: 25px;
+}
+
+#content-area-wrapper {
+    clear: both;
+}
+
+#block-block-1, #block-block-3 {
+    color: #ffffff;
+}
+
+#isotope-filters-wrapper h2.block-title {
+    display: none;
+}
+
+#isotope-filters-wrapper .isotope-options {
+    background: none;
+}
+
+#isotope-filters-wrapper .bed-container, #isotope-filters-wrapper .bath-container {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 175px;
+
+}
+
+#isotope-filters-wrapper .isotope-filter {
+    position: relative;
+    height: 100px;
+}
+
+#isotope-filters-wrapper ul.isotope-filters li {
+    display: inline-block;
+}
+
+#isotope-filters-wrapper ul.isotope-filters {
+    list-style: none;
+    position: absolute;
+    top: 63px;
+    transition: 1s;
+    width: 230px;
+}
+
+#isotope-filters-wrapper .bed.off, #isotope-filters-wrapper .bath.off {
+    position: absolute;
+    z-index: 5;
+    visibility: visible;
+    color: #9E9C9C;
+    transition: 1s;
+}
+
+#isotope-filters-wrapper .bed.on, #isotope-filters-wrapper .bath.on {
+    position: absolute;
+    z-index: 5;
+    visibility: visible;
+    transition: 1s;
+    color: #000000;
+}
+
+#nav-shadow li {
+    float: left;
+    height: 36px;
+    margin-right: 4px;
+    position: relative;
+    width: 30px;
+}
+
+#nav-shadow li img.shadow {
+    bottom: 0;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    z-index: 1;
+}
+
+#nav-shadow a.selected {
+    background: url("../images/icon-active.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #ffffff;
+}
+
+#nav-shadow a, #nav-shadow a:visited, #nav-shadow a, #nav-shadow a:hover {
+    background: url("../images/icon.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: block;
+    height: 30px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding-top: 6px;
+    color: #FFFFFF;
+    text-shadow: 0px 1px 1px #4d4d4d;
+
+    /*  color:#AC1F2D;*/
+}
+
+#isotope-filters-wrapper .bed, #isotope-filters-wrapper .bath {
+    font-size: 32px;
+    font-weight: normal;
+    font-family: "OpenSansRegular";
+}
+
+.remove {
+    opacity: 0;
+    z-index: 0;
+    visibility: hidden;
+    transition: 1s;
+}
+
+#block-block-3 {
+    margin-top: 39px;
+    position: relative;
+}
+
+.p1-content-container h3 span, .p2-content-container h3 span {
+    font-weight: 500;
+}
+
+.isotope-filters-text {
+    font-size: 21px;
+    color: #9E9C9C;
+    text-align: center;
+}
+
+.p1-content-container h3, .p2-content-container h3 {
+    background: url("images/navigation_title_border.png") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+    background-position: 0px 2px 3px 4px;
+    font-size: 48px;
+    font-weight: normal;
+    font-family: "OpenSansRegular";
+    line-height: 48px;
+    margin-bottom: 18px;
+    text-shadow:1px 1px 1px #000;
+    padding-bottom: 20px;
+    padding-top: 70px;
+    position: relative;
+    text-align: center;
+    margin-top: 0;
+}
+
+.front h2.block-title, #preface-wrapper h2.block-titlex {
+    background: url("images/navigation_title_border-black.png") no-repeat scroll center bottom rgba(0, 0, 0, 0);
+    background-position: 0px 2px 3px 4px;
+    font-size: 48px;
+    font-weight: normal;
+    font-family: "OpenSansRegular";
+    line-height: 48px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    padding-top: 24px;
+    position: relative;
+    text-align: center;
+}
+
+.p1-content-container .p1-content, .p2-content-container .p2-content, .p2-content2 {
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 36px;
+    margin-bottom: 32px;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    text-shadow:1px 1px 1px #000;
+    transform: translateX(-50%);
+    padding-left: 20px;
+    padding-right: 20px;
+}
+#block-block-3 {
+    /*display:none;*/
+}
+.views-field-field-mls-list-price {
+    clear:both;
+}
+.view-featured-listings-block-rets .views-row {
+    position: relative;
+}
+
+.view-featured-listings-block-rets .views-field {
+    position: absolute;
+}
+
+.view-featured-listings-block-rets .views-field-field-mls-main-image {
+    position: relative !important;
+}
+.view-featured-listings-block-rets .views-field-field-mls-main-image ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.view-featured-listings-block-rets .views-field-field-mls-list-price {
+    background: none repeat scroll 0 0 rgba(255, 82, 67, 0.79);
+    border-radius: 1140px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-family: "Signika", sans-serif;
+    font-size: 31px;
+    font-weight: 300;
+    left: 50%;
+    line-height: 131px;
+    position: absolute;
+    text-align: center;
+    top: 29px;
+    width: 138px;
+    transform: translateX(-50%);
+}
+
+.view-featured-listings-block-rets img:hover {
+    width: 120%;
+}
+
+.view-featured-listings-block-rets .views-field-nothing {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
+    bottom: 10px;
+    color: #ffffff;
+    font-family: "SignikaRegular", Arial;
+    font-size: 23px;
+    left: 50%;
+    padding: 10px;
+    transform: translateX(-50%);
+    width: 81%;
+}
+
+.front #content-wrapper {
+    display: none;
+}
+
+footer {
+    background: url('images/footerBg.jpg') no-repeat;
+    background-size: cover;
+    color: #ffffff;
+    font-family: "OpenSansRegular";
+    font-weight: bold;
+    margin-top: 30px;
+    text-rendering: optimizelegibility;
+
+}
+
+#footer-wrapper {
+    min-height: 225px;
+}
+
+footer h3 {
+    text-transform: uppercase;
+    font-family: "OpenSansRegular";
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#footer-information {
+    background: #000000;
+    text-align: center;
+}
+
+#back-top {
+    bottom: 90px;
+    position: fixed;
+    right: 20px;
+    z-index: 99;
+    display: block;
+    transition: all 2s linear;
+}
+
+.hidden {
+    display: none;
+}
+
+.visuallyhidden {
+    opacity: 0;
+}
+
+#back-top a::before {
+    /*content: "&#xf106;";*/
+    transition: all 0.5s ease 0s;
+}
+
+#back-top a::after {
+    background: none repeat scroll 0 0 #d72a1f;
+    border-radius: 40px;
+    content: "";
+    height: 100%;
+    left: 0;
+    margin-left: -1px;
+    margin-top: -1px;
+    opacity: 0;
+    padding: 1px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    transform: scale(1.5);
+    transition: all 0.4s ease 0s;
+    width: 100%;
+    z-index: -1;
+    transition: all 0.5s ease 0s;
+}
+
+#back-top a {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 2px solid #d72a1f;
+    border-radius: 46px;
+    color: #d72a1f;
+    display: block;
+    font: 38px/56px FontAwesome;
+    height: 58px;
+    text-align: center;
+    width: 58px;
+    transition: all 0.5s ease 0s;
+}
+
+#back-top a:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+#back-top a:hover {
+    color: #ffffff;
+}
+
+#back-top span {
+    position: relative;
+    bottom: 5px;
+}
+
+.flex-control-nav {
+    display: none;
+}
+
+a.button-p:hover {
+    /*background: #ac1f2d;*/
+    background: #000;
+    transition: .5s;
+}
+
+a.button-p {
+    transition: .5s;
+    border: 1px solid #ffffff;
+    padding: 8px;
+    font-family: "OpenSansRegular";
+    text-transform: capitalize;
+    color: #ffffff;
+    font-size: 20px;
+}
+
+.read-more {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 70px;
+    text-align: center;
+}
+
+#isotope-container .views-field-field-temp-listing-image .field-content {
+    height: 255px;
+    width: 248px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.86);
+}
+
+#isotope-container .views-field-field-temp-listing-image .field-content img {
+    transition: 1s;
+    position: absolute;
+    height: 255px;
+    width: 248px;
+    left: 0;
+    right: 0;
+    max-width: none;
+}
+
+#isotope-container .views-field-field-temp-listing-image .field-content img:hover {
+    width: 120% !important;
+    height: auto !important;
+    transition: 1s;
+    left: -50px;
+    right: -50px;
+}
+
+.isotope-element .views-field-title {
+    font-family: "OpenSansRegular";
+    font-size: 21px;
+    line-height: 41px;
+}
+
+.views-field-field-beds-1, .views-field-field-baths-1 {
+    display: inline-block;
+    width: 45%;
+}
+
+.beds-image, .baths-image {
+    float: left;
+    margin-right: 8px;
+    width: 30px;
+}
+
+/*@media (min-width: 768px) {*/
+    /*.sf-menu a {*/
+        /*padding: 10px 10px*/
+    /*}*/
+/*}*/
+
+/*@media screen and (min-width: 992px) {*/
+    /*.sf-menu a {*/
+        /*padding: 10px 14px*/
+    /*}*/
+/*}*/
+
+/*@media screen and (min-width: 1200px) {*/
+    /*.sf-menu a {*/
+        /*padding: 10px 16px*/
+    /*}*/
+/*}*/
+

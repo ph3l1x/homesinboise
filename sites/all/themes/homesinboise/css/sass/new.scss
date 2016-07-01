@@ -1,0 +1,1027 @@
+$bg: #f4f4f4;
+
+
+.page-drealty-listing {
+  #content-area-wrapper {
+    #content-container {
+      h1.page-header.title {
+        display: none;
+      }
+    }
+  }
+}
+
+div.logo {
+  position:relative;
+  top:100px;
+}
+a.defaultButton, a.views-more-link {
+  background-color: #dedede;
+  border-color: #999;
+  color: #222222;
+  border-radius: 4px;
+  cursor: pointer;
+  //display: inline-block;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+a.defaultButton:hover, a.views-more-link:hover {
+  background-image: url("shades/1px-darken-35.png");
+  border-color: #999;
+  color: #fff;
+}
+
+#block-block-9 {
+  a {
+    color:white;
+    text-decoraction:none;
+  }
+  a:hover {
+    color:#C6C6C6;
+    text-decoration:none;
+  }
+}
+
+.view-our-team {
+  .view-footer {
+    clear: both;
+    div {
+      float:left;
+      width:300px;
+    }
+  }
+  .view-content {
+    margin-top: 30px;
+    .views-row {
+      float: left;
+      width: 45%;
+      border: 1px solid #caced2;
+      border-radius: 5px;
+      padding: 10px;
+      height:760px;
+      margin-bottom:20px;
+      .views-field-field-agent-image {
+        img {
+          width: 100%;
+          border-radius: 5px;
+        }
+      }
+      .views-field-field-bio {
+        a.views-more-link {
+          margin-top: 10px;
+          width:100%;
+          display:block;
+        }
+      }
+      .views-field-field-name {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+    }
+    .views-row-first {
+      margin-right: 20px;
+    }
+  }
+}
+.node-page .field-type-image {
+  float: none;
+  height: inherit;
+  margin: 0 0 20px 0;
+  width:100%;
+}
+.agentProfileContainer {
+  .agentProfileContainerInner {
+    .agentTopAreaContainer {
+      .agentTopAreaInner {
+        .agentTopAreaLeft {
+          float:left;
+          width:25%;
+          .agentPicture {
+            img {
+              border-radius: 5px;
+            }
+          }
+          .agentPhones {
+            div {
+              font-family: Arial;
+              font-size: 12px;
+              margin-top: 4px;
+              color:#999;
+            }
+          }
+          .agentSocialMedia {
+            margin-top:10px;
+            div {
+              display:inline-block;
+              padding-right:5px;
+              width:25px;
+              span {
+                display:none;
+              }
+              a {
+
+              }
+            }
+          }
+
+        }
+        .agentTopAreaRight {
+          float:left;
+          margin-left:15px;
+          width:70%;
+          .agentBio {
+
+          }
+          hr {
+            background: #bbb;
+            height:1px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.listingContainer {
+  font-family: Arial;
+  color: #333;
+  font-size: 15px;
+
+  .listingContainerInner {
+    .listingHeaderContainer {
+      border: 1px solid #caced2;
+      border-radius: 5px;
+      background-color: $bg;
+
+      .listingHeaderContainerInner {
+        padding: 25px;
+
+        .top {
+          margin-bottom: 20px;
+          h3 {
+            margin: 0;
+            font-size: 1.75em;
+            color: #555;
+          }
+        }
+        .middle {
+          display: inline-block;
+          padding-left: 0;
+
+          .listPrice {
+            font-size: 1.4em;
+          }
+
+          .forSale {
+            color: green;
+            background: url('images/dot.png') repeat-y;
+            background-position: 125px 0;
+
+            i {
+              font-size: 36px;
+              margin-left: 19px;
+            }
+          }
+
+          .row {
+
+          }
+        }
+      }
+    }
+    .listingContentContainer {
+      margin-top: 20px;
+      float: left;
+      width: 100%;
+      clear: both;
+
+      .listingContentContainerInner {
+        .listingLeftContentContainer {
+          padding-left: 0;
+          padding-right: 0;
+          .listingLeftContentContainerInner {
+            border: 1px solid #caced2;
+            border-radius: 5px;
+            background: $bg;
+            padding: 20px;
+            float: left;
+            width: 100%;
+
+            .imageMapsContainer {
+              .imageMapContainerInner {
+                .imageMapTabs {
+                  ul {
+                    float: left;
+                    list-style: inside none none;
+                    padding-left: 0;
+
+                    li {
+                      border-top: 1px solid #caced2;
+                      border-bottom: 1px solid #caced2;
+                      border-right: 1px solid #caced2;
+                      float: left;
+                      padding: 10px;
+                      cursor: pointer;
+                      transition: .5s;
+
+                    }
+                    li:hover, .tabButtonActive {
+                      background: #f3e1e1;
+
+                    }
+                    li:first-of-type {
+                      border-radius: 5px 0 0 5px;
+                      border-left: 1px solid #caced2;
+                    }
+                    li:last-of-type {
+                      border-radius: 0 5px 5px 0;
+                      border-right: 1px solid #caced2;
+                    }
+                  }
+                }
+                .imageMapTabs {
+
+                }
+                .tabbedContent {
+                  clear: both;
+                  width: 100%;
+                  overflow: hidden;
+
+                }
+                .mapImages {
+                  position: relative;
+                }
+                .mapStreet {
+                  position: relative;
+                  display: none;
+                }
+                .mapMap {
+                  position: relative;
+                  display: none;
+                }
+                .mapSatellite {
+                  position: relative;
+                  display: none;
+                }
+              }
+            }
+          }
+          .description {
+            margin-bottom: 20px;
+          }
+          .contentLeft {
+            padding-left: 0;
+            ul {
+              margin: 0;
+              list-style: none;
+              padding: 0;
+
+              li {
+                label {
+                  display: inline-block;
+                  margin-right: 15px;
+
+                }
+              }
+            }
+          }
+          .contentRight {
+            ul {
+              margin: 0;
+              padding: 0;
+              list-style: none;
+              li {
+                label {
+                  display: inline-block;
+                  margin-right: 15px;
+
+                }
+              }
+            }
+          }
+          h2.moreInfoBlock {
+            clear: both;
+            color: #555;
+            float: left;
+            font-size: 23px;
+            margin: 19px 0 -12px;
+            width: 100%;
+          }
+          .moreInformationBlock {
+            clear: both;
+            float: left;
+            width: 100%;
+            margin-top: 20px;
+            border: 1px solid #caced2;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+
+            form {
+              .webform-component-markup {
+                .moreInfoContainer {
+                  .moreInfoContainerInner {
+                    .moreInfoLeft {
+                      float: left;
+                      width: 30%;
+                    }
+                    .moreInfoRight {
+                      float: left;
+                      width: 65%;
+                      padding-left: 10px;
+                    }
+                  }
+                }
+              }
+              .webform-component--first-name {
+                float: left;
+                width: 49%;
+                margin-top: 15px;
+              }
+              .webform-component--last-name {
+                float: right;
+                width: 49%;
+                margin-top: 15px;
+              }
+              .webform-component--email-address {
+                clear: both;
+              }
+              .webform-component-textarea {
+                clear: both;
+                position: relative;
+                top: 10px;
+              }
+            }
+          }
+          .listingDetailsContainer {
+            clear: both;
+            float: left;
+            width: 100%;
+            margin-top: 20px;
+
+            .listingDetailsContainerInner {
+              .listingDetailsTabs {
+                ul {
+                  float: left;
+                  list-style: inside none none;
+                  padding-left: 0;
+
+                  li {
+                    border-top: 1px solid #caced2;
+                    border-bottom: 1px solid #caced2;
+                    border-right: 1px solid #caced2;
+                    float: left;
+                    padding: 10px;
+                    cursor: pointer;
+                    transition: .5s;
+
+                  }
+                  li:hover, .tabButtonActive1 {
+                    background: #f3e1e1;
+
+                  }
+                  li:first-of-type {
+                    border-radius: 5px 0 0 5px;
+                    border-left: 1px solid #caced2;
+                  }
+                  li:last-of-type {
+                    border-radius: 0 5px 5px 0;
+                    border-right: 1px solid #caced2;
+                  }
+                }
+              }
+              .tabbedContent {
+                clear: both;
+                width: 100%;
+                overflow: hidden;
+
+              }
+              .listingTabContent {
+                dl {
+                  clear: both;
+                  margin: 5px 0;
+                  float: left;
+                  width: 100%;
+
+                  dt {
+                    float: left;
+                    width: 25%;
+                    padding-right: 5%;
+                    font-weight: bold;
+                  }
+                  dd {
+                    float: left;
+                    width: 70%;
+                    margin: 0;
+
+                  }
+                }
+              }
+              .tabInteriorInfo {
+                position: relative;
+              }
+              .tabExteriorInfo {
+                position: relative;
+                display: none;
+              }
+              .tabMoreInfoInfo {
+                position: relative;
+                display: none;
+              }
+              .tabTaxesInfo {
+                position: relative;
+                display: none;
+              }
+              .tabUtilitiesInfo {
+                position: relative;
+                display: none;
+              }
+              .tabSchoolInfo {
+                position: relative;
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Side Bar Elements
+
+aside.sidebar-last {
+  #block-webform-client-block-29 {
+    border: 1px solid #caced2;
+    background: $bg;
+    border-radius: 5px;
+    .block-inner {
+      padding: 10px;
+
+      h2 {
+        margin: 10px 0 0 0;
+        font-size: 23px;
+        color: #555;
+      }
+      form {
+        .moreInfoLeft {
+          float: left;
+          width: 45%;
+        }
+        .moreInfoRight {
+          float: left;
+          width: 49%;
+          padding-left: 10px;
+        }
+        .webform-component-textarea {
+          clear: both;
+          position: relative;
+          top: 10px;
+        }
+      }
+    }
+  }
+}
+
+
+// Search Block on Home Page
+
+.mlsSearchContainer {
+  .mlsSearchInner {
+    form {
+      input {
+        color: #999;
+      }
+      select {
+        color: #999;
+      }
+      .frontMLSSearchLocation {
+
+      }
+      .frontMLSSearchPriceRange {
+        text-align: center;
+        .frontMLSSearchPriceRangeLow {
+
+        }
+        .frontMLSSearchOr {
+
+        }
+        .frontMLSSearchPriceRangeHigh {
+        }
+      }
+      .frontMLSSearchSubmit {
+        button {
+          margin-top: 28px !important;
+          padding: 3px 0;
+        }
+      }
+    }
+  }
+  .MLSSearchBottomLeft {
+    a {
+      color: #fff;
+    }
+    a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+  }
+}
+
+.contactLeft {
+  float: left;
+  width: 45%;
+  .contactContent {
+    padding-right: 15px;
+    span {
+      margin-top: 15px;
+      font-size: 15px;
+      font-weight: bold;
+      float: left;
+      width: 100%;
+    }
+  }
+}
+
+.contactRight {
+  float: left;
+  width: 55%;
+}
+
+.submitted {
+  display: none;
+}
+
+#edit-field-mls-listing-agent-value-wrapper {
+  display: none;
+}
+
+#block-webform-client-block-28 {
+  h2.block-title {
+    display: none;
+  }
+}
+
+//Testimonials
+
+.view-testimonials {
+  .views-row {
+    margin-bottom: 20px;
+  }
+  .views-field-title {
+    color: #a5a5a5;
+    font-size: 17px;
+    font-weight: bold;
+  }
+  .views-field-nothing {
+    background: #f4f4f4 none repeat scroll 0 0;
+    border: 1px solid #caced2;
+    border-radius: 5px;
+    padding: 10px;
+    .testimonialName:before {
+      content: '--';
+    }
+    .testimonialName {
+      text-indent: 28px;
+      font-size: 12px;
+      font-style: italic;
+      margin-top: 5px;
+    }
+  }
+}
+
+//Home Page Search Block Auto Complete
+a.ui-state-focus {
+  background: #000;
+}
+
+//MLS Search Form
+form#views-exposed-form-mls-rets-search-page {
+  margin-bottom: 25px;
+  .compact-form-label {
+    top: 15px;
+  }
+  .views-exposed-form {
+    #edit-field-mls-list-price-value-wrapper {
+      width: 33%;
+      input {
+        color: #999;
+      }
+    }
+    #edit-field-mls-list-price-value-1-wrapper {
+      width: 33%;
+      input {
+        color: #999;
+      }
+    }
+    #edit-field-mls-city-tid-wrapper {
+      width: 33%
+    }
+    #edit-field-mls-baths-value-wrapper {
+      clear: both;
+      width: 33%;
+    }
+    #edit-field-mls-beds-value-wrapper {
+      width: 33%;
+    }
+    #edit-field-mls-sqft-value-wrapper {
+      width: 33%;
+    }
+    #edit-field-mls-listing-type-tid-wrapper {
+      clear: both;
+      width: 35%;
+      select {
+        color: #999;
+      }
+    }
+    #edit-sort-bef-combine-wrapper {
+      width: 35%;
+      select {
+        color: #999;
+      }
+      label {
+        display: none;
+        color: #999;
+      }
+    }
+    .views-submit-button {
+      width: 30%;
+      button {
+        float: right;
+        margin-right: 7px;
+        margin-top: 0;
+
+      }
+
+    }
+  }
+}
+
+// MLS Listing Results
+
+.mlsListingResultsContainer {
+  border: 1px solid #caced2;
+  background: $bg;
+  border-radius: 5px;
+  float: left;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  .mlsListingResultsContainerInner {
+    padding: 10px;
+    .mlsResultRow {
+      clear: both;
+      float: left;
+      margin: 0 0 30px 0;
+      padding: 0 0 15px 0;
+      border-bottom: 2px solid #caced2;
+      .mlsResultRowInner {
+        .mlsResult {
+          margin: 0;
+          padding-left: 0;
+          padding-top: 0;
+          padding-bottom: 0;
+          .amountPictures {
+            font-size: 11px;
+            width: 250px;
+            padding-top: 3px;
+            text-align: center;
+            font-style: italic;
+          }
+
+        }
+        .mlsResultColumn1 {
+
+        }
+        .mlsResultColumn2 {
+          .mlsResultListPrice {
+            font-weight: bold;
+          }
+          .mlsResultAddress {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            a, a:hover {
+              color: #000;
+              text-decoration: none;
+            }
+            .address_street {
+
+            }
+            .address_state {
+              display: inline-block;
+            }
+            .address_city {
+              display: inline-block;
+            }
+            .address_zip {
+              display: inline-block;
+            }
+          }
+          .mlsResultType {
+            margin-bottom: 10px;
+            color: #999;
+          }
+          .mlsResultBeds {
+            display: inline-block;
+            color: #999;
+            img {
+              width: 30px;
+              display: inline-block;
+            }
+            .field-content {
+              display: inline-block;
+            }
+          }
+          .mlsResultBaths {
+            margin-left: 10px;
+            display: inline-block;
+            color: #999;
+            img {
+              width: 30px;
+              display: inline-block;
+            }
+            .field-content {
+              display: inline-block;
+            }
+          }
+          .mlsResultButton {
+            margin-top: 11px;
+          }
+        }
+        .mlsResultColumn3 {
+          text-align: right;
+          .mlsResultAgentPicture {
+            .hibLogo {
+              img {
+                width: 100px;
+                margin-bottom: 10px;
+              }
+            }
+            .agentImage {
+              img {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#edit-field-reo-bank-owned-value-wrapper, #edit-field-potential-short-sale-value-wrapper, #edit-field-age-value-wrapper {
+  display:none;
+}
+#block-views-fde1cec65cccb7d7624b2ecb459cfcbb, #block-views-22a3796482c943a2c900ba6f050d8eb9 {
+  clear:both;
+}
+#block-views-22a3796482c943a2c900ba6f050d8eb9 {
+  margin-bottom:30px;
+  float:left;
+  width:100%;
+}
+#block-block-3 {
+  clear:both;
+  top:40px;
+}
+
+@media screen and (max-width: 990px) {
+
+  .forSale {
+    background-position: 100px 0 !important;
+
+    .forSaleText {
+      font-size: 15px !important;
+    }
+  }
+  nav {
+    #main-navigation {
+      ul.sf-menu {
+        li {
+          a {
+            font-size: 12px;
+            padding: 0 7px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#block-block-11 button.MLSSearch:hover {
+  background: rgb(205, 66, 80); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(205, 66, 80, 1)), color-stop(100%, rgba(204, 104, 112, 1))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(205, 66, 80, 1) 0%, rgba(204, 104, 112, 1) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cd4250', endColorstr='#cc6870', GradientType=0); /* IE6-9 */
+  color: #fff;
+  border: 1px solid #cd4250;
+  box-shadow: 0 1px 0 #cc6870 inset;
+}
+
+#block-block-11 button.MLSSearch {
+  background: -moz-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ac1f2d), color-stop(100%, #cd4250));
+  background: -webkit-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+  background: -o-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+  background: -ms-linear-gradient(top, #ac1f2d 0%, #cd4250 100%);
+  background: linear-gradient(to bottom, #ac1f2d 0%, #cd4250 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ac1f2d', endColorstr='#cd4250', GradientType=0);
+  border: 1px solid #ac1f2d;
+  box-shadow: 0 1px 0 #cd4250 inset;
+  font-family: georgia;
+  font-size: 1.9rem;
+  font-weight: normal;
+  color: #fff;
+  margin-top: 20px;
+  transition-duration: 1s;
+  width: 100%;
+}
+
+#block-block-11 .mlsSearchContainer label {
+  color: #fff;
+  font-size: 16px;
+}
+
+#block-block-11 .mlsSearchContainer .frontMLSSearchPriceRangeHigh {
+  display: inline-block;
+}
+
+#block-block-10 .mlsSearchContainer .frontMLSSearchOr {
+  display: inline-block;
+  padding: 0 10px;
+}
+
+#block-block-11 .mlsSearchContainer .frontMLSSearchPriceRangeLow {
+  display: inline-block;
+}
+
+#block-block-11 .mlsSearchContainer .MLSSearchBottom {
+  float: left;
+  width: 100%;
+  padding: 0;
+  border-top: 1px solid #676767;
+  color: #ffffff;
+  padding:10px 0;
+  font-weight:bold;
+
+}
+
+#block-block-11 .mlsSearchContainer .MLSSearchBottomLeft {
+  float: left;
+  margin-left:20px;
+}
+
+#block-block-11 .mlsSearchContainer .MLSSearchBottomRight {
+  float: right;
+  margin-right:20px;
+}
+
+#block-block-11 .mlsSearchInner {
+  padding: 20px;
+  /*float: left;*/
+  width: 100%;
+}
+#block-block-11 .mlsSearchContainer {
+  padding: 0;
+  float: left;
+  border: 1px solid #676767;
+  border-radius: 5px;
+  /*margin: 121px 0 0;*/
+  margin:0 auto;
+  left:50%;
+  position:relative;
+  transform:translateX(-50%);
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(147, 147, 147, 0.5))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#80939393', GradientType=0); /* IE6-9 */
+}
+
+select#edit-field-mls-listing-type-tid, select#edit-sort-bef-combine {
+    width: 94%;
+  }
+
+#edit-field-mls-year-built-value-wrapper {
+  margin-left:-17px;
+  width: 33%;
+}
+
+.blueButton {
+  display: inline-block;
+  background-color: #3276b1;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #3276b1;
+}
+.blueButton:hover {
+  background-color: rgba(50, 118, 177, 0.67);
+  color: white;
+}
+.view-mls-rets-search .view-filters {
+  clear:both;
+}
+.specialContainer {
+  float: left;
+  position: relative;
+  top: -43px;
+  left: 245px;
+  ul {
+    list-style: none;
+    li {
+      float:left;
+      margin: 0 10px;
+    }
+  }
+}
+#block-views-start-home-search-block {
+  max-width:750px;
+  margin-top:20px;
+  margin-left: auto;
+  margin-right: auto;
+  .block-title {
+    display:none;
+  }
+  .views-field-field-picture {
+    float:left;
+    padding-right:10px;
+  }
+  .views-field-nothing {
+    text-align:center;
+  }
+  .views-field-nothing a {
+    display:inline-block;
+    background: rgba(255,82,67,1);
+    padding: 6px 12px;
+    font-size:20px;
+    text-align:center;
+    white-space: nowrap;
+    border:1px solid #CCCACC;
+    border-radius: 4px;
+    color:#fff;
+  }
+  .views-field-nothing a:hover {
+    background: #555555;
+  }
+  .views-field-title {
+    margin:15px 0;
+    font-size:20px;
+    font-weight:bold;
+  }
+}
+#block-views-start-home-search-block-1{
+  border: 1px solid #caced2;
+  background: #f4f4f4;
+  border-radius: 5px;
+  padding: 10px;
+  clear:both;
+  .block-title {
+    display:none;
+    font-size: 16px;
+  }
+  .views-field-field-picture {
+    float:left;
+    width:100px;
+    padding-right:10px;
+  }
+  .views-field-nothing {
+    text-align:center;
+    margin-bottom: 10px;
+  }
+  .views-field-nothing a {
+    display:inline-block;
+    background: rgba(255,82,67,1);
+    padding: 6px 12px;
+    font-size:16px;
+    text-align:center;
+    white-space: nowrap;
+    border:1px solid #CCCACC;
+    border-radius: 4px;
+    color:#fff;
+  }
+  .views-field-nothing a:hover {
+    background: #555555;
+  }
+  .views-field-title {
+    margin:15px 0;
+    font-size:20px;
+    font-weight:bold;
+  }
+}
+
