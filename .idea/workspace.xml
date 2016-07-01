@@ -2,313 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b2ac689c-0ab2-49b7-8157-a994e034b56f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-bootstrap-prettify.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-bootstrap-prettify.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-cookies.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-cookies.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-loader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-loader.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-mocks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-resource.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-resource.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-sanitize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-sanitize.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular-scenario.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/angular.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_af-na.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_af-za.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_af.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_am-et.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_am.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-001.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-ae.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-bh.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-dz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-eg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-iq.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-jo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-kw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-lb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-ly.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-ma.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-om.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-qa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-sa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-sd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-sy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-tn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar-ye.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_bg-bg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_bg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_bn-bd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_bn-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_bn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ca-ad.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ca-es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_chr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_cs-cz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_cs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_cy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_da-dk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_da.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de-at.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de-be.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de-ch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de-de.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de-li.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de-lu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_de.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_el-cy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_el-gr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_el-polyton.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_el.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-as.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-au.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-bb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-be.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-bm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-bw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-bz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-dsrt-us.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-dsrt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-fm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-gb.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-gu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-gy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-hk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-ie.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-iso.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-jm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-mh.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-mp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-mt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-mu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-na.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-nz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-ph.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-pk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-pr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-pw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-sg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-tc.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-tt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-um.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-us.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-vg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-vi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-za.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-zw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en-zz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_en.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-419.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-ar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-bo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-cl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-co.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-cr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-do.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-ea.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-ec.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-gq.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-gt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-hn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-ic.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-mx.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-ni.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-pa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-pe.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-pr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-py.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-sv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-us.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-uy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es-ve.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_et-ee.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_et.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_eu-es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_eu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fa-af.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fa-ir.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fa.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fi-fi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fil-ph.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fil.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-be.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-bf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-bi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-bj.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-bl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-ca.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-cd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-cf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-cg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-ch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-ci.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-cm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-dj.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-fr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-ga.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-gf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-gn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-gp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-gq.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-km.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-lu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-mc.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-mf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-mg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-ml.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-mq.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-ne.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-re.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-rw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-sn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-td.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-tg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr-yt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_fr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_gl-es.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_gl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_gsw-ch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_gsw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_gu-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_gu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_haw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_he-il.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_he.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_hi-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_hi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_hr-hr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_hr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_hu-hu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_hu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_id-id.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_id.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_is-is.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_is.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_it-ch.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_it-it.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_it-sm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_it.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_iw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ja-jp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ja.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_kn-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_kn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ko-kr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ko.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ln-cd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ln-cg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ln.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_lt-lt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_lt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_lv-lv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_lv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ml-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ml.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_mo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_mr-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_mr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ms-bn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ms-my.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ms.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_mt-mt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_mt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_nl-aw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_nl-be.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_nl-cw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_nl-nl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_nl-sx.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_nl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_no.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_or-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_or.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pl-pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt-ao.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt-br.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt-gw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt-mz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt-pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt-st.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_pt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ro-md.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ro-ro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ru-md.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ru-ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ru-ua.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ru.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sk-sk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sl-si.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sq-al.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sq.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-cyrl-ba.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-cyrl-me.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-cyrl-rs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-cyrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-latn-ba.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-latn-me.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-latn-rs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-latn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr-rs.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sv-fi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sv-se.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sv.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sw-ke.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sw-tz.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_sw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ta-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ta-lk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ta.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_te-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_te.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_th-th.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_th.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_tl-ph.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_tl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_tr-tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_tr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_uk-ua.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_uk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ur-in.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ur-pk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_ur.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_vi-vn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_vi.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-cn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hans-cn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hans-hk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hans-mo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hans-sg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hans.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hant-hk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hant-mo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hant-tw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hant.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-hk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh-tw.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zh.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zu-za.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/i18n/angular-locale_zu.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/version.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sites/all/libraries/angular/version.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/html.tpl.php" afterPath="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/html.tpl.php" />
     </list>
     <ignored path="homesinboise.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -335,7 +30,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/gulpfile.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="180">
@@ -348,8 +43,18 @@
           <file leaf-file-name="homesinboise.info" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="936">
-                  <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+                <state relative-caret-position="468">
+                  <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/.gitignore">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="18">
+                  <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
                   <folding />
                 </state>
               </provider>
@@ -414,11 +119,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="html.tpl.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="html.tpl.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/html.tpl.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="288">
-                  <caret line="59" column="103" selection-start-line="59" selection-start-column="103" selection-end-line="59" selection-end-column="103" />
+                <state relative-caret-position="270">
+                  <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="bower.json" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/bower.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -435,11 +150,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css" />
         <option value="$PROJECT_DIR$/gulpfile.js" />
         <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/templates/html.tpl.php" />
+        <option value="$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -569,14 +285,6 @@
               <option name="myItemId" value="themes" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="homesinboise" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -595,10 +303,6 @@
               <option name="myItemId" value="all" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="themes" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -610,11 +314,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="sites" />
+              <option name="myItemId" value="bower_components" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="all" />
+              <option name="myItemId" value="angular" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -688,16 +392,16 @@
       <workItem from="1466980892422" duration="438000" />
       <workItem from="1466984840664" duration="613000" />
       <workItem from="1467166701986" duration="2062000" />
-      <workItem from="1467346012490" duration="20000" />
+      <workItem from="1467346012490" duration="4237000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5163000" />
+    <option name="totallyTimeSpent" value="9380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="88" y="1152" width="1832" height="963" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -705,17 +409,17 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.50223964" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23480333" sideWeight="0.49776036" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23480333" sideWeight="0.49776036" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896304" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -739,14 +443,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/sass/new.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1081,26 +777,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/css/new.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="0" column="148" selection-start-line="0" selection-start-column="148" selection-end-line="0" selection-end-column="148" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1139,6 +819,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/html.tpl.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="58" column="63" selection-start-line="58" selection-start-column="63" selection-end-line="58" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1147,10 +843,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/templates/html.tpl.php">
+    <entry file="file://$PROJECT_DIR$/sites/all/themes/homesinboise/homesinboise.info">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="59" column="103" selection-start-line="59" selection-start-column="103" selection-end-line="59" selection-end-column="103" />
+        <state relative-caret-position="468">
+          <caret line="63" column="12" selection-start-line="63" selection-start-column="12" selection-end-line="63" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
           <folding />
         </state>
       </provider>
