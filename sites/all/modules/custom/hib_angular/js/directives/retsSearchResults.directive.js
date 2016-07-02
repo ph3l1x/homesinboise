@@ -3,7 +3,7 @@ function retsSearchResultsDirective(retsAPI) {
         restrict: 'A',
         templateUrl: '/sites/all/modules/custom/hib_angular/themes/search_results.html',
         replace: false,
-        link: function(scope, element) {
+        link: function(scope, element)       {
 
             scope.listingID = 'yyyyy';
             
