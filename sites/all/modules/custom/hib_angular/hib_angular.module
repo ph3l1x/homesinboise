@@ -6,11 +6,11 @@ function hib_angular_menu() {
         'page callback' => 'hib_angular_search',
         'access arguments' => array('access content'),
     );
-    $items['rets_search/display'] = array(
-        'title' => t('Display calender'),
-        'page callback' => 'hib_angular_display',
-        'access arguments' => array('access content'),
-    );
+//    $items['rets_search/display'] = array(
+//        'title' => t('Display calender'),
+//        'page callback' => 'hib_angular_display',
+//        'access arguments' => array('access content'),
+//    );
 
     return $items;
 }

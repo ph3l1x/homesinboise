@@ -29,9 +29,9 @@ $nids = db_select('node', 'n')
     ->condition('n.type', 'homesinboise_team')
     ->execute()
     ->fetchCol(); // returns an indexed array
-
-$removePaigeNID = array_search('69', $nids);
-unset($nids[$removePaigeNID]);
+//var_dump($nids);
+//$removePaigeNID = array_search('69', $nids);
+//unset($nids[$removePaigeNID]);
 shuffle($nids);
 
 $userNode = node_load($nids[0]);

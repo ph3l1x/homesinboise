@@ -3,8 +3,7 @@ function retsAPI($http, $q) {
     
     service.get = function(values) {
         var val = [];
-
-        $.each(values, function(key, value) {
+        jQuery.each(values, function(key, value) {
             val.push(key + '=' + value);
         });
         
