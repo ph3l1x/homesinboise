@@ -54,6 +54,7 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
 
 .logo img {
     padding-top: 10px;
+    padding-left: 20px;
 }
 
 #block-block-10 button.MLSSearch:hover {
@@ -117,19 +118,19 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
     padding: 0;
     border-top: 1px solid #676767;
     color: #ffffff;
-    padding:10px 0;
-    font-weight:bold;
+    padding: 10px 0;
+    font-weight: bold;
 
 }
 
 #block-block-10 .mlsSearchContainer .MLSSearchBottomLeft {
     float: left;
-    margin-left:20px;
+    margin-left: 20px;
 }
 
 #block-block-10 .mlsSearchContainer .MLSSearchBottomRight {
     float: right;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 #block-block-10 .mlsSearchInner {
@@ -137,21 +138,23 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
     float: left;
     width: 100%;
 }
+
 .frontPageMLSSearchBlurb {
-    text-align:center;
-    color:#ffffff;
-    text-shadow:1px 1px 1px #000000;
-    font-weight:bold;
-    font-size:18px;
-    padding-bottom:20px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000000;
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 20px;
 }
+
 #block-block-10 .mlsSearchContainer {
     padding: 0;
     float: right;
     border: 1px solid #676767;
     border-radius: 5px;
     /*margin: 121px 0 0;*/
-    margin:0;
+    margin: 0;
     background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.5)), color-stop(100%, rgba(147, 147, 147, 0.5))); /* Chrome,Safari4+ */
     background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.5) 0%, rgba(147, 147, 147, 0.5) 100%); /* Chrome10+,Safari5.1+ */
@@ -163,10 +166,6 @@ ul#flexslider_views_slideshow_homepage_slideshow-block {
 
 nav ul.sf-menu li {
     /*padding-right: 5px;*/
-}
-
-.header-inner {
-    margin: 0 auto;
 }
 
 nav ul.sf-menu > li > a:hover, nav ul.sf-menu > li > a.active {
@@ -196,7 +195,7 @@ nav ul.sf-menu > li > a {
     background-repeat: no-repeat;
     background-position: 0 40px;
     /*color: #0f1413;*/
-    color:#fff;
+    color: #fff;
     text-shadow: 1px 1px 1px #000;
     display: block;
     font-family: "OpenSansRegular", sans-serif;
@@ -266,25 +265,76 @@ nav ul.sf-depth-2 a {
     font-family: 'SignikaBold';
     font-size: 50px;
 }
+
 #block-block-10 {
-    position:relative;
-    top:77px;
-}
-.header-container {
-    /*background: url('images/header_image.jpg') no-repeat scroll center bottom / cover rgba(0, 0, 0, 0);*/
-    background: url('images/header_image.jpg')  no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     position: relative;
-    /*padding-bottom: 150px;*/
-    min-height:377px;
-    background-size: cover;
+    top: 77px;
+}
+
+.header-container {
+
+}
+
+.header-inner {
+    margin: 0 auto;
+    position: relative;
+}
+
+/*.fullscreen-bg {*/
+/*position: absolute;*/
+/*top: 0;*/
+/*bottom: 0;*/
+/*!*overflow: hidden;*!*/
+/*z-index: -100;*/
+/*}*/
+.header-text-container {
+    clear: both;
+    text-align: center;
+}
+
+.header-text-container-inner {
+    color: white;
+}
+.header-text-container-inner h3 {
+    font-size: 30px;
+    text-shadow: 1px 3px 1px black;
+}
+.htc-text1 {
+    font-size: 21px;
+    text-shadow: 1px 1px 1px black;
+    padding-bottom: 10px;
+}
+.htc-text2 {
+    font-size: 17px;
+    text-shadow: 1px 1px 1px black;
+    padding-bottom: 20px;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: -150px;
+    left: 0;
+    width: 100%;
+    z-index: -100;
+
+}
+
+.header-container {
+    height: 330px;
+    /*!*background: url('images/header_image.jpg') no-repeat scroll center bottom / cover rgba(0, 0, 0, 0);*!*/
+    /*background: url('images/header_image.jpg')  no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+    /*position: relative;*/
+    /*!*padding-bottom: 150px;*!*/
+    /*min-height:377px;*/
+    /*background-size: cover;*/
 }
 
 .p2 {
     /*background: url('images/middle_image.jpg') repeat-y scroll center bottom / cover rgba(0, 0, 0, 0);*/
-    background:url('images/middle_image.jpg') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    background: url('images/middle_image.jpg') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     position: relative;
     padding-bottom: 36px;
-    min-height:527px;
+    min-height: 527px;
 }
 
 #main-navigation-wrapper {
@@ -293,6 +343,9 @@ nav ul.sf-depth-2 a {
 
 #content-area-wrapper {
     clear: both;
+    background: white;
+    margin-top: 50px;
+    padding-top:20px;
 }
 
 #block-block-1, #block-block-3 {
@@ -420,7 +473,7 @@ nav ul.sf-depth-2 a {
     font-family: "OpenSansRegular";
     line-height: 48px;
     margin-bottom: 18px;
-    text-shadow:1px 1px 1px #000;
+    text-shadow: 1px 1px 1px #000;
     padding-bottom: 20px;
     padding-top: 70px;
     position: relative;
@@ -450,17 +503,20 @@ nav ul.sf-depth-2 a {
     text-align: center;
     position: relative;
     left: 50%;
-    text-shadow:1px 1px 1px #000;
+    text-shadow: 1px 1px 1px #000;
     transform: translateX(-50%);
     padding-left: 20px;
     padding-right: 20px;
 }
+
 #block-block-3 {
     /*display:none;*/
 }
+
 .views-field-field-mls-list-price {
-    clear:both;
+    clear: both;
 }
+
 .view-featured-listings-block-rets .views-row {
     position: relative;
 }
@@ -471,33 +527,63 @@ nav ul.sf-depth-2 a {
 
 .view-featured-listings-block-rets .views-field-field-mls-main-image {
     position: relative !important;
+    text-align: center;
 }
+
 .view-featured-listings-block-rets .views-field-field-mls-main-image ul {
-    list-style:none;
-    margin:0;
-    padding:0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .view-featured-listings-block-rets .views-field-field-mls-list-price {
-    background: none repeat scroll 0 0 rgba(255, 82, 67, 0.79);
-    border-radius: 1140px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-    color: white;
-    font-family: "Signika", sans-serif;
-    font-size: 31px;
+    font-size: 2vw;
     font-weight: 300;
-    left: 50%;
-    line-height: 131px;
-    position: absolute;
+    margin: 0 auto;
+    width:40%;
+    postion: absolute;
+    top:-11px;
+    right: 20px;
+}
+.view-featured-listings-block-rets .views-field-field-mls-list-price::after {
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 0;
+    margin-bottom: 20px;
+    padding-bottom: 100%;
+    width: 100%;
+    background: none repeat scroll 0 0 rgba(255, 82, 67, 0.79);
+}
+.view-featured-listings-block-rets .views-field-field-mls-list-price .field-content {
+    color: white;
+    float: left;
+    line-height: 1em;
+    margin-top: -0.5em;
+    padding-top: 50%;
     text-align: center;
-    top: 29px;
-    width: 138px;
-    transform: translateX(-50%);
+    width: 100%;
 }
+/*.view-featured-listings-block-rets .views-field-field-mls-list-price {*/
+    /*background: none repeat scroll 0 0 rgba(255, 82, 67, 0.79);*/
+    /*border-radius: 1140px;*/
+    /*box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);*/
+    /*color: white;*/
+    /*font-family: "Signika", sans-serif;*/
+    /*font-size: 2vw;*/
+    /*font-weight: 300;*/
+    /*left: 73%;*/
+    /*line-height: 131px;*/
+    /*position: absolute;*/
+    /*text-align: center;*/
+    /*top: -20px;*/
+    /*width: 138px;*/
+    /*transform: translateX(-50%);*/
+/*}*/
 
-.view-featured-listings-block-rets img:hover {
-    width: 120%;
-}
+/*.view-featured-listings-block-rets img:hover {*/
+    /*width: 120%;*/
+/*}*/
 
 .view-featured-listings-block-rets .views-field-nothing {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.6);
@@ -508,7 +594,7 @@ nav ul.sf-depth-2 a {
     left: 50%;
     padding: 10px;
     transform: translateX(-50%);
-    width: 81%;
+
 }
 
 .front #content-wrapper {
@@ -656,6 +742,10 @@ a.button-p {
     right: 0;
     max-width: none;
 }
+.img-responsive {
+    display: inherit;
+
+}
 
 #isotope-container .views-field-field-temp-listing-image .field-content img:hover {
     width: 120% !important;
@@ -681,22 +771,72 @@ a.button-p {
     margin-right: 8px;
     width: 30px;
 }
+.responsive-menus.responsified, .responsive-toggled {
+    position:absolute !important;
+    top:0px;
+}
+.responsive-menus.responsified span.toggler {
+    border-radius: inherit;
+}
 
-/*@media (min-width: 768px) {*/
-    /*.sf-menu a {*/
-        /*padding: 10px 10px*/
-    /*}*/
-/*}*/
 
-/*@media screen and (min-width: 992px) {*/
-    /*.sf-menu a {*/
-        /*padding: 10px 14px*/
-    /*}*/
-/*}*/
+@media screen and (max-width: 992px) {
 
+    .header-text-container-inner h3 {
+        font-size: 28px;
+        text-shadow: 1px 3px 1px black;
+    }
+    .htc-text1 {
+        font-size: 20px;
+        text-shadow: 1px 1px 1px black;
+        padding-bottom: 10px;
+    }
+    .htc-text2 {
+        font-size: 14px;
+        text-shadow: 1px 1px 1px black;
+        padding-bottom: 20px;
+    }
+
+}
+@media (max-width: 768px) {
+
+    .view-featured-listings-block-rets {
+        max-width: 354px;
+        margin: 0 auto;
+    }
+    .view-featured-listings-block-rets .views-row {
+        margin-bottom: 20px;
+    }
+    .view-featured-listings-block-rets .views-field-field-mls-list-price {
+        font-size: 3vw;
+    }
+    .header-text-container-inner h3 {
+        font-size: 28px;
+        text-shadow: 1px 3px 1px black;
+    }
+    .htc-text1 {
+        font-size: 22px;
+        text-shadow: 1px 1px 1px black;
+        padding-bottom: 10px;
+    }
+    .htc-text2 {
+        font-size: 17px;
+        text-shadow: 1px 1px 1px black;
+        padding-bottom: 20px;
+    }
+}
+@media (max-width: 768px) {
+    .header-text-container-inner h3 {
+        font-size: 20px;
+    }
+    .htc-text1, .htc-text2 {
+        font-size: 16px;
+    }
+
+}
 /*@media screen and (min-width: 1200px) {*/
-    /*.sf-menu a {*/
-        /*padding: 10px 16px*/
-    /*}*/
+/*.sf-menu a {*/
+/*padding: 10px 16px*/
+/*}*/
 /*}*/
 

@@ -1,6 +1,13 @@
 (function ($) {
     $(document).ready(function () {
 
+        $('.views-field-nothing').css("width", $(".img-responsive").width());
+        function imgWidth() {
+            var theWidth = $(".img-responsive").width();
+            $('.views-field-nothing').css("width", theWidth);
+        }
+        
+        $(window).resize(imgWidth);
 
         $(".cityAutocomplete").autocomplete({
             source: "/ajax/mls_city_autocomplete",

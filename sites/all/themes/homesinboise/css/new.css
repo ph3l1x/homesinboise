@@ -3,7 +3,8 @@
 
 div.logo {
   position: relative;
-  top: 100px; }
+  top: 10px;
+  z-index: 1; }
 
 a.defaultButton, a.views-more-link {
   background-color: #dedede;
