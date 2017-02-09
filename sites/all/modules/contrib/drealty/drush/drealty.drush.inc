@@ -13,7 +13,45 @@ function drealty_drush_command() {
 
   $items['rets-import'] = array(
     'aliases' => array('ri'),
-    'description' => 'Import RETS Listings.',
+    'description' => 'Import RETS entities with basic fields.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
+    'options' => array(
+      'increment' => FALSE,
+    ),
+    'examples' => array(
+      'drush ri' => 'Imports all data from RETS for enabled classes.',
+      'drush ri --increment=TRUE' => 'Imports incremental changes from RETS for 
+        enabled connections and classes based on Time period configuration in 
+        admin/drealty/drealty-import/config.',
+    ),
+  );
+
+  // @todo: Functionality is not finished yet, do not use:
+  $items['rets-process-queued-properties'] = array(
+    'aliases' => array('rpqp'),
+    'description' => 'Process any RETS items remaining/stuck in the Drush queue.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
+  );
+
+  $items['rets-import-media'] = array(
+    'aliases' => array('rim'),
+    'description' => 'Queue RETS entities for Media Objects processing.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
+    'options' => array(
+      'increment' => FALSE,
+    ),
+    'examples' => array(
+      'drush rim' => 'Imports media for all the entities from RETS based on 
+        specified Search configuration.',
+      'drush rim --increment=TRUE' => 'Imports media for only those entities from 
+        RETS that have been modified within Time period configured in 
+        admin/drealty/drealty-import/config.',
+    ),
+  );
+
+  $items['rets-process-media'] = array(
+    'aliases' => array('rpm'),
+    'description' => "Process any Media Objects that are queued up in the system.",
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
   );
 
@@ -23,15 +61,8 @@ function drealty_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
   );
 
-  $items['rets-reprocess-images'] = array(
-    'description' => "Force the (re)downloading of images.",
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
-  );
-  $items['rets-process-images'] = array(
-    'description' => "Process any images that are marked for download.",
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
-  );
   $items['rets-purge-inactive'] = array(
+    'aliases' => array('rpi'),
     'description' => "Purge listings older than two weeks from the system.",
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_LOGIN,
   );
@@ -44,75 +75,91 @@ function drealty_drush_command() {
 }
 
 /**
- * Implements hook_drush_help().
+ * Implements hook_drush_help to .
  *
  * This function is called whenever a drush user calls
  * 'drush help <name-of-command>'
  *
  * @param string $section
+ *
  * @return string
  */
 function drealty_drush_help($section) {
   switch ($section) {
     case 'drush:rets-import':
-      return dt('');
+      return dt('Run full import of data from RETS System.');
+
     case 'drush:rets-flush':
-      return dt('');
+      return dt('Deletes Drealty entities records (listings, agents, etc. if 
+      chosen) and removes all associated content.');
+
     case 'drush:rets-list':
       return dt('');
+
     case 'drush:rets-status':
       return dt('');
+
     case 'drush:rets-purge-inactive':
-      return dt('');
+      return dt('Deletes Drealty Listing type records and all its data that have
+       been deactivated more than 2 weeks ago.');
+
     case 'drush:rets-reprocess-images':
       return dt('');
   }
 }
 
+/**
+ * Run import/update of listings from RETS (all listings based on  connection query).
+ */
 function drush_drealty_rets_import() {
-  // set the time out to infinite
+  // Set the time out to infinite.
+  set_time_limit(0);
+
+  $increment = drush_get_option('increment', FALSE);
+  drush_log(dt('Increment @id', array('@id' => $increment), 'success'));
+  module_load_include('php', 'drealty', 'drealtyDaemon');
+  $daemon = new drealtyDaemon();
+  $daemon->run('resources', $increment);
+}
+
+/**
+ * Process remaining queue items if the process failed for whatever reason.
+ */
+function drush_drealty_rets_process_queued_properties() {
   set_time_limit(0);
 
   module_load_include('php', 'drealty', 'drealtyDaemon');
   $daemon = new drealtyDaemon();
-  $daemon->run();
+  // @todo: re-design solution to be able to process remaining queue items if the process failed for whatever reason.
+  //  $daemon->process_results(...);
 }
 
-function drush_drealty_rets_process_images() {
+/**
+ * Generate items for drealty_media queue for later processing of Media Objects.
+ */
+function drush_drealty_rets_import_media() {
+  set_time_limit(0);
+
+  $increment = drush_get_option('increment', FALSE);
+  module_load_include('php', 'drealty', 'drealtyDaemon');
+  $daemon = new drealtyDaemon();
+  $daemon->run('media', $increment);
+}
+
+/**
+ * Process items in the drealty_media queue.
+ */
+function drush_drealty_rets_process_media() {
   set_time_limit(0);
 
   module_load_include('php', 'drealty', 'drealtyDaemon');
   $daemon = new drealtyDaemon();
-  $daemon->import_images();
+  $daemon->import_media();
 }
 
-function drush_drealty_rets_reprocess_images() {
-  set_time_limit(0);
-
-  //query for the entities
-  $query = new EntityFieldQuery();
-  $result = $query
-    ->entityCondition('entity_type', 'drealty_listing')
-    ->execute();
-
-  if(!empty($result['drealty_listing'])) {
-    $listings = array_keys($result['drealty_listing']);
-    foreach($listings as $listing_id) {
-      if($listing = reset(entity_load('drealty_listing', array($listing_id)))) {
-        $listing->process_images = TRUE;
-        $listing->save();
-        drush_log(dt("Set @label to reprocess images.", array("@label" => $listing->label)));
-      } else {
-        drush_log(dt("Something went wrong with @id", array("@id" => $listing_id)), "error");
-      }
-    }
-  }
-  
-  module_load_include('php', 'drealty', 'drealtyDaemon');
-  $daemon = new drealtyDaemon();
-  $daemon->import_images();
-}
-
+/**
+ * Flush drealty entities from the system.
+ */
 function drush_drealty_rets_flush() {
   set_time_limit(0);
 
@@ -124,6 +171,9 @@ function drush_drealty_rets_flush() {
   if (module_exists('drealty_agent')) {
     $options['drealty_agent'] = dt('Drealty Agent');
   }
+  if (module_exists('drealty_openhouse')) {
+    $options['drealty_openhouse'] = dt('Drealty OpenHouse');
+  }
 
   $selection = drush_choice($options, dt('Select an entity type to flush'));
 
@@ -132,47 +182,60 @@ function drush_drealty_rets_flush() {
   }
 
   $info = entity_get_info($selection);
-  
+
   $bundles = array();
-  foreach($info['bundles'] as $key => $bundle) {
+  foreach ($info['bundles'] as $key => $bundle) {
     $bundles[$key] = $bundle['label'];
   }
   $bundles['all'] = "All";
-  
+
   $bundle_selection = drush_choice($bundles, dt('Select a class to flush'));
-  
-  if(!$bundle_selection) {
+
+  if (!$bundle_selection) {
     return;
   }
-  
-  
+
   $query = db_select($selection, "t")
     ->fields("t", array("id"));
-  
-  if($bundle_selection != 'all') {
+
+  if ($bundle_selection != 'all') {
     $query->condition('type', $bundle_selection);
   }
-  
+
   $existing_items = $query->execute()->fetchAll();
-  
-  $confirm = drush_confirm(dt("You are about to flush @count @entity(s) of type @type from the system. This cannot be undone. Are you Sure?", array('@count' => count($existing_items), '@entity' => $selection, '@type' => $bundle_selection)));
-  
-  if(!$confirm) {
+
+  $confirm = drush_confirm(dt("You are about to flush @count @entity(s) of type 
+  @type from the system. This cannot be undone. Are you Sure?",
+    array(
+      '@count' => count($existing_items),
+      '@entity' => $selection,
+      '@type' => $bundle_selection
+    )
+  ));
+
+  if (!$confirm) {
     return;
   }
 
   foreach ($existing_items as $item) {
-    $entity = reset(entity_load($selection, array($item->id)));
-    drush_log(dt('Deleting @type - @id', array('@id' => $item->id, '@type' => $selection)), 'success');
-    $entity->delete();
-    unset($entity);
+    if ($entity = entity_load($selection, array($item->id))) {
+      $entity = reset($entity);
+      drush_log(dt('Deleting @type - @id', array('@id' => $item->id, '@type' => $selection)), 'success');
+      $entity->delete();
+      unset($entity);
+    }
+    else {
+      drush_log(dt('Could not load @type entity - @id', array('@id' => $item->id, '@type' => $selection)), 'warning');
+    }
   }
   unset($existing_items);
 }
 
+/**
+ * Force entity updates for each enabled drealty entity.
+ */
 function drush_drealty_rets_force_update() {
-  
-  
+
   $options = array('drealty_listing' => dt('Drealty Listings'));
 
   if (module_exists('drealty_office')) {
@@ -181,18 +244,21 @@ function drush_drealty_rets_force_update() {
   if (module_exists('drealty_agent')) {
     $options['drealty_agent'] = dt('Drealty Agent');
   }
+  if (module_exists('drealty_openhouse')) {
+    $options['drealty_openhouse'] = dt('Drealty OpenHouse');
+  }
 
-  $selection = drush_choice($options, dt('Select an entity type to flush'));
+  $selection = drush_choice($options, dt('Select an entity type to Force Updates'));
 
   if (!$selection) {
     return;
   }
-  
+
   $num_updated = db_update($selection)
     ->fields(array('hash' => ''))
     ->execute();
   drush_log(dt("Forcing update on @num items.", array('@num' => $num_updated)), 'success');
-  
+
 }
 
 /**
