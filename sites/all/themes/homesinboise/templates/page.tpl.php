@@ -78,8 +78,15 @@
     <div class="page">	
 	<div class="page-inner">
 	   <?php if ($page['header']): ?>
-	   <div class="header-container" data-speed="4" data-type="background">
-		<div class="header-inner container">
+	   <div class="header-container container-fluid" data-speed="4" data-type="background">
+		<div class="header-inner">
+<!--			<div class="fullscreen-bg">-->
+<!--				<video width="100%" loop muted autoplay poster="http://www.homesinboise.com/sites/default/files/Boise-Is-Waiting.jpg" class="fullscreen-bg__video">-->
+<!--					<source src="video/big_buck_bunny.webm" type="video/webm">-->
+<!--					<source src="http://www.homesinboise.com/sites/default/files/Boise-Is-Waiting.mp4" type="video/mp4">-->
+<!--				<source src="video/big_buck_bunny.ogv" type="video/ogg">-->
+<!--				</video>-->
+<!--			</div>-->
             <?php if($logo): ?>
                 <div class="logo col-sm-3 col-xs-12">
                     <a class="logo" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">

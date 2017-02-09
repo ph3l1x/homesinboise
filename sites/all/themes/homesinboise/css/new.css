@@ -3,7 +3,8 @@
 
 div.logo {
   position: relative;
-  top: 100px; }
+  top: 10px;
+  z-index: 1; }
 
 a.defaultButton, a.views-more-link {
   background-color: #dedede;
@@ -438,6 +439,8 @@ form#views-exposed-form-mls-rets-search-page {
           padding-top: 3px;
           text-align: center;
           font-style: italic; }
+      .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn1 img {
+        max-width: 150px; }
       .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultListPrice {
         font-weight: bold; }
       .mlsListingResultsContainer .mlsListingResultsContainerInner .mlsResultRow .mlsResultRowInner .mlsResultColumn2 .mlsResultAddress {
@@ -698,3 +701,8 @@ select#edit-field-mls-listing-type-tid, select#edit-sort-bef-combine {
     margin: 15px 0;
     font-size: 20px;
     font-weight: bold; }
+
+.footer-box a {
+  color: white; }
+  .footer-box a:hover {
+    text-decoration: underline; }

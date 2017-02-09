@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Implements hook_views_api().
+ */
+function drealty_agent_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
 function drealty_agent_entity_info() {
   $entities = array();
   $entities['drealty_agent'] = array(

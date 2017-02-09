@@ -49,9 +49,18 @@ class drealtyConnection {
     // If we're still connected, someone forgot to disconnect.
     if ($this->rets && $this->connected) {
       $backtrace = debug_backtrace();
-      watchdog('drealty', 'Connection to server still active, someone forgot it open in @func(). Attempting to disconnect.', array('@func' => $backtrace[1]['function']));
+      watchdog('drealty', 'Connection to server still active, someone left it open in @func(). Attempting to disconnect.', array('@func' => $backtrace[0]['function']));
       $this->disconnect();
     }
+  }
+
+  /**
+   * Return whether we're connected or not.
+   *
+   * @return bool
+   */
+  public function is_connected() {
+    return $this->connected;
   }
 
   /**
@@ -158,6 +167,7 @@ class drealtyConnection {
     if ($this->rets && $this->connected) {
       if ($this->rets->Disconnect()) {
         $this->connected = FALSE;
+        $this->current_connection = NULL;
         if (function_exists('drush_log')) {
           drush_log("Disconnected from RETS server.");
         }
@@ -335,6 +345,51 @@ class drealtyConnectionEntity extends Entity {
       ->condition("rid", $rid)
       ->condition("field_name", $field_name)
       ->condition('cid', $class)
+      ->execute();
+  }
+
+  /**
+   *
+   * @param $rid
+   * @param $cid
+   * @return drealtyRetsField[]
+   */
+  public function FetchMediaObjects($cid, $rid) {
+    $dm = new drealtyMetaData();
+    return $dm->FetchMediaObjects($this->conid, $cid, $rid);
+  }
+
+  /**
+   * Create Drupal field mapping record to Media Object from RETS.
+   */
+  public function CreateFieldMediaObjectMapping($obj_id, $rid, $class_id, $field_name, $timestamp = NULL, $field_api_type = 'drealty', $data = NULL, $hash_exclude = 0) {
+    // remove any mapping and create a new one
+    $this->RemoveFieldMediaObjectMapping($rid, $field_name, $class_id);
+
+    db_insert('drealty_media_objects_mapping')
+      ->fields(array(
+        'media_obj_id' => $obj_id,
+        'conid' => $this->conid,
+        'rid' => $rid,
+        'cid' => $class_id,
+        'field_name' => $field_name,
+        'field_api_type' => $field_api_type,
+        'rets_timestamp_field' => isset($timestamp) ? $timestamp : NULL,
+        'data' => isset($data) ? serialize($data) : NULL,
+        'hash_exclude' => $hash_exclude,
+      ))
+      ->execute();
+  }
+
+  /**
+   * Remove database record for Drupal field mapping to Media Object from RETS.
+   */
+  public function RemoveFieldMediaObjectMapping($rid, $field_name, $class_id) {
+    db_delete("drealty_media_objects_mapping")
+      ->condition("conid", $this->conid)
+      ->condition("rid", $rid)
+      ->condition("field_name", $field_name)
+      ->condition('cid', $class_id)
       ->execute();
   }
 

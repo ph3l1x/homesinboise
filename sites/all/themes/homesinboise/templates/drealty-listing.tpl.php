@@ -1,10 +1,27 @@
 <?php
 
-//kpr($drealty_listing);
-
 drupal_add_js(drupal_get_path('theme','homesinboise') . '/js/jssor.js');
 drupal_add_js(drupal_get_path('theme','homesinboise') . '/js/jssor.slider.js');
 drupal_add_js(drupal_get_path('theme','homesinboise') . '/js/jsinit.js');
+
+$officeID = $drealty_listing->field_l_listoffice1['und'][0]['value'];
+if($officeID) {
+    $officeName = getOfficeName($officeID);
+}
+
+function getOfficeName($entity_id) {
+   @$result = db_query("select entity_id from field_data_field_officeidx where field_officeidx_value='$entity_id'");
+    foreach ($result as $record) {
+        @$officeEntityID = $record->entity_id;
+    }
+    @$result = db_query("select field_officenamex_value from field_data_field_officenamex where entity_id='$officeEntityID'");
+    foreach ($result as $record) {
+        @$officeName = $record->field_officenamex_value;
+
+    }
+
+    return $officeName;
+}
 
 
 if (isset($drealty_listing->field_mls_number['und'][0]['value'])) {
@@ -279,12 +296,14 @@ function timeAgo($time)
                                             </div>
                                             <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 800px; height: 356px; overflow: hidden;">
                                             <?php
-                                            foreach ($images as $data) {
-                                                print '<div>';
-                                                print '   <img u="image" src="' . image_style_url('gallery_large', $data['uri']) . '"/>';
-                                                print '   <img u="thumb" src="' . image_style_url('gallery_small', $data['uri']) . '"/>';
-                                                print '</div>';
-                                            }
+											if(isset($images)) {
+											  foreach ($images as $data) {
+												print '<div>';
+												print '   <img u="image" src="' . image_style_url('gallery_large', $data['uri']) . '"/>';
+												print '   <img u="thumb" src="' . image_style_url('gallery_small', $data['uri']) . '"/>';
+												print '</div>';
+											  }
+											}
                                             ?>
                                             </div>
                                             <span u="arrowleft" class="jssora05l" style="top: 158px; left: 8px;"></span>
@@ -595,6 +614,7 @@ function timeAgo($time)
                 </div>
             </div>
         </div>
+        <div class="listingBy">Listing office: <?php print $officeName ?></div>
     </div>
 </div>
 

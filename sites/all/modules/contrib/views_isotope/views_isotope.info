@@ -1,24 +1,15 @@
 ; $Id:
-name = Views Isotope
-description = Create isotope views from views queries.
-package = Views
-version = 7.x-2.x-dev
+name = Isotope - Core
+description = Create reusable Isotope configurations.
+package = User interface
 core = 7.x
+configure = admin/config/user-interface/isotope
 
-dependencies[] = views
-dependencies[] = jquery_update
-dependencies[] = libraries
+dependencies[] = ctools
 
-files[] = views-isotope.tpl.php
-files[] = views_isotope.module
-files[] = views_isotope.theme.inc
-files[] = views_isotope.views.inc
-files[] = views_isotope_plugin_style_isotope.inc
-files[] = views_isotope_plugin_style_isotope_filter_block.inc
-
-; Information added by Drupal.org packaging script on 2014-08-05
-version = "7.x-2.0-alpha1"
+; Information added by Drupal.org packaging script on 2016-02-12
+version = "7.x-2.1"
 core = "7.x"
 project = "views_isotope"
-datestamp = "1407277128"
+datestamp = "1455276843"
 

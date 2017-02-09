@@ -108,6 +108,8 @@ function drealty_fieldmap_primary_form_submit($form, &$form_state) {
 
 function drealty_fieldmap_first_form($form, &$form_state, $conn_name = NULL, $entity_type = NULL, $class_id = NULL) {
   $form['#validate'][] = 'drealty_fieldmap_first_form_validate';
+  $form['#attached']['css'] = array(drupal_get_path('module', 'drealty_fieldmap') . '/drealty_fieldmap.css' => array(
+    'group' => CSS_DEFAULT,),);
 
   $rets_fields_array = array();
   $dc = new drealtyConnection();
@@ -140,8 +142,18 @@ function drealty_fieldmap_first_form($form, &$form_state, $conn_name = NULL, $en
       $resource = $dm->FetchResource($class->rid);
       $fields = $dm->FetchFields($connection->conid, $resource, $class);
 
+      $db_mapped = db_select('drealty_field_mappings', 'dfm')
+        ->fields('dfm', array('systemname'))
+        ->condition('conid', $connection->conid)
+        ->condition('cid', $class_id)
+        ->execute()
+        ->fetchAllAssoc('systemname');
+
       foreach ($fields as $rets_field) {
-        $rets_fields_array[$rets_field->systemname] = $rets_field->systemname . '   (Type: ' . $rets_field->datatype . ')';
+        $rets_fields_array['fields'][$rets_field->systemname] = $rets_field->systemname . '   (Type: ' . $rets_field->datatype . ')';
+        if($db_mapped && in_array($rets_field->systemname, array_keys($db_mapped))) {
+          $rets_fields_array['classes'][] = $rets_field->systemname;
+        }
       }
 
       $form_state['multistep_values']['rets_fields'] = array(
@@ -156,17 +168,18 @@ function drealty_fieldmap_first_form($form, &$form_state, $conn_name = NULL, $en
         $form['select_rets_fields']['bundle'] = array(
           '#type' => 'select',
           '#title' => t('Entity Bundle'),
-          '#description' => t('Select the entity bundle to associate this resource class with. You can add new bundles <a href="/admin/drealty/' . $entity_type . '/add">here</a>.'),
+          '#description' => t('Select the entity bundle to associate this resource class with. You can add new bundles <a href="/admin/drealty/' . $entity_type . '/add">here</a>.<br>Fields with ORANGE background are already mapped at least once.'),
           '#options' => $type_opts,
           '#default_value' => isset($class->bundle) ? $class->bundle : 'none',
         );
 
         $form['select_rets_fields']['rets_fields'] = array(
           '#title' => 'Pick RETS fields you would like to import from this class:',
-          '#default_value' => isset($values['rets_fields']) ? $values['rets_fields'] : NULL,
+          '#default_value' => isset($values['rets_fields']) ? $values['rets_fields'] : array(),
           '#type' => 'checkboxes',
           '#theme' => 'drealty_fieldmap_rets_fields_options',
-          '#options' => $rets_fields_array,
+          '#options' => $rets_fields_array['fields'],
+          '#attributes' => array('class' => array('field-mapped'), 'fields_list' =>$rets_fields_array['classes']),
         );
 
         $form['next'] = array(
@@ -204,6 +217,12 @@ function drealty_fieldmap_second_form($form, &$form_state, $conn_name = NULL, $e
       'group' => CSS_DEFAULT,
     ),
   );
+
+  $form['markup_note'] = array(
+    '#markup' => '<h4><em><strong>NOTE:  </strong></em>You can map fields of type <em>EnityReference</em>, <em>Addressfield</em>, and <em>Image</em>
+        field from each Property Configuration form (under "Manage Fields").</h4>'
+  );
+
   $values = isset($form_state['multistep_values']['create_rets_entity_fields']) ? $form_state['multistep_values']['create_rets_entity_fields'] : array();
   $selected_fields = isset($form_state['multistep_values']['select_rets_fields']) ? $form_state['multistep_values']['select_rets_fields']['rets_fields'] : array();
   $bundle = isset($form_state['multistep_values']['select_rets_fields']) ? $form_state['multistep_values']['select_rets_fields']['bundle'] : '';
@@ -224,7 +243,16 @@ function drealty_fieldmap_second_form($form, &$form_state, $conn_name = NULL, $e
 
   if (count(array_filter($selected_fields)) > 0) {
     $i = 0;
-    $field_type_options = field_ui_field_type_options();
+    $field_type_options_default = field_ui_field_type_options();
+    $field_type_options = array();
+    $allowed_options = array('date', 'list', 'taxonomy', 'number', 'text');
+    foreach($allowed_options as $opts) {
+      foreach($field_type_options_default as $ind => $opt) {
+        if(stripos($ind, $opts) === 0) {
+          $field_type_options[$ind] = $field_type_options_default[$ind];
+        }
+      }
+    }
     $widget_type_options = field_ui_widget_type_options(NULL, TRUE);
 
     $table = array(
@@ -477,16 +505,16 @@ function drealty_fieldmap_second_form_validate($form, &$form_state) {
         }
 
         // Missing field name.
-        if (!$field['field_name']) {
+        if (!isset($field['field_name']) || empty($field['field_name'])) {
           form_set_error('create_rets_entity_fields][' . $f_label . '][fieldset][add_field][' . $field_label . '][field_name', t('Add new ' . $f_label . ' field: you need to provide a field name.'));
         }
 
         // Missing widget type.
-        if (!$field['widget_type']) {
+        if (!isset($field['widget_type']) || empty($field['widget_type'])) {
           form_set_error('create_rets_entity_fields][' . $f_label . '][fieldset][add_field][' . $field_label . '][widget_type', t('Add new ' . $f_label . ' field: you need to select a widget.'));
         }
         // Wrong widget type.
-        elseif ($field['type']) {
+        elseif (isset($field['type']) && !empty($field['type'])) {
           $widget_types = field_ui_widget_type_options($field['type']);
           if (!isset($widget_types[$field['widget_type']])) {
             form_set_error('create_rets_entity_fields][' . $f_label . '][fieldset][add_field][' . $field_label . '][widget_type', t('Add new ' . $f_label . ' field: invalid widget.'));
@@ -526,13 +554,14 @@ function drealty_fieldmap_second_form_submit($form, &$form_state) {
         $field = array(
           'field_name' => $data['field_name'],
           'type' => $data['type'],
-          'settings' => array( /*'max_length' => 64,*/),
-          'entity_types' => array('drealty_listing', 'drealty_office', 'drealty_agent', 'drealty_openhouse'),
+          'settings' => array(),
+          'entity_types' => array(),
         );
         if ($multi_value == 'LookupMulti') {
           $field['cardinality'] = -1;
         }
-        // @TODO:   don't know if it can be accomplished
+        // @TODO:   don't know if it can be accomplished: for list type fields 
+        // set allowed values configuration:
         /*  if(in_array($data['type'], array('list_text', 'list_integer', 'list_boolean'))) {
             $list_options = _drealty_fieldmap_get_rets_metadata_options($dc, $rets_conn['connection']->conid, $rets_conn['resource']->systemname, $rets_conn['class']->systemname);
             $field['settings'] = array(
@@ -558,7 +587,10 @@ function drealty_fieldmap_second_form_submit($form, &$form_state) {
             ),
           );
         }
-        field_create_field($field);
+        if(field_info_field($data['field_name']) == NULL)
+          field_create_field($field);
+        else
+          drupal_set_message(t('The field ' . $data['field_name'] . ' creation was skipped, because machine name is not unique'), 'status', TRUE);
       }
       if ($new['fieldset']['create_new_field'] == 1) {
         $data = $new['fieldset']['add_field']['_add_existing_field'];
@@ -591,7 +623,7 @@ function drealty_fieldmap_second_form_submit($form, &$form_state) {
     }
   } catch (Exception $e) {
     watchdog("drealty", $e->getMessage(), array(), WATCHDOG_ERROR);
-    drupal_set_message($e->getMessage(), 'error');
+    drupal_set_message($e->getMessage(), 'error', TRUE);
     return FALSE;
   }
 }
@@ -620,15 +652,23 @@ function drealty_fieldmap_move_to_previous_stage($form, &$form_state) {
  */
 function theme_drealty_fieldmap_rets_fields_options(&$variables) {
   $elements = element_children($variables['form']);
+  $mapped = FALSE;
   $index = 0;
   $list = array();
   for ($i = 0;$i < count($variables['form']['#options']);$i++) {
+    unset($variables['form'][$elements[$i]]['#attributes']['fields_list']);
+    unset($variables['form'][$elements[$i]]['#attributes']['class']);
+
+    if(in_array($elements[$i], array_values($variables['form']['#attributes']['fields_list']))) {
+      $class = 'field-mapped';
+    } else $class = '';
+
     if ($i % 4 != 0) {
-      $list[$index][] = array('data' => drupal_render($variables['form'][$elements[$i]]));
+      $list[$index][] = array('data' => drupal_render($variables['form'][$elements[$i]]), 'class' => $class);
     }
     else {
       $index++;
-      $list[$index][] = array('data' => drupal_render($variables['form'][$elements[$i]]));
+      $list[$index][] = array('data' => drupal_render($variables['form'][$elements[$i]]), 'class' => $class);
     }
   }
   foreach ($list as $key => $options) {

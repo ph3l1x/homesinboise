@@ -25,7 +25,8 @@ function drealty_import_office_import_form($form, &$form_state) {
 
   $form['confirm_action'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Yes, I want to do an office import of all data for this resource.')
+    '#title' => t('Yes, I want to do an office import of all data for this resource.'),
+    '#required' => TRUE,
   );
 
   $form['actions'] = array('#type' => 'actions');
@@ -43,50 +44,59 @@ function drealty_import_office_import_form($form, &$form_state) {
  * Submit handler.
  */
 function drealty_import_office_import_form_submit($form, &$form_state) {
-  $import = new DrealtyImport();
-  $import->clearQueue();
-
   $metadata = new drealtyMetaData();
   $connection = entity_load('drealty_connection_entity', array($form_state['values']['connection']));
   $connection = end($connection);
   $mappings = $connection->ResourceMappings();
 
-  // perform queries
-  foreach ($mappings as $mapping) {
-    $resource = $metadata->FetchResource($mapping->rid);
-    $classes = $connection->FetchClasses($resource);
-    foreach ($classes as $key => $class) {
-      if ($class->systemname != 'Office') {
+  // Perform import queries.
+  if ($connection->active == 1) {
+    $dm = new drealtyDaemon();
+    $classes_enabled = FALSE;
+
+    foreach ($mappings as $mapping) {
+      if ($mapping->entity_type != 'drealty_office') {
         continue;
       }
 
-      if ($class->enabled) {
-        $items = $import->ProcessRetsClass($connection, $resource, $class, 'drealty_office');
+      $resource = $metadata->FetchResource($mapping->rid);
+      $classes = $connection->FetchClasses($resource);
+      foreach ($classes as $key => $class) {
+        if ($class->enabled && $items = $dm->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, 'resources', TRUE)) {
+          $classes_enabled = TRUE;
 
-        foreach ($items as $item) {
-          $operations[] = array(
-            "drealty_import_office_import_populate_queue",
-            array(
-              'item' => $item,
-              'details' => t('Populating queue for @class id @key...', array('@class' => $item['class']->systemname, '@key' => $item['remote_id']))
-            )
+          foreach ($items as $item) {
+            $operations[] = array(
+              "drealty_import_office_import_populate_queue",
+              array(
+                'item' => $item,
+                'details' => t('Populating queue for @class id @key...', array('@class' => $item['class']->systemname, '@key' => $item['remote_id']))
+              )
+            );
+          }
+
+          $batch = array(
+            'operations' => $operations,
+            'title' => t('Creating queue jobs'),
+            'init_message' => t('Initializing'),
+            'error_message' => t('An error occurred.'),
+            'finished' => 'drealty_import_office_import_batch_finished',
+            'file' => drupal_get_path('module', 'drealty_import') . '/includes/office.batch.inc',
           );
+
+          batch_set($batch);
+          $form_state['redirect'] = 'admin/drealty/drealty-import/office-import';
         }
+      }
+
+      if (!$classes_enabled) {
+        drupal_set_message('There are no enabled Classes for ' .
+          $mapping->entity_type . ' resource. Please, enable at least one class ' .
+          'here: <a href="/admin/drealty/connections/manage/' . $connection->name .
+          '/resource/' . $mapping->entity_type . '">Configure</a>', 'error');
       }
     }
   }
-
-  $batch = array(
-    'operations' => $operations,
-    'title' => t('Creating queue jobs'),
-    'init_message' => t('Initializing'),
-    'error_message' => t('An error occurred.'),
-    'finished' => 'drealty_import_office_import_batch_finished',
-    'file' => drupal_get_path('module', 'drealty_import') . '/includes/office.batch.inc',
-  );
-
-  batch_set($batch);
-  $form_state['redirect'] = 'admin/drealty/drealty-import';
 }
 
 /**
@@ -95,7 +105,7 @@ function drealty_import_office_import_form_submit($form, &$form_state) {
  * @param $context
  */
 function drealty_import_office_import_populate_queue($item, $message, &$context) {
-  $queue = DrealtyImport::getQueue();
+  $queue = DrealtyImport::getQueue('drealty_import');
   $queue->createItem($item);
   $context['message'] = $message;
   $context['results'][] = $item['remote_id'];

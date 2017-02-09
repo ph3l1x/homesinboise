@@ -28,13 +28,14 @@ function drealty_import_process_queue_form($form, &$form_state) {
  * Submit handler.
  */
 function drealty_import_process_queue_form_submit($form, &$form_state) {
-  $import = new DrealtyImport();
-  $queue_count = $import->queue->numberOfItems();
+  $dm = new drealtyDaemon();
+  $queue_count = $dm->cron_queue->numberOfItems();
+
   $count = 1;
 
   if ($queue_count) {
     while ($count < $queue_count) {
-      #$data = $item->data;
+
       $operations[] = array(
         'drealty_import_process_queue_item',
         array('item' => NULL, 'details' => t('Processing item...', array()))
@@ -53,7 +54,8 @@ function drealty_import_process_queue_form_submit($form, &$form_state) {
     );
 
     batch_set($batch);
-  } else {
+  }
+  else {
     drupal_set_message('No items in the queue to process.');
   }
 
@@ -69,13 +71,15 @@ function drealty_import_process_queue_form_submit($form, &$form_state) {
 function drealty_import_process_queue_item($item, $message, &$context) {
   $import = new DrealtyImport();
 
-  if ($item = $import->queue->claimItem()) {
+  if ($item = $import->cron_queue->claimItem()) {
     try {
       $import->processQueueItem($item->data);
       $context['message'] = 'Processing remote identifier ' . $item->data['remote_id'];
       $context['results'][] = $item->data['remote_id'];
-    } catch (Exception $e) {
-      $import->queue->releaseItem($item);
+      $import->cron_queue->deleteItem($item);
+    }
+    catch (Exception $e) {
+      $import->cron_queue->releaseItem($item);
       watchdog('drealty_import', 'Error during import of listing @id', array('@id' => $item->data['remote_id']));
     }
   }

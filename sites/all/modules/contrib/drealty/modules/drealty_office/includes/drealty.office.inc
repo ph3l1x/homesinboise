@@ -8,6 +8,10 @@ class DrealtyOffice extends Entity {
   public $rets_key;
   public $rets_id;
   public $class;
+  public $active;
+  public $media_hash;
+  public $inactive_date;
+  public $rets_modification_timestamp;
 
   public function __construct(array $values = array()) {
     parent::__construct($values, 'drealty_office');
@@ -18,7 +22,7 @@ class DrealtyOffice extends Entity {
   }
 
   public function path() {
-    $uri = $this->entity();
+    $uri = $this->uri();
     return $uri['path'];
   }
 

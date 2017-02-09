@@ -3,21 +3,15 @@ description = Provides the ability to import Real Estate Agents from a RETS Prov
 core = 7.x
 package = Real Estate
 
-
 dependencies[] = drealty
 
 files[] = includes/drealty.agent.admin.inc
 files[] = includes/drealty.agent.inc
-; Information added by drupal.org packaging script on 2013-09-08
-version = "7.x-3.0-beta5"
-core = "7.x"
-project = "drealty"
-datestamp = "1378680421"
 
 
-; Information added by Drupal.org packaging script on 2014-12-10
-version = "7.x-3.0-beta6+0-dev"
+; Information added by Drupal.org packaging script on 2016-12-27
+version = "7.x-3.0"
 core = "7.x"
 project = "drealty"
-datestamp = "1418238209"
+datestamp = "1482836287"
 

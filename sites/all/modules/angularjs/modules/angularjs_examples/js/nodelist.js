@@ -1,4 +1,4 @@
-angular.module('nodelist', ['node', 'nodes']).
+angular.module('nodelist', ['node', 'nodes', 'ngRoute']).
   config(function($routeProvider) {
     $routeProvider.
       when('/', {controller:ListCtrl, templateUrl: Drupal.settings.angularjsApp.basePath + '/angular/nodes/list'}).

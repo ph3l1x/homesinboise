@@ -1,7 +1,8 @@
 <?php
+
 /**
  * @file
- * Integrate Drealty with XML sitemap
+ * Integrate Drealty with XML sitemap.
  */
 
 /**
@@ -58,7 +59,7 @@ function drealty_xmlsitemap_form_drealty_listing_type_form_alter(array &$form, a
  * Implements hook_entity_insert().
  */
 function drealty_xmlsitemap_entity_insert($entity, $type) {
-  if($type == 'drealty_listing'){
+  if ($type == 'drealty_listing') {
     drealty_xmlsitemap_entity_update($entity, $type);
   }
 }
@@ -67,7 +68,7 @@ function drealty_xmlsitemap_entity_insert($entity, $type) {
  * Implements hook_entity_update().
  */
 function drealty_xmlsitemap_entity_update($entity, $type) {
-  if($type == 'drealty_listing'){
+  if ($type == 'drealty_listing') {
     $link = drealty_xmlsitemap_create_link($entity);
     xmlsitemap_link_save($link);
   }
@@ -77,7 +78,7 @@ function drealty_xmlsitemap_entity_update($entity, $type) {
  * Implements hook_entity_delete().
  */
 function drealty_xmlsitemap_entity_delete($entity, $type) {
-  if ($type == 'drealty_listing'){
+  if ($type == 'drealty_listing') {
     xmlsitemap_link_delete('drealty_listing', $entity->id);
   }
 }
