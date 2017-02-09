@@ -6,7 +6,7 @@ function retsSearchResultsDirective(retsAPI) {
         link: function(scope, element) {
 
             scope.listingID = 'yyyyy';
-            
+
             scope.retsFormChange = function() {
                 console.log("SCOPE.FORM: ", scope.form);
                 retsAPI

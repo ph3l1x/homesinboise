@@ -43,49 +43,49 @@ function drealty_import_agent_import_form($form, &$form_state) {
  * Submit handler.
  */
 function drealty_import_agent_import_form_submit($form, &$form_state) {
-  $import = new DrealtyImport();
-  $import->clearQueue();
-
   $metadata = new drealtyMetaData();
   $connection = entity_load('drealty_connection_entity', array($form_state['values']['connection']));
   $connection = end($connection);
   $mappings = $connection->ResourceMappings();
 
   // perform queries
-  foreach ($mappings as $mapping) {
-    $resource = $metadata->FetchResource($mapping->rid);
-    $classes = $connection->FetchClasses($resource);
-    foreach ($classes as $key => $class) {
-      if ($class->systemname != 'Agent') {
+  if ($connection->active == 1) {
+    $dm = new drealtyDaemon();
+    
+    foreach ($mappings as $mapping) {
+      if ($mapping->entity_type != 'drealty_agent') {
         continue;
       }
 
-      if ($class->enabled) {
-        $items = $import->ProcessRetsClass($connection, $resource, $class, 'drealty_agent');
-
-        foreach ($items as $item) {
-          $operations[] = array(
-            "drealty_import_agent_import_populate_queue",
-            array(
-              'item' => $item,
-              'details' => t('Populating queue for @class id @key...', array('@class' => $item['class']->systemname, '@key' => $item['remote_id']))
-            )
-          );
+      $resource = $metadata->FetchResource($mapping->rid);
+      $classes = $connection->FetchClasses($resource);
+      
+      foreach ($classes as $key => $class) {
+        if ($class->enabled && $items = $dm->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, 'resources', TRUE)) {
+          foreach ($items as $item) {
+            $operations[] = array(
+              "drealty_import_agent_import_populate_queue",
+              array(
+                'item' => $item,
+                'details' => t('Populating queue for @class id @key...', array('@class' => $item['class']->systemname, '@key' => $item['remote_id']))
+              )
+            );
+          }
         }
       }
     }
+  
+    $batch = array(
+      'operations' => $operations,
+      'title' => t('Creating queue jobs'),
+      'init_message' => t('Initializing'),
+      'error_message' => t('An error occurred.'),
+      'finished' => 'drealty_import_agent_import_batch_finished',
+      'file' => drupal_get_path('module', 'drealty_import') . '/includes/agent.batch.inc',
+    );
+  
+    batch_set($batch);
   }
-
-  $batch = array(
-    'operations' => $operations,
-    'title' => t('Creating queue jobs'),
-    'init_message' => t('Initializing'),
-    'error_message' => t('An error occurred.'),
-    'finished' => 'drealty_import_agent_import_batch_finished',
-    'file' => drupal_get_path('module', 'drealty_import') . '/includes/agent.batch.inc',
-  );
-
-  batch_set($batch);
   $form_state['redirect'] = 'admin/drealty/drealty-import';
 }
 
@@ -95,7 +95,7 @@ function drealty_import_agent_import_form_submit($form, &$form_state) {
  * @param $context
  */
 function drealty_import_agent_import_populate_queue($item, $message, &$context) {
-  $queue = DrealtyImport::getQueue();
+  $queue = DrealtyImport::getQueue('drealty_import');
   $queue->createItem($item);
   $context['message'] = $message;
   $context['results'][] = $item['remote_id'];

@@ -1,5 +1,26 @@
 <?php
 
+/**
+ * @file
+ */
+
+/**
+ * Implements hook_views_api().
+ */
+function drealty_views_api() {
+  return array(
+    'api' => 3,
+  );
+}
+
+define('DREALTY_QUERY_TYPE_DEFAULT', 0);
+define('DREALTY_QUERY_TYPE_PRICE', 1);
+define('DREALTY_QUERY_TYPE_MANUAL', 2);
+define('DREALTY_QUERY_TYPE_RETS_KEY', 3);
+
+/**
+ * Entity structure.
+ */
 function drealty_entity_info() {
   $entities = array();
   $entities['drealty_listing'] = array(
@@ -11,6 +32,7 @@ function drealty_entity_info() {
     'base table' => 'drealty_listing',
     'uri callback' => 'entity_class_uri',
     'fieldable' => TRUE,
+    'metatags' => TRUE,
     'view modes' => array(
       'full' => array(
         'label' => 'Full View',
@@ -54,6 +76,7 @@ function drealty_entity_info() {
     'controller class' => 'DrealtyListingTypeController',
     'base table' => 'drealty_listing_type',
     'fieldable' => FALSE,
+    'metatags' => TRUE,
     'bundle of' => 'drealty_listing',
     'exportable' => TRUE,
     'entity keys' => array(
@@ -81,7 +104,7 @@ function drealty_entity_info() {
     'entity keys' => array(
       'id' => 'conid',
       'label' => 'label',
-      'name' => 'name'
+      'name' => 'name',
     ),
     'module' => 'drealty',
     'access callback' => 'drealty_connection_access',
@@ -95,11 +118,15 @@ function drealty_entity_info() {
   return $entities;
 }
 
+/**
+ *
+ */
 function drealty_entity_info_alter(&$entity_info) {
   $types = drealty_listing_get_types();
   foreach ($types as $type => $info) {
     $entity_info['drealty_listing']['bundles'][$type] = array(
       'label' => $info->label,
+      'metatags' => TRUE,
       'admin' => array(
         'path' => 'admin/drealty/drealty_listings/manage/%drealty_listing_type',
         'real path' => 'admin/drealty/drealty_listings/manage/' . $type,
@@ -110,6 +137,9 @@ function drealty_entity_info_alter(&$entity_info) {
   }
 }
 
+/**
+ *
+ */
 function drealty_listing_get_types($type_name = NULL) {
   $types = entity_load_multiple_by_name('drealty_listing_type', isset($type_name) ? array($type_name) : FALSE);
   return isset($type_name) ? reset($types) : $types;
@@ -119,7 +149,8 @@ function drealty_listing_get_types($type_name = NULL) {
  * Menu argument loader; Load a drealty listing type by string.
  *
  * @param string $type
- *  The machine-readable name of a listing type to load.
+ *   The machine-readable name of a listing type to load.
+ *
  * @return
  *  A listing type array or FALSE if $type does not exist.
  */
@@ -132,6 +163,7 @@ function drealty_listing_type_load($type) {
  *
  * @param $type_name
  *   If set, the type with the given name is returned.
+ *
  * @return DrealtyListingType[]
  *   Depending whether $type isset, an array of profile types or a single one.
  */
@@ -140,10 +172,16 @@ function drealty_listings_get_types($type_name = NULL) {
   return isset($type_name) ? reset($types) : $types;
 }
 
+/**
+ *
+ */
 function drealty_connection_entity_access($op, $type = NULL, $account = NULL) {
   return user_access('administer drealty connections');
 }
 
+/**
+ *
+ */
 function drealty_menu() {
   $items = array();
 
@@ -155,12 +193,33 @@ function drealty_menu() {
     'type' => MENU_NORMAL_ITEM,
   );
 
-  $items['admin/drealty/fields_autocomplete/%/%/%'] = array(
+  $items['admin/drealty/fields_autocomplete/%/%/%/%'] = array(
     'title' => 'Autocomplete for fields',
     'page callback' => 'drealty_fields_autocomplete',
-    'page arguments' => array(3, 4, 5),
+    'page arguments' => array(3, 4, 5, 6),
     'access arguments' => array('access drealty admin'),
-    'type' => MENU_CALLBACK
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['admin/drealty/connections/manage/%/metadata'] = array(
+    'title' => 'Update Drealty Metadata',
+    'description' => 'Update Metadata for all available active connections.',
+    'access arguments' => array('access drealty admin'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('drealty_metadata_update_form', 4),
+    'file' => 'includes/drealty.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+
+  $items['admin/drealty/drealty-import/config'] = array(
+    'title' => 'Configuration settings',
+    'description' => 'Adjust settings for importing.',
+    'access callback' => 'user_access',
+    'access arguments' => array('access drealty import'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('drealty_import_admin_settings_form'),
+    'file' => 'includes/drealty.admin.inc',
+    'type' => MENU_NORMAL_ITEM,
   );
 
   return $items;
@@ -184,10 +243,10 @@ function drealty_menu_local_tasks_alter(&$data, $router_item, $root_path) {
 
 /**
  *
- * @param type $form
+ * @param string or int or object... $form
  * @param array $form_state
  * @param drealtyListing $listing
- * @return type 
+ * @return type
  */
 function drealty_update_single_listing($form, &$form_state, $listing = NULL) {
 
@@ -203,6 +262,9 @@ function drealty_update_single_listing($form, &$form_state, $listing = NULL) {
   return $form;
 }
 
+/**
+ * Submit handler for update for a single listing.
+ */
 function drealty_update_single_listing_submit($form, &$form_state) {
 
   $listing = $form_state['listing'];
@@ -210,28 +272,50 @@ function drealty_update_single_listing_submit($form, &$form_state) {
   $daemon = new drealtyDaemon();
   if ($daemon->update_single_listing($listing)) {
     drupal_set_message(t('Listing id %id was successfully updated from the RETS server.', array('%id' => $listing->rets_id)), 'status');
-  } else {
+  }
+  else {
     drupal_set_message(t('Listing id %id FAILED to update from the RETS server.', array('%id' => $listing->rets_id)), 'error');
   }
   $form_state['redirect'] = $listing->path();
 }
 
+/**
+ *
+ */
 function drealty_admin_paths_alter(&$paths) {
   $paths['drealty_listing/add'] = TRUE;
   $paths['drealty_listing/add/*'] = TRUE;
   $paths['drealty_listing/*/edit'] = TRUE;
+  $paths['drealty_agent/add'] = TRUE;
+  $paths['drealty_agent/add/*'] = TRUE;
+  $paths['drealty_agent/*/edit'] = TRUE;
+  $paths['drealty_office/add'] = TRUE;
+  $paths['drealty_office/add/*'] = TRUE;
+  $paths['drealty_office/*/edit'] = TRUE;
+  $paths['drealty_openhouse/add'] = TRUE;
+  $paths['drealty_openhouse/add/*'] = TRUE;
+  $paths['drealty_openhouse/*/edit'] = TRUE;
 }
 
+/**
+ *
+ */
 function drealty_connections_get_all() {
   $connections = entity_load('drealty_connection_entity');
   return $connections;
 }
 
+/**
+ *
+ */
 function drealty_connections_machine_name_exists($machine_name) {
   $exists = db_query_range('SELECT 1 FROM {drealty_connections} WHERE name = :machine_name', 0, 1, array(':machine_name' => $machine_name))->fetchField();
   return $exists;
 }
 
+/**
+ *
+ */
 function drealty_listing_type_name_exists($value) {
 
   $exists = db_query_range('SELECT 1 FROM {drealty_listing_type} WHERE type = :type', 0, 1, array(':type' => $value))->fetchField();
@@ -239,29 +323,42 @@ function drealty_listing_type_name_exists($value) {
   return $exists;
 }
 
+/**
+ *
+ */
 function drealty_admin_menu_block_page() {
   $item = menu_get_item();
   if ($content = system_admin_menu_block($item)) {
     $output = theme('admin_block_content', array('content' => $content));
-  } else {
+  }
+  else {
     $output = t('You do not have any administrative items.');
   }
   return $output;
 }
 
+/**
+ *
+ */
 function drealty_class_load($cid) {
   $dm = new drealtyMetaData();
   return $dm->FetchClass($cid);
 }
 
-function drealty_fields_autocomplete($conid, $class, $string) {
+/**
+ *
+ * @param int $conid
+ * @param string $class
+ * @param string $string
+ * @param mixed $datatype
+ *   $datatype can be of type array or string
+ */
+function drealty_fields_autocomplete($datatype, $conid, $class, $string) {
   if ($conid == NULL) {
     exit();
   }
 
   $matches = array();
-  //$result = db_query("SELECT * FROM {drealty_fields} WHERE conid = :conid AND resource = :resource AND display = 1", array(':conid' => $conid, ':resource' => $resource))->fetchAll();
-  //$result = db_query("SELECT fid, systemname, longname FROM {drealty_fields} WHERE LOWER(longname) LIKE LOWER(:pattern) AND conid = :conid", array('::pattern' => db_like($string), ':conid' => $conid));
   $ored = db_or();
   $ored
     ->condition('systemname', '%' . drupal_strtolower($string) . '%', 'LIKE')
@@ -271,6 +368,10 @@ function drealty_fields_autocomplete($conid, $class, $string) {
   $anded
     ->condition('conid', $conid)
     ->condition('class', $class);
+
+  if ($datatype != 'all') {
+    $anded->condition('datatype', '%' . drupal_strtolower($datatype) . '%', 'LIKE');
+  }
 
   $results = db_select('drealty_fields', 'f')
     ->fields('f')
@@ -283,8 +384,12 @@ function drealty_fields_autocomplete($conid, $class, $string) {
     $matches[$data->systemname . ' - ' . $data->longname] = $data->systemname . ' - ' . $data->longname;
   }
   drupal_json_output($matches);
+  drupal_exit();
 }
 
+/**
+ *
+ */
 function drealty_load_phrets() {
   $static_cache = &drupal_static(__FUNCTION__);
 
@@ -292,7 +397,7 @@ function drealty_load_phrets() {
     $path = libraries_get_path('phrets');
     $file = $path . '/phrets.php';
     if (file_exists($file)) {
-      if (include_once($file)) {
+      if (include_once $file) {
         $static_cache = $file;
       }
     }
@@ -300,11 +405,15 @@ function drealty_load_phrets() {
   return $static_cache;
 }
 
+/**
+ *
+ */
 function drealty_help($path, $arg) {
   switch ($path) {
     case "admin/help#drealty":
       return '<p>' . t("RETS enabled Real Estate IDX solution for Drupal.") . '</p>';
-      break;
+
+    break;
   }
 }
 
@@ -313,7 +422,7 @@ function drealty_help($path, $arg) {
  */
 function drealty_permission() {
   // We set up permissions to manage entity types, manage all entities and the
-  // permissions for each individual entity
+  // permissions for each individual entity.
   $permissions = array(
     'access drealty admin' => array(
       'title' => t('Administer dRealty'),
@@ -325,19 +434,41 @@ function drealty_permission() {
     ),
     'administer drealty_listing types' => array(
       'title' => t('Administer Drealty Listing Types'),
-      'description' => t('View, edit, and delete Drealty Listing Types.')
+      'description' => t('View, edit, and delete Drealty Listing Types.'),
     ),
     'administer drealty connections' => array(
       'title' => t('Administer Drealty Connections'),
-      'description' => t('View, edit, and delete Drealty Connections.')
+      'description' => t('View, edit, and delete Drealty Connections.'),
     ),
     'administer drealty_listings' => array(
       'title' => t('Administer Drealty Listings'),
-      'description' => t('Administer Drealty Listings Configuration Settings.')
+      'description' => t('Administer Drealty Listings Configuration Settings.'),
     ),
   );
 
   $types = array('drealty listing');
+
+  if (module_exists('drealty_office')) {
+    $types[] = 'drealty office';
+    $permissions['administer drealty_office'] = array(
+      'title' => t('Administer Drealty Offices'),
+      'description' => t('Administer Drealty Offices Configuration Settings.'),
+    );
+  }
+  if (module_exists('drealty_agent')) {
+    $types[] = 'drealty agent';
+    $permissions['administer drealty_agent'] = array(
+      'title' => t('Administer Drealty Agents'),
+      'description' => t('Administer Drealty Agents Configuration Settings.'),
+    );
+  }
+  if (module_exists('drealty_openhouse')) {
+    $types[] = 'drealty openhouse';
+    $permissions['administer drealty_openhouse'] = array(
+      'title' => t('Administer Drealty Open Houses'),
+      'description' => t('Administer Drealty Open Houses Configuration Settings.'),
+    );
+  }
 
   foreach ($types as $type) {
     $permissions["view $type"] = array('title' => t('%type:View content', array('%type' => $type)));
@@ -356,6 +487,7 @@ function drealty_permission() {
  *
  * @param string $resource_type
  * @param int $conid
+ *
  * @return none
  */
 function drealty_resource_title_callback($resource_type, $conid) {
@@ -392,27 +524,18 @@ function drealty_theme($existing, $type, $theme, $path) {
 }
 
 /**
- * Implements hook_views_api().
+ *
  */
-function drealty_views_api() {
-  return array(
-    'api' => 3,
-    'path' => drupal_get_path('module', 'drealty') . '/views',
-  );
-}
-
 function drealty_search_api_multitext_getter_callback($item, $options = array(), $name = NULL) {
   $value = explode(",", $item->{$name});
   return $value;
 }
 
-// ***********************************************************************************************************  //
-// Listing Functions
-// ***********************************************************************************************************  //
-
-
+/**
+ * Listing Functions
+ * .
+ */
 function drealty_access($op, $entity = NULL, $type = NULL, $account = NULL) {
-
 
   static $drupal_static_fast;
   if (!isset($drupal_static_fast)) {
@@ -460,10 +583,11 @@ function drealty_access($op, $entity = NULL, $type = NULL, $account = NULL) {
         return TRUE;
       }
     case 'edit':
-      if (user_access("endit any $type_name")) {
+      if (user_access("edit any $type_name")) {
         $rights[$account->uid][$cid][$op] = TRUE;
         return TRUE;
-      } elseif (user_access("edit own $type_name")) {
+      }
+      elseif (user_access("edit own $type_name")) {
         if ($entity->uid == $account->uid) {
           $rights[$account->uid][$cid][$op] = TRUE;
           return TRUE;
@@ -476,7 +600,8 @@ function drealty_access($op, $entity = NULL, $type = NULL, $account = NULL) {
         if ($entity->rets_imported == TRUE) {
           $rights[$account->uid][$cid][$op] = FALSE;
           return FALSE;
-        } else {
+        }
+        else {
           $rights[$account->uid][$cid][$op] = TRUE;
           return TRUE;
         }
@@ -493,6 +618,7 @@ function drealty_access($op, $entity = NULL, $type = NULL, $account = NULL) {
  *   Integer specifying the listing id.
  * @param $reset
  *   A boolean indicating that the internal cache should be reset.
+ *
  * @return
  *   A fully-loaded $drealty_listing object or FALSE if it cannot be loaded.
  *
@@ -512,6 +638,7 @@ function drealty_listing_load($id, $reset = FALSE) {
  *   An array of conditions to match against the {drealty_listing} table.
  * @param $reset
  *   A boolean indicating that the internal cache should be reset.
+ *
  * @return
  *   An array of drealty_listing objects, indexed by pid.
  *
@@ -533,20 +660,20 @@ function drealty_listing_page_title(DrealtyListing $listing) {
 
 /**
  *
- * @param type $listing
- * @param type $view_mode
- * @param type $langcode
- * @param type $page
+ * @param string or int or object... $listing
+ * @param string or int or object... $view_mode
+ * @param string or int or object... $langcode
+ * @param string or int or object... $page
  * @return type
  */
 function drealty_listing_view($listing, $view_mode = 'full', $langcode = NULL, $page = NULL) {
-  // support page level view with a 404
+  // Support page level view with a 404.
   if ($listing->active == 0 && $view_mode == 'full') {
     drupal_not_found();
     exit;
   }
 
-  // otherwise return false, to not interfere with Views or attachments to other entities
+  // Otherwise return false, to not interfere with Views or attachments to other entities.
   if ($listing->active == 0 && $view_mode != 'full') {
     return FALSE;
   }
@@ -554,28 +681,23 @@ function drealty_listing_view($listing, $view_mode = 'full', $langcode = NULL, $
   return entity_get_controller('drealty_listing')->view(array($listing), $view_mode, $langcode, $page);
 }
 
-/* @todo: tbd in a future commit. other loaders have to change a bit for this to work without error.
-function drealty_listing_view_multiple($entities, $view_mode = 'teaser', $weight = 0, $langcode = NULL) {
-  field_attach_prepare_view('drealty_listing', $entities, $view_mode, $langcode);
-  entity_prepare_view('drealty_listing', $entities, $langcode);
-  $build = array();
-  foreach ($entities as $entity) {
-    $build['drealty_listings'][$entity->id] = drealty_listing_view($entity, $view_mode, $langcode);
-    $build['drealty_listings'][$entity->id]['#weight'] = $weight;
-    $weight++;
-  }
-  $build['drealty_listings']['#sorted'] = TRUE;
-  return $build;
-}*/
-
+/**
+ *
+ */
 function drealty_listing_create($values = array()) {
   return entity_get_controller('drealty_listing')->create($values);
 }
 
+/**
+ *
+ */
 function drealty_listing_uri(DrealtyListing $listing) {
   return array('path' => 'drealty_listing/' . $listing->id);
 }
 
+/**
+ *
+ */
 function drealty_listing_access($op, $listing = NULL, $account = NULL) {
   if (user_access('administer drealty_listings', $account)) {
     return TRUE;
@@ -591,50 +713,63 @@ function drealty_listing_access($op, $listing = NULL, $account = NULL) {
   // access.
   if (in_array(FALSE, $access, TRUE)) {
     return FALSE;
-  } elseif (in_array(TRUE, $access, TRUE)) {
+  }
+  elseif (in_array(TRUE, $access, TRUE)) {
     return TRUE;
   }
   return FALSE;
 }
 
+/**
+ *
+ */
 function drealty_drealty_listing_access($op, $listing = NULL, $account = NULL) {
-  if (isset($listing) && ($type_name = $listing->type) && $op != 'delete') {
-    if (user_access("$op any $type_name drealty_listing", $account)) {
-      return TRUE;
-    }
-    $account = isset($account) ? $account : $GLOBALS['user'];
-    if (isset($listing->uid) && $listing->uid == $account->uid && user_access("$op own $type_name drealty_listing", $account)) {
-      return TRUE;
-    }
+  if (drealty_access($op, $listing)) {
+    return TRUE;
   }
   // Do not explicitly deny access so others may still grant access.
 }
 
+/**
+ *
+ */
 function drealty_listing_type_access($op, $type = NULL, $account = NULL) {
   return user_access('administer drealty_listing types');
 }
 
+/**
+ *
+ */
 function drealty_connection_access($op, $type = NULL, $account = NULL) {
   return user_access('administer drealty connections');
 }
 
-// ***********************************************************************************************************  //
-// Field API Functions
-// ***********************************************************************************************************  //
-
-
+/**
+ * Field API Functions
+ * .
+ */
 function drealty_form_field_ui_field_overview_form_alter(&$form, &$form_state, $form_id) {
   $entity_types = array('drealty_listing', 'drealty_agent', 'drealty_openhouse', 'drealty_office');
-  if (in_array($form['#entity_type'], $entity_types)) {
+  if (isset($form['#entity_type']) && in_array($form['#entity_type'], $entity_types)) {
     $form['#submit'] = array('drealty_field_ui_field_overview_form_submit');
   }
 }
 
+/**
+ *
+ */
 function drealty_field_delete_instance($field) {
   $entity_types = array('drealty_listing', 'drealty_agent', 'drealty_openhouse', 'drealty_office');
-  if (in_array($field['entity_type'], $entity_types)) {
+  if (in_array($field['entity_type'], $entity_types) && isset($field['drealty'])
+    && isset($field['drealty']['mappings'])) {
     foreach ($field['drealty']['mappings'] as $mapping) {
       db_delete("drealty_field_mappings")
+        ->condition("field_name", $field['field_name'])
+        ->condition('conid', $mapping['conid'])
+        ->condition('rid', $mapping['rid'])
+        ->condition('cid', $mapping['class_id'])
+        ->execute();
+      db_delete("drealty_media_objects_mapping")
         ->condition("field_name", $field['field_name'])
         ->condition('conid', $mapping['conid'])
         ->condition('rid', $mapping['rid'])
@@ -644,29 +779,330 @@ function drealty_field_delete_instance($field) {
   }
 }
 
+/**
+ *
+ */
 function drealty_form_field_ui_field_edit_form_alter(&$form, &$form_state, $form_id) {
 
   $entity_types = array('drealty_listing', 'drealty_agent', 'drealty_openhouse', 'drealty_office');
 
-  if (count(array_intersect($entity_types, $form['#field']['entity_types'])) >= 1) {
+  if (in_array($form['#instance']['entity_type'], $entity_types)) {
     switch ($form['#field']['type']) {
       case 'geofield':
         drealty_form_field_ui_field_edit_form_geofield($form, $form_state);
         break;
-      case 'image':
+
+      case 'entityreference':
+        drealty_form_field_ui_field_edit_form_entityreference($form, $form_state);
         break;
+
+      case 'image':
+      case 'file':
+      case 'text_with_summary':
+      case 'text_long':
+        // @todo: Link Field - belongs to LINK module. Should we bother about URL module?
+      case 'link_field':
+      case 'text':
+        drealty_form_field_ui_field_edit_form_media_object($form, $form_state);
+        break;
+
       case 'addressfield':
         drealty_form_field_ui_field_edit_form_addressfield($form, $form_state);
         break;
+
       case 'location':
         drealty_form_field_ui_field_edit_form_location($form, $form_state);
         break;
+
       default:
         drealty_form_field_ui_field_edit_form_default($form, $form_state);
     }
   }
 }
 
+/**
+ *
+ */
+function drealty_form_field_ui_field_edit_form_media_object(&$form, &$form_state) {
+  $form['#submit'][] = 'drealty_form_field_ui_field_edit_form_media_object_submit';
+
+  $form['instance']['drealty'] = array('#type' => 'fieldset', '#title' => t('Drealty Field Mapping'), '#weight' => -15);
+  $form['instance']['drealty']['mappings']['#theme'] = 'drealty_field_mapping';
+  $form['instance']['drealty']['mappings']['#tree'] = TRUE;
+
+  $dc = new drealtyConnection();
+  $dm = new drealtyMetaData();
+
+  $connections = $dc->FetchConfiguredConnections();
+  foreach ($connections as $connection) {
+    if (!empty($connection->nomap_mode)) {
+      continue;
+    }
+
+    $classes = $connection->fetchClasses();
+
+    $resources_array = $connection->resources();
+    $resources_opt = array();
+    foreach ($resources_array as $res) {
+      $resources_opt[$res->rid] = $res->systemname;
+    }
+
+    foreach ($classes as $class) {
+      if (isset($class->bundle) && $class->bundle == $form['#instance']['bundle']) {
+        $resource = $dm->FetchResource($class->rid);
+        $fields = $dm->FetchFields($connection->conid, $resource, $class);
+
+        $field_mappings = $dm->FetchMediaObjectFieldMappings($connection->conid, $class->cid, $resource->rid, $form['#field']['type'], $form['#field']['field_name']);
+        $field_record = isset($field_mappings[$form['#instance']['field_name']]) ? $field_mappings[$form['#instance']['field_name']] : FALSE;
+
+        $mform = &$form['instance']['drealty']['mappings'][$connection->conid . '_' . $class->rid . '_' . $class->systemname];
+        $mform['conid'] = array('#type' => 'value', '#value' => $connection->conid);
+        $mform['rid'] = array('#type' => 'value', '#value' => $class->rid);
+        $mform['class_id'] = array('#type' => 'value', '#value' => $class->cid);
+        $mform['connection_name'] = array('#markup' => $connection->label);
+        $mform['class_name'] = array('#markup' => $class->standardname . ' - ' . $class->systemname);
+
+        $mform['rets_field'] = array('#type' => 'fieldset', '#title' => t('Text Field Settings'));
+
+        $media_options_query = db_select('drealty_media_objects', 'mo')
+          ->condition('mo.conid', $connection->conid)
+          ->condition('mo.rid', $class->rid)
+          ->condition('mo.cid', $class->cid)
+          ->fields('mo', array('oid', 'description'));
+
+        if (in_array($form['#field']['type'], array('text_with_summary', 'text_long', 'text', 'link_field'))) {
+          if (in_array($form['#field']['type'], array('text', 'link_field'))) {
+            $media_options_query->condition('mo.mimetype', 'text/%', 'NOT LIKE');
+          }
+          else {
+            $media_options_query->condition('mo.mimetype', 'text/%', 'LIKE');
+          }
+          $c = 'instance[drealty][mappings][' . $connection->conid . '_' . $class->rid . '_' . $class->systemname . '][rets_field][mapping_entity]';
+
+          // In case the field was not mapped to a MEDIA OBJECT, get default field mapping:
+          if (!$field_record) {
+            $field_mappings = $dm->fetchfieldmappings($connection->conid, $resource, $class);
+          }
+
+          $mform['rets_field']['mapping_entity'] = array(
+            '#type' => 'select',
+            '#title' => t('Field mapping entity'),
+            '#default_value' => $field_record ? $field_record->data['mapping_entity'] : ((!$field_record && isset($field_mappings[$form['#instance']['field_name']])) ? 1 : 'none'),
+            '#options' => array(
+              'none' => t('- No Mapping -'),
+              0 => t('Media Object'),
+              1 => t('Resource field'),
+            ),
+          );
+
+          $mform['rets_field']['modification_timestamp_field'] = array(
+            '#type' => 'textfield',
+            '#title' => t('Media Object Modification Timestamp Field'),
+            '#description' => t('This field is used to determine if Media Object items has changed. Must be a timestamp or datetime field. If you are unsure, visit <a href="http://www.retsmd.com" target="_blank">www.retsmd.com</a> to ensure that the field is of DateTime type.'),
+            '#default_value' => !empty($field_record->rets_timestamp_field) ? $field_record->rets_timestamp_field : "",
+            '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+            '#states' => array(
+              'visible' => array(
+                ':input[name="' . $c . '"]' => array('value' => 0),
+              ),
+              'required' => array(
+                ':input[name="' . $c . '"]' => array('value' => 0),
+              ),
+            ),
+          );
+
+          $mform['rets_field']['field'] = array(
+            '#type' => 'textfield',
+            '#title' => t('RETS field to map to'),
+            '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+            '#default_value' => (!$field_record && isset($field_mappings[$form['#instance']['field_name']])) ? $fields[$field_mappings[$form['#instance']['field_name']]->systemname]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->systemname]->longname : NULL,
+            '#states' => array(
+              'visible' => array(
+                ':input[name="' . $c . '"]' => array('value' => 1),
+              ),
+            ),
+          );
+        }
+        else {
+          if (in_array($form['#field']['type'], array('image'))) {
+            $media_options_query->condition('mo.mimetype', 'image/%', 'LIKE');
+          }
+          else {
+            $media_options_query->condition('mo.mimetype', 'application/%', 'LIKE');
+          }
+          $c = 'instance[drealty][mappings][' . $connection->conid . '_' . $class->rid . '_' . $class->systemname . '][rets_field][support_getobject]';
+
+          $mform['rets_field']['support_getobject'] = array(
+            '#type' => 'select',
+            '#title' => t('Download media object data via:'),
+            '#default_value' => ($field_record && !empty($field_record->rets_timestamp_field)) ? 0 : (($field_record && $field_record->media_obj_id == 0) ? 1 : 'none'),
+            '#options' => array(
+              'none' => t('- Not Configured -'),
+              0 => t('GetObject() call'),
+              1 => t('Search query'),
+            ),
+          );
+
+          // @todo:  This part still needs some thought, as well as it's implementation to obtain data later on
+          $mform['rets_field']['no_getobject'] = array(
+            '#type' => 'container',
+            '#states' => array(
+              'visible' => array(
+                ':input[name="' . $c . '"]' => array('value' => 1),
+              ),
+            ),
+          );
+          $mform['rets_field']['no_getobject']['obj_rsrc_type'] = array(
+            '#type' => 'select',
+            '#default_value' => !empty($field_record->data['media_resource']) ? $field_record->data['media_resource'] : 0,
+            '#title' => t('Media resource type'),
+            '#description' => t("Pick RETS resource type that stores Media object information."),
+            '#options' => $resources_opt,
+          );
+          $mform['rets_field']['no_getobject']['obj_field'] = array(
+            '#title' => 'Media Key Field',
+            '#type' => 'textfield',
+            '#description' => t("Field <em>SystemName</em> on a MEDIA type resource. It not always matches the key field of the resource it is attached to."),
+            '#default_value' => !empty($field_record->data['media_resource_field']) ? $field_record->data['media_resource_field'] : '',
+            '#attributes' => array('placeholder' => 'RETS field SystemName, e.g. LIST_1'),
+            '#states' => array(
+              'required' => array(
+                ':input[name="' . $c . '"]' => array('value' => 1),
+              ),
+            ),
+          );
+          $mform['rets_field']['no_getobject']['resource_field'] = array(
+            '#title' => 'Parent Resource Key Field',
+            '#type' => 'textfield',
+            '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+            '#description' => t("Field <em>SystemName</em> of resource type the Media is attached to, e.g. 'MLSNumber' for 'Property' type resource."),
+            '#default_value' => !empty($field_record->data['resource_field']) ? $field_record->data['resource_field'] : '',
+            '#attributes' => array('placeholder' => 'parent resource_key_field'),
+            '#states' => array(
+              'required' => array(
+                ':input[name="' . $c . '"]' => array('value' => 1),
+              ),
+            ),
+          );
+          $mform['rets_field']['no_getobject']['obj_query'] = array(
+            '#title' => 'Query',
+            '#type' => 'textfield',
+            '#description' => t("Additional query parameters to search by."),
+            '#default_value' => !empty($field_record->data['query']) ? $field_record->data['query'] : '',
+            '#attributes' => array('placeholder' => '(MediaType=IMAGE),(TimestampModified=2015-01-01T00:00:00+)'),
+            '#states' => array(
+              'required' => array(
+                ':input[name="' . $c . '"]' => array('value' => 1),
+              ),
+            ),
+          );
+
+          $mform['rets_field']['modification_timestamp_field'] = array(
+            '#type' => 'textfield',
+            '#title' => t('Media Object Modification Timestamp Field'),
+            '#description' => t('This field is used to determine if Media Object items has changed. Must be a timestamp or datetime field. If you are unsure, visit <a href="http://www.retsmd.com" target="_blank">www.retsmd.com</a> to ensure that the field is of DateTime type.'),
+            '#default_value' => !empty($field_record->rets_timestamp_field) ? $field_record->rets_timestamp_field : "",
+            '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+            '#states' => array(
+              'visible' => array(
+                ':input[name="' . $c . '"]' => array('value' => 0),
+              ),
+              'required' => array(
+                ':input[name="' . $c . '"]' => array('value' => 0),
+              ),
+            ),
+          );
+
+          $mform['rets_field']['obj_format'] = array(
+            '#type' => 'select',
+            '#title' => t('Media Object format'),
+            '#default_value' => !empty($field_record->data['format']) ? $field_record->data['format'] : 'data',
+            '#description' => t("Retrieve RETS media object by obtaining either a URL to object location within RETS or the actual object data."),
+            '#options' => array(
+              'data' => t('Media Object Data'),
+              'url' => t('URL of Media Object'),
+            ),
+            '#states' => array(
+              'visible' => array(
+                ':input[name="' . $c . '"]' => array('value' => 0),
+              ),
+            ),
+          );
+        }
+
+        $media_options = $media_options_query->execute()->fetchAllKeyed(0);
+
+        $mform['rets_field']['obj_type'] = array(
+          '#type' => 'select',
+          '#title' => t('Media Object Type'),
+          '#options' => $media_options,
+          '#default_value' => !empty($field_record->data['type']) ? $field_record->data['type'] : NULL,
+          '#states' => array(
+            'visible' => array(
+              ':input[name="' . $c . '"]' => array('value' => 0),
+            ),
+          ),
+        );
+      }
+    }
+  }
+  $form['instance']['drealty']['hash_exclude'] = array('#type' => 'checkbox', '#title' => t('Exclude this field from the update hash.'), '#default_value' => isset($field_record->hash_exclude) ? $field_record->hash_exclude : FALSE);
+}
+
+/**
+ *
+ */
+function drealty_form_field_ui_field_edit_form_entityreference(&$form, &$form_state) {
+  $form['#submit'][] = 'drealty_form_field_ui_field_edit_form_entityreference_submit';
+
+  $form['instance']['drealty'] = array('#type' => 'fieldset', '#title' => t('Drealty Field Mapping'), '#weight' => -15);
+  $form['instance']['drealty']['mappings']['#theme'] = 'drealty_field_mapping';
+  $form['instance']['drealty']['mappings']['#tree'] = TRUE;
+
+  $dc = new drealtyConnection();
+  $dm = new drealtyMetaData();
+
+  $connections = $dc->FetchConfiguredConnections();
+  foreach ($connections as $connection) {
+    if (!empty($connection->nomap_mode)) {
+      continue;
+    }
+
+    $classes = $connection->fetchClasses();
+
+    foreach ($classes as $class) {
+      if (isset($class->bundle) && $class->bundle == $form['#instance']['bundle']) {
+        $resource = $dm->FetchResource($class->rid);
+        $fields = $dm->FetchFields($connection->conid, $resource, $class);
+        $field_mappings = $dm->fetchfieldmappings($connection->conid, $resource, $class);
+
+        $mform = &$form['instance']['drealty']['mappings'][$connection->conid . '_' . $class->rid . '_' . $class->systemname];
+        $mform['conid'] = array('#type' => 'value', '#value' => $connection->conid);
+        $mform['rid'] = array('#type' => 'value', '#value' => $class->rid);
+        $mform['class_id'] = array('#type' => 'value', '#value' => $class->cid);
+        $mform['connection_name'] = array('#markup' => $connection->label);
+        $mform['class_name'] = array('#markup' => $class->standardname . ' - ' . $class->systemname);
+        $mform['rets_field']['field_name'] = array(
+          '#type' => 'textfield',
+          '#required' => TRUE,
+          '#description' => t("Field <em>machine_name</em> to map to, e.g. <em>field_agent_id</em>. Referenced entity will be looked up by this field's name and the value selected below."),
+          '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['field_name']) ? $field_mappings[$form['#instance']['field_name']]->data['field_name'] : NULL,
+        );
+        $mform['rets_field']['field_value'] = array(
+          '#type' => 'textfield',
+          '#description' => t("RETS VALUE for mapping. Referenced entity will be looked up by this field's value."),
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+          '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['field_value']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['field_value']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['field_value']]->longname : NULL,
+        );
+      }
+    }
+  }
+  $form['instance']['drealty']['hash_exclude'] = array('#type' => 'checkbox', '#title' => t('Exclude this field from the update hash.'), '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->hash_exclude) ? $field_mappings[$form['#instance']['field_name']]->hash_exclude : FALSE);
+}
+
+/**
+ *
+ */
 function drealty_form_field_ui_field_edit_form_geofield(&$form, &$form_state) {
   $form['#submit'][] = 'drealty_field_ui_field_edit_form_geofield_submit';
 
@@ -704,10 +1140,17 @@ function drealty_form_field_ui_field_edit_form_geofield(&$form, &$form_state) {
         $mform['class_id'] = array('#type' => 'value', '#value' => $class->cid);
         $mform['connection_name'] = array('#markup' => $connection->label);
         $mform['class_name'] = array('#markup' => $class->standardname . ' - ' . $class->systemname);
-        $mform['rets_field'] = array(
-          '#type' => 'checkbox',
-          '#title' => t('enabled'),
-          '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['enabled']) ? TRUE : FALSE,
+        $mform['rets_field']['lat'] = array(
+          '#type' => 'textfield',
+          '#title' => t('Latitiude'),
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+          '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['lat']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['lat']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['lat']]->longname : NULL,
+        );
+        $mform['rets_field']['lon'] = array(
+          '#type' => 'textfield',
+          '#title' => t('Longitude'),
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
+          '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['lon']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['lon']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['lon']]->longname : NULL,
         );
       }
     }
@@ -715,14 +1158,15 @@ function drealty_form_field_ui_field_edit_form_geofield(&$form, &$form_state) {
   $form['instance']['drealty']['hash_exclude'] = array('#type' => 'checkbox', '#title' => t('Exclude this field from the update hash.'), '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->hash_exclude) ? $field_mappings[$form['#instance']['field_name']]->hash_exclude : FALSE);
 }
 
+/**
+ *
+ */
 function drealty_form_field_ui_field_edit_form_addressfield(&$form, &$form_state) {
 
   $form['instance']['drealty'] = array('#type' => 'fieldset', '#title' => t('Drealty Field Mapping'), '#weight' => -15);
   $form['#submit'][] = 'drealty_field_ui_field_edit_form_address_submit';
   $form['instance']['drealty']['mappings']['#tree'] = TRUE;
   $form['instance']['drealty']['mappings']['#theme'] = 'drealty_field_mapping';
-
-
 
   $dc = new drealtyConnection();
   $dm = new drealtyMetaData();
@@ -758,79 +1202,79 @@ function drealty_form_field_ui_field_edit_form_addressfield(&$form, &$form_state
         $mform['rets_field']['address_1'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 1'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_1']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1']]->longname : NULL,
         );
         $mform['rets_field']['address_1_1'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 1 Additional 1'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_1_1']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1_1']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1_1']]->longname : NULL,
-          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.')
+          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.'),
         );
         $mform['rets_field']['address_1_2'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 1 Additional 2'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_1_2']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1_2']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1_2']]->longname : NULL,
-          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.')
+          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.'),
         );
         $mform['rets_field']['address_1_3'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 1 Additional 3'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_1_3']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1_3']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_1_3']]->longname : NULL,
-          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.')
+          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.'),
         );
         $mform['rets_field']['address_2'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 2'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_2']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2']]->longname : NULL,
         );
         $mform['rets_field']['address_2_1'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 2 Additional 1'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_2_1']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2_1']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2_1']]->longname : NULL,
-          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.')
+          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.'),
         );
         $mform['rets_field']['address_2_2'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 2 Additional 2'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_2_2']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2_2']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2_2']]->longname : NULL,
-          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.')
+          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.'),
         );
         $mform['rets_field']['address_2_3'] = array(
           '#type' => 'textfield',
           '#title' => t('Address 2 Additional 3'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['address_2_3']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2_3']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['address_2_3']]->longname : NULL,
-          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.')
+          '#description' => t('Provides support for multiple RETS fields in a single address line.  Will be separated with a space.'),
         );
         $mform['rets_field']['city'] = array(
           '#type' => 'textfield',
           '#title' => t('City'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['city']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['city']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['city']]->longname : NULL,
         );
         $mform['rets_field']['state'] = array(
           '#type' => 'textfield',
           '#title' => t('State'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['state']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['state']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['state']]->longname : NULL,
         );
         $mform['rets_field']['county'] = array(
           '#type' => 'textfield',
           '#title' => t('County'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['county']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['county']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['county']]->longname : NULL,
         );
         $mform['rets_field']['zip'] = array(
           '#type' => 'textfield',
           '#title' => t('Zip'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['zip']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['zip']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['zip']]->longname : NULL,
         );
       }
@@ -840,14 +1284,15 @@ function drealty_form_field_ui_field_edit_form_addressfield(&$form, &$form_state
   $form['instance']['drealty']['hash_exclude'] = array('#type' => 'checkbox', '#title' => t('Exclude this field from the update hash.'), '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->hash_exclude) ? $field_mappings[$form['#instance']['field_name']]->hash_exclude : FALSE);
 }
 
+/**
+ *
+ */
 function drealty_form_field_ui_field_edit_form_location(&$form, &$form_state) {
 
   $form['instance']['drealty'] = array('#type' => 'fieldset', '#title' => t('Drealty Field Mapping'), '#weight' => -15);
   $form['#submit'][] = 'drealty_field_ui_field_edit_form_location_submit';
   $form['instance']['drealty']['mappings']['#tree'] = TRUE;
   $form['instance']['drealty']['mappings']['#theme'] = 'drealty_field_mapping';
-
-
 
   $dc = new drealtyConnection();
   $dm = new drealtyMetaData();
@@ -883,31 +1328,31 @@ function drealty_form_field_ui_field_edit_form_location(&$form, &$form_state) {
         $mform['rets_field']['street'] = array(
           '#type' => 'textfield',
           '#title' => t('Street'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['street']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['street']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['street']]->longname : NULL,
         );
         $mform['rets_field']['additional'] = array(
           '#type' => 'textfield',
           '#title' => t('Additional'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['additional']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['additional']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['additional']]->longname : NULL,
         );
         $mform['rets_field']['city'] = array(
           '#type' => 'textfield',
           '#title' => t('City'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['city']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['city']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['city']]->longname : NULL,
         );
         $mform['rets_field']['stateorprovince'] = array(
           '#type' => 'textfield',
           '#title' => t('State or Province'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['stateorprovince']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['stateorprovince']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['stateorprovince']]->longname : NULL,
         );
         $mform['rets_field']['postal_code'] = array(
           '#type' => 'textfield',
           '#title' => t('Postal Code'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->data['postal_code']) ? $fields[$field_mappings[$form['#instance']['field_name']]->data['postal_code']]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->data['postal_code']]->longname : NULL,
         );
       }
@@ -917,6 +1362,9 @@ function drealty_form_field_ui_field_edit_form_location(&$form, &$form_state) {
   $form['instance']['drealty']['hash_exclude'] = array('#type' => 'checkbox', '#title' => t('Exclude this field from the update hash.'), '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->hash_exclude) ? $field_mappings[$form['#instance']['field_name']]->hash_exclude : FALSE);
 }
 
+/**
+ *
+ */
 function drealty_form_field_ui_field_edit_form_default(&$form, &$form_state) {
   $form['#submit'][] = 'drealty_field_ui_field_edit_form_submit';
 
@@ -950,7 +1398,7 @@ function drealty_form_field_ui_field_edit_form_default(&$form, &$form_state) {
         $mform['rets_field'] = array(
           '#type' => 'textfield',
           '#description' => t('Field to map to.'),
-          '#autocomplete_path' => "admin/drealty/fields_autocomplete/$connection->conid/$class->systemname",
+          '#autocomplete_path' => "admin/drealty/fields_autocomplete/all/$connection->conid/$class->systemname",
           '#default_value' => isset($field_mappings[$form['#instance']['field_name']]) ? $fields[$field_mappings[$form['#instance']['field_name']]->systemname]->systemname . ' - ' . $fields[$field_mappings[$form['#instance']['field_name']]->systemname]->longname : NULL,
         );
       }
@@ -960,34 +1408,193 @@ function drealty_form_field_ui_field_edit_form_default(&$form, &$form_state) {
   $form['instance']['drealty']['hash_exclude'] = array('#type' => 'checkbox', '#title' => t('Exclude this field from the update hash.'), '#default_value' => isset($field_mappings[$form['#instance']['field_name']]->hash_exclude) ? $field_mappings[$form['#instance']['field_name']]->hash_exclude : FALSE);
 }
 
+/**
+ *
+ */
+function drealty_form_field_ui_field_edit_form_media_object_submit($form, &$form_state) {
+  $mappings = isset($form_state['values']['instance']['drealty']['mappings'])
+    ? $form_state['values']['instance']['drealty']['mappings'] : array();
+  $hash_exclude = $form_state['values']['instance']['drealty']['hash_exclude'];
+  $field_name = $form_state['values']['instance']['field_name'];
+  $dc = new drealtyConnection();
+
+  foreach ($mappings as $mapping) {
+
+    // Make sure there is something in at least one field.
+    $configured = FALSE;
+    foreach ($mapping['rets_field'] as $item) {
+      if (isset($item) && !empty($item)) {
+        $configured = TRUE;break;
+      }
+    }
+    $connection = $dc->FetchConnection($mapping['conid']);
+
+    if ($configured) {
+      $data = array();
+      foreach ($mapping['rets_field'] as $key => $item) {
+        // Use GetObject call.
+        if ($key == 'support_getobject') {
+          // Use GetObject call.
+          if ($item == 'none') {
+            $connection->RemoveFieldMediaObjectMapping($mapping['rid'], $field_name, $mapping['class_id']);
+            break;
+          }
+          // Use GetObject call.
+          elseif ($item == 0) {
+            $timestamp = explode(' - ', $mapping['rets_field']['modification_timestamp_field']);
+            $timestamp = $timestamp[0];
+            $data['format'] = $mapping['rets_field']['obj_format'];
+            $data['type'] = $mapping['rets_field']['obj_type'];
+            $mobj_id = $mapping['rets_field']['obj_type'];
+            $connection->CreateFieldMediaObjectMapping($mobj_id, $mapping['rid'], $mapping['class_id'], $field_name, $timestamp, $form['#field']['type'], $data, $hash_exclude);
+          }
+          // Use search query.
+          elseif ($item == 1) {
+            $data['query'] = $mapping['rets_field']['no_getobject']['obj_query'];
+            $data['media_resource'] = $mapping['rets_field']['no_getobject']['obj_rsrc_type'];
+            $systemname = explode(' - ', $mapping['rets_field']['no_getobject']['resource_field']);
+            $data['resource_field'] = $systemname[0];
+            $data['media_resource_field'] = $mapping['rets_field']['no_getobject']['obj_field'];
+            $mobj_id = 0;
+            $timestamp = NULL;
+            $connection->CreateFieldMediaObjectMapping($mobj_id, $mapping['rid'], $mapping['class_id'], $field_name, $timestamp, $form['#field']['type'], $data, $hash_exclude);
+          }
+        }
+        elseif ($key == 'mapping_entity') {
+          if ($item == 'none') {
+            $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
+            $connection->RemoveFieldMediaObjectMapping($mapping['rid'], $field_name, $mapping['class_id']);
+            break;
+          }
+          elseif ($item == 0) {
+            $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
+            if (in_array($form['#field']['type'], array('text', 'link_field'))) {
+              $data['format'] = 'url';
+            }
+            else {
+              $data['format'] = 'data';
+            }
+            $data['type'] = $mapping['rets_field']['obj_type'];
+            $data['mapping_entity'] = $item;
+            $mobj_id = $mapping['rets_field']['obj_type'];
+            $timestamp = explode(' - ', $mapping['rets_field']['modification_timestamp_field']);
+            $timestamp = $timestamp[0];
+            $connection->CreateFieldMediaObjectMapping($mobj_id, $mapping['rid'], $mapping['class_id'], $field_name, $timestamp, $form['#field']['type'], $data, $hash_exclude);
+          }
+          elseif ($item == 1) {
+            $connection->RemoveFieldMediaObjectMapping($mapping['rid'], $field_name, $mapping['class_id']);
+            if (isset($mapping['rets_field']['field']) && !empty($mapping['rets_field']['field'])) {
+              $tmp = explode(' - ', $mapping['rets_field']['field']);
+              $systemname = $tmp[0];
+              $connection->CreateFieldMapMapping($mapping['rid'], $field_name, $systemname, $mapping['class_id'], $form['#field']['type'], NULL, $hash_exclude);
+            }
+            else {
+              $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
+            }
+          }
+        }
+      }
+    }
+    else {
+      $connection->RemoveFieldMediaObjectMapping($mapping['rid'], $field_name, $mapping['class_id']);
+    }
+  }
+}
+
+/**
+ *
+ */
+function drealty_form_field_ui_field_edit_form_entityreference_submit($form, &$form_state) {
+  $mappings = isset($form_state['values']['instance']['drealty']['mappings'])
+    ? $form_state['values']['instance']['drealty']['mappings'] : array();
+  $hash_exclude = $form_state['values']['instance']['drealty']['hash_exclude'];
+  $field_name = $form_state['values']['instance']['field_name'];
+  $dc = new drealtyConnection();
+
+  foreach ($mappings as $mapping) {
+
+    // Make sure there is something in at least one field.
+    $configured = FALSE;
+    foreach ($mapping['rets_field'] as $item) {
+      if (isset($item) && !empty($item)) {
+        $configured = TRUE;
+      }
+    }
+    $connection = $dc->FetchConnection($mapping['conid']);
+
+    if ($configured) {
+      $data = array();
+      foreach ($mapping['rets_field'] as $key => $item) {
+        if (isset($item) && !empty($item)) {
+          if ($key == 'field_name') {
+            $data[$key] = $item;
+          }
+          else {
+            $tmp = explode(' - ', $item);
+            $systemname = $tmp[0];
+            $data[$key] = $systemname;
+          }
+        }
+      }
+      $connection->CreateFieldMapMapping($mapping['rid'], $field_name, $data['field_value'], $mapping['class_id'], $form['#field']['type'], $data, $hash_exclude);
+    }
+    else {
+      $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
+    }
+  }
+}
+
+/**
+ *
+ */
 function drealty_field_ui_field_edit_form_geofield_submit($form, &$form_state) {
-  $mappings = $form_state['values']['instance']['drealty']['mappings'];
+  $mappings = isset($form_state['values']['instance']['drealty']['mappings'])
+    ? $form_state['values']['instance']['drealty']['mappings'] : array();
   $hash_exclude = $form_state['values']['instance']['drealty']['hash_exclude'];
   $field_name = $form_state['values']['instance']['field_name'];
   $dc = new drealtyConnection();
 
   foreach ($mappings as $mapping) {
-    // load the connection
+    // Make sure there is something in at least one field.
+    $configured = FALSE;
+    foreach ($mapping['rets_field'] as $item) {
+      if (isset($item) && !empty($item)) {
+        $configured = TRUE;
+      }
+    }
+    // Load the connection.
     $connection = $dc->FetchConnection($mapping['conid']);
 
-    if (isset($mapping['rets_field']) && !empty($mapping['rets_field'])) {
-      $data = array('enabled' => $mapping['rets_field'] ? TRUE : FALSE);
+    if ($configured) {
+      $data = array();
+      foreach ($mapping['rets_field'] as $key => $item) {
+        if (isset($item) && !empty($item)) {
+          $tmp = explode(' - ', $item);
+          $systemname = $tmp[0];
+          $data[$key] = $systemname;
+        }
+      }
       $connection->CreateFieldMapMapping($mapping['rid'], $field_name, 'drealty_data_mapped', $mapping['class_id'], $form['#field']['type'], $data, $hash_exclude);
-    } else {
+    }
+    else {
       $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
     }
   }
 }
 
+/**
+ *
+ */
 function drealty_field_ui_field_edit_form_address_submit($form, &$form_state) {
-  $mappings = $form_state['values']['instance']['drealty']['mappings'];
+  $mappings = isset($form_state['values']['instance']['drealty']['mappings'])
+    ? $form_state['values']['instance']['drealty']['mappings'] : array();
   $hash_exclude = $form_state['values']['instance']['drealty']['hash_exclude'];
   $field_name = $form_state['values']['instance']['field_name'];
   $dc = new drealtyConnection();
 
   foreach ($mappings as $mapping) {
 
-    //make sure there is something in at least one field
+    // Make sure there is something in at least one field.
     $configured = FALSE;
     foreach ($mapping['rets_field'] as $item) {
       if (isset($item) && !empty($item)) {
@@ -1006,21 +1613,26 @@ function drealty_field_ui_field_edit_form_address_submit($form, &$form_state) {
         }
       }
       $connection->CreateFieldMapMapping($mapping['rid'], $field_name, 'drealty_data_mapped', $mapping['class_id'], $form['#field']['type'], $data, $hash_exclude);
-    } else {
+    }
+    else {
       $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
     }
   }
 }
 
+/**
+ *
+ */
 function drealty_field_ui_field_edit_form_location_submit($form, &$form_state) {
-  $mappings = $form_state['values']['instance']['drealty']['mappings'];
+  $mappings = isset($form_state['values']['instance']['drealty']['mappings'])
+    ? $form_state['values']['instance']['drealty']['mappings'] : array();
   $hash_exclude = $form_state['values']['instance']['drealty']['hash_exclude'];
   $field_name = $form_state['values']['instance']['field_name'];
   $dc = new drealtyConnection();
 
   foreach ($mappings as $mapping) {
 
-    //make sure there is something in at least one field
+    // Make sure there is something in at least one field.
     $configured = FALSE;
     foreach ($mapping['rets_field'] as $item) {
       if (isset($item) && !empty($item)) {
@@ -1039,32 +1651,41 @@ function drealty_field_ui_field_edit_form_location_submit($form, &$form_state) {
         }
       }
       $connection->CreateFieldMapMapping($mapping['rid'], $field_name, 'drealty_data_mapped', $mapping['class_id'], $form['#field']['type'], $data, $hash_exclude);
-    } else {
+    }
+    else {
       $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
     }
   }
 }
 
+/**
+ *
+ */
 function drealty_field_ui_field_edit_form_submit($form, &$form_state) {
-  $mappings = $form_state['values']['instance']['drealty']['mappings'];
+  $mappings = isset($form_state['values']['instance']['drealty']['mappings'])
+    ? $form_state['values']['instance']['drealty']['mappings'] : array();
   $hash_exclude = $form_state['values']['instance']['drealty']['hash_exclude'];
   $field_name = $form_state['values']['instance']['field_name'];
   $dc = new drealtyConnection();
 
   foreach ($mappings as $mapping) {
-    // load the connection
+    // Load the connection.
     $connection = $dc->FetchConnection($mapping['conid']);
 
     if (isset($mapping['rets_field']) && !empty($mapping['rets_field'])) {
       $tmp = explode(' - ', $mapping['rets_field']);
       $systemname = $tmp[0];
       $connection->CreateFieldMapMapping($mapping['rid'], $field_name, $systemname, $mapping['class_id'], $form['#field']['type'], NULL, $hash_exclude);
-    } else {
+    }
+    else {
       $connection->RemoveFieldMapping($mapping['rid'], $field_name, $mapping['class_id']);
     }
   }
 }
 
+/**
+ *
+ */
 function theme_drealty_field_mapping(&$variables) {
   $header = array('Connection', 'RETS Class', 'RETS Field');
   $rows = array();
@@ -1100,7 +1721,8 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
       $instance = field_read_instance($entity_type, $key, $bundle);
       $instance['widget']['weight'] = $values['weight'];
       field_update_instance($instance);
-    } elseif (in_array($key, $form['#extra'])) {
+    }
+    elseif (in_array($key, $form['#extra'])) {
       $bundle_settings['extra_fields']['form'][$key]['weight'] = $values['weight'];
     }
   }
@@ -1118,7 +1740,7 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
       'field_name' => $values['field_name'],
       'type' => $values['type'],
       'translatable' => $values['translatable'],
-      'entity_types' => array($entity_type),
+      'entity_types' => array(),
     );
     $instance = array(
       'field_name' => $field['field_name'],
@@ -1131,7 +1753,6 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
       ),
     );
 
-
     // Create the field and instance.
     try {
       field_create_field($field);
@@ -1142,7 +1763,8 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
 
       // Store new field information for any additional submit handlers.
       $form_state['fields_added']['_add_new_field'] = $field['field_name'];
-    } catch (Exception $e) {
+    }
+    catch (Exception $e) {
       drupal_set_message(t('There was a problem creating field %label: @message', array('%label' => $instance['label'], '@message' => $e->getMessage())), 'error');
     }
   }
@@ -1153,7 +1775,8 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
     $field = field_info_field($values['field_name']);
     if (!empty($field['locked'])) {
       drupal_set_message(t('The field %label cannot be added because it is locked.', array('%label' => $values['label'])), 'error');
-    } else {
+    }
+    else {
       $instance = array(
         'field_name' => $field['field_name'],
         'entity_type' => $entity_type,
@@ -1170,7 +1793,8 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
         $destinations[] = $admin_path . '/fields/' . $instance['field_name'] . '/edit';
         // Store new field information for any additional submit handlers.
         $form_state['fields_added']['_add_existing_field'] = $instance['field_name'];
-      } catch (Exception $e) {
+      }
+      catch (Exception $e) {
         drupal_set_message(t('There was a problem creating field instance %label: @message.', array('%label' => $instance['label'], '@message' => $e->getMessage())), 'error');
       }
     }
@@ -1181,7 +1805,8 @@ function drealty_field_ui_field_overview_form_submit($form, &$form_state) {
     $destinations[] = $destination['destination'];
     unset($_GET['destination']);
     $form_state['redirect'] = field_ui_get_destinations($destinations);
-  } else {
+  }
+  else {
     drupal_set_message(t('Your settings have been saved.'));
   }
 }
@@ -1202,14 +1827,8 @@ function drealty_ctools_plugin_directory($module, $plugin) {
 }
 
 /**
- * Implements hook_ctools_plugin_type
+ *
  */
-function drealty_ctools_plugin_type() {
-  return array(
-    'geocoder_handler' => array(),
-  );
-}
-
 function drealty_pathauto($op) {
   switch ($op) {
     case 'settings':
@@ -1227,6 +1846,7 @@ function drealty_pathauto($op) {
         $settings['patternitems'][$type] = t('Pattern for all @node_type paths', array('@node_type' => $name->label));
       }
       return (object) $settings;
+
     default:
       break;
   }
@@ -1309,7 +1929,7 @@ function drealty_path_alias_types() {
 }
 
 /**
- * Implements hook_entity_insert() 
+ * Implements hook_entity_insert()
  */
 function drealty_entity_insert($entity, $entity_type) {
   if (module_exists('pathauto') && $entity_type == 'drealty_listing') {
@@ -1317,26 +1937,27 @@ function drealty_entity_insert($entity, $entity_type) {
   }
 }
 
-/* * *
- *  Implements hook_entity_delete
+/**
+ * Implements hook_entity_delete.
  */
-
 function drealty_entity_delete($entity, $entity_type) {
   if (module_exists('pathauto') && $entity_type == 'drealty_listing') {
     pathauto_entity_path_delete_all($entity_type, $entity);
   }
 }
 
-/*
- *   Implements hook_entity_update
+/**
+ * Implements hook_entity_update.
  */
-
 function drealty_entity_update($entity, $entity_type) {
   if (module_exists('pathauto') && $entity_type == 'drealty_listing') {
     drealty_update_alias($entity_type, $entity, 'update');
   }
 }
 
+/**
+ *
+ */
 function drealty_update_alias($entity_type, $entity, $op) {
 
   if (isset($entity->path['pathauto']) && empty($entity->path['pathauto'])) {
@@ -1355,8 +1976,11 @@ function drealty_update_alias($entity_type, $entity, $op) {
   pathauto_create_alias($entity_type, $op, $uri['path'], array($entity_info['token type'] => $entity), $bundle);
 }
 
+/**
+ *
+ */
 function theme_drealty_fields_table($variables) {
-  $fields = $variables['fields'];
+  $fields = !empty($variables['fields']) ? $variables['fields'] : array();
   $output = '';
 
   $header = array(
@@ -1364,6 +1988,7 @@ function theme_drealty_fields_table($variables) {
     t('Standard Name'),
     t('Long Name'),
     t('Data Type'),
+    t('Length'),
   );
   $rows = array();
   foreach ($fields as $f) {
@@ -1372,10 +1997,155 @@ function theme_drealty_fields_table($variables) {
       $f->standardname,
       $f->longname,
       $f->datatype,
+      $f->max_length,
     );
   }
 
   $output .= theme('table', array('header' => $header, 'rows' => $rows));
 
   return $output;
+}
+
+/**
+ * Helper function to check field cardinality.
+ */
+function _drealty_check_rets_field_cardinality($rets_conn, $resource_id, $class_system_name, $field_sysname) {
+  // Need this to see if the RETS field is multi-valued:
+  $query = db_select('drealty_fields', 'f');
+  $query->condition('f.conid', $rets_conn->conid)
+    ->condition('f.rid', $resource_id)
+    ->condition('f.class', $class_system_name)
+    ->condition('f.systemname', $field_sysname)
+    ->fields('f', array('interpretation'));
+  $multi_value = $query->execute()->fetchField();
+
+  return $multi_value;
+}
+
+/**
+ * Implements hook_search_api_alter_callback_info().
+ *
+ * @return mixed
+ */
+function drealty_search_api_alter_callback_info() {
+
+  $callbacks['ignore_inactive_listings'] = array(
+    'name' => t('Ignore Inactive Drealty Entities'),
+    'description' => t('Prevents Drealty entities (Listing / Agents / Offices) from being indexed if they are inactive in the MLS system.'),
+    'class' => 'DrealtySearchAPIAlter',
+    'weight' => 100,
+  );
+
+  return $callbacks;
+}
+
+/**
+ * Implements hook_entity_presave().
+ *   To help saving such fields as Taxonomies, Boolean, Lists.
+ */
+function drealty_entity_presave($entity, $type) {
+  if (in_array($type, array('drealty_listing'))) {
+    $field_instances = field_info_instances($type, $entity->type);
+    foreach ($field_instances as $instance) {
+      $field = field_info_field($instance['field_name']);
+
+      // Process TAXONOMY REFERENCE field.
+      if ($field && $field['type'] == 'taxonomy_term_reference') {
+        $vocabulary = taxonomy_vocabulary_machine_name_load($field['settings']['allowed_values'][0]['vocabulary'])->vid;
+
+        if (isset($entity->{$field['field_name']}) && count($entity->{$field['field_name']}) > 0) {
+          foreach ($entity->{$field['field_name']}[LANGUAGE_NONE] as $ind => $data) {
+            if (isset($data['value']) && !empty($data['value'])) {
+
+              // If we have a multi-valued field.
+              if ($field['cardinality'] == '-1') {
+                $options_list = explode(',', $data['value']);
+                // Unset the current value.
+                unset($entity->{$field['field_name']}[LANGUAGE_NONE]);
+
+                // Loop through all the values / create-find the terms.
+                foreach ($options_list as $option) {
+                  $tax_term = taxonomy_get_term_by_name($option, $field['settings']['allowed_values'][0]['vocabulary']);
+                  $tax_term = reset($tax_term);
+                  if (!$tax_term || $tax_term == NULL) {
+                    $tax_term = _drealty_fieldmap_create_taxonomy_terms($option, $vocabulary);
+                  }
+                  if ($tax_term && isset($tax_term->tid)) {
+                    $entity->{$field['field_name']}[LANGUAGE_NONE][]['tid'] = $tax_term->tid;
+                  }
+                }
+              }
+              // Else we have a single-valued field.
+              else {
+                $tax_term = taxonomy_get_term_by_name($data['value'], $field['settings']['allowed_values'][0]['vocabulary']);
+                $tax_term = reset($tax_term);
+                if (!$tax_term || $tax_term == NULL) {
+                  $tax_term = _drealty_fieldmap_create_taxonomy_terms($data['value'], $vocabulary);
+                }
+                if ($tax_term || isset($tax_term->tid)) {
+                  unset($entity->{$field['field_name']}[LANGUAGE_NONE][$ind]);
+                  $entity->{$field['field_name']}[LANGUAGE_NONE][$ind]['tid'] = $tax_term->tid;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Process LIST field ()
+      if ($field && in_array($field['type'], array(
+        'list_text',
+        'list_integer',
+      ))
+      ) {
+        if (isset($entity->{$field['field_name']}) && count($entity->{$field['field_name']}) > 0) {
+          foreach ($entity->{$field['field_name']}[LANGUAGE_NONE] as $ind => $data) {
+            if (isset($data['value']) && !empty($data['value'])) {
+              $options_list = explode(',', $data['value']);
+
+              // If we have a multi-valued field.
+              if ($field['cardinality'] == '-1') {
+                // Unset the current value.
+                unset($entity->{$field['field_name']}[LANGUAGE_NONE]);
+                // Loop through all the values / create-find the terms.
+                foreach ($options_list as $option) {
+                  $entity->{$field['field_name']}[LANGUAGE_NONE][]['value'] = $option;
+                }
+              }
+              else {
+                if (!empty($options_list)) {
+                  $entity->{$field['field_name']}[LANGUAGE_NONE][]['value'] = $options_list[0];
+                }
+              }
+            }
+            if (isset($data['value']) && empty($data['value'])) {
+              unset($entity->{$field['field_name']});
+            }
+          }
+        }
+      }
+
+      // Process BOOLEAN field.
+      if ($field && in_array($field['type'], array('list_boolean'))) {
+        if (isset($entity->{$field['field_name']}) && count($entity->{$field['field_name']}) > 0) {
+          foreach ($entity->{$field['field_name']}[LANGUAGE_NONE] as $ind => $data) {
+            if (isset($data['value']) && !is_numeric($data['value'])) {
+              unset($entity->{$field['field_name']});
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to auto-create taxonomy terms.
+ */
+function _drealty_fieldmap_create_taxonomy_terms($name, $vid) {
+  $tax_term = new stdClass();
+  $tax_term->name = $name;
+  $tax_term->vid = $vid;
+  taxonomy_term_save($tax_term);
+  return $tax_term;
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Handle the 'drealty_listing' override task.
@@ -32,7 +33,7 @@ function drealty_drealty_listing_page_manager_tasks() {
     'disabled' => variable_get('drealty_drealty_listing_disabled', TRUE),
     'enable callback' => 'drealty_drealty_listing_enable',
   );
-};
+}
 
 /**
  * Menu alter callback.

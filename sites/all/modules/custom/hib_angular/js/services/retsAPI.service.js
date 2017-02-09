@@ -1,13 +1,12 @@
 function retsAPI($http, $q) {
     var service = {};
-    
+
     service.get = function(values) {
         var val = [];
-
-        $.each(values, function(key, value) {
+        jQuery.each(values, function(key, value) {
             val.push(key + '=' + value);
         });
-        
+
         return $http({
             url: 'http://rets.mindimage.net?' + val.join('&'),
             method: 'get',
@@ -25,6 +24,6 @@ function retsAPI($http, $q) {
             }
         })
     };
-    
+
     return service;
 }

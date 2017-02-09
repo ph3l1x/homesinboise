@@ -1,9 +1,12 @@
 <?php
 
 /**
- *
- * Implements hook_entity_property_info
- * 
+ * @file
+ * Drealty property information.
+ */
+
+/**
+ * Implements hook_entity_property_info.
  */
 function drealty_entity_property_info() {
   $info = array();
@@ -14,6 +17,18 @@ function drealty_entity_property_info() {
     'type' => 'integer',
     'description' => t('The unique ID of the drealty listing'),
     'schema field' => 'id',
+  );
+  $properties['conid'] = array(
+    'label' => t('Drealty Connection Id'),
+    'type' => 'integer',
+    'description' => t('The unique ID of the drealty connection entity'),
+    'schema field' => 'conid',
+  );
+  $properties['class'] = array(
+    'label' => t('Drealty Class Id'),
+    'type' => 'integer',
+    'description' => t('The unique ID of the drealty resource class'),
+    'schema field' => 'class',
   );
   $properties['type'] = array(
     'label' => t('Drealty Listing Type'),
@@ -46,6 +61,8 @@ function drealty_entity_property_info() {
     'type' => 'text',
     'description' => t('The drealty entity label.'),
     'schema field' => 'label',
+    'getter callback' => 'entity_property_verbatim_get',
+    'setter callback' => 'entity_property_verbatim_set',
   );
   $properties['active'] = array(
     'label' => t('Drealty Active Status'),

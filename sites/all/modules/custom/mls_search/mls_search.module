@@ -10,21 +10,6 @@ function mls_search_init() {
 function mls_search_form_alter(&$form, &$form_state, $form_id){
     if($form_id == "drealty_listing_edit_form") {
         $form['field_featured']['und']['#title'] = 'Featured Listing';
-//    if($form_id == 'views_exposed_form') {
-
-//        $form['field_mls_list_price_value']['#info'] = 1;
-//        $form['field_mls_list_price_value_1']['#info'] = -10;
-//        $form['field_mls_city_tid']['#weight'] = 0;
-//        $form['field_mls_special_search'] = array(
-//          '#type' => 'select',
-//          '#options' => array (
-//              'default' => '-- Home Type --',
-//              'luxury' => 'Luxury'
-//          ),
-//          '#info' => 9
-//        );
-//      kpr($form);
-
     }
 }
 

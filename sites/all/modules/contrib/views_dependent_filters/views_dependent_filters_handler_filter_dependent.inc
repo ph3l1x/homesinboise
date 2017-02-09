@@ -216,6 +216,8 @@ class views_dependent_filters_handler_filter_dependent extends views_handler_fil
    * Make our changes to the form but don't return anything ourselves.
    */
   function exposed_form(&$form, &$form_state) {
+    $filters = $this->view->display_handler->get_handlers('filter');
+
     // Build an array of dependency info.
     $dependency_info = array(
       // An array keyed by controller filter IDs, where the values are arrays
@@ -227,6 +229,8 @@ class views_dependent_filters_handler_filter_dependent extends views_handler_fil
       'controllers' => array(),
       // An array of dependent filter IDs.
       'dependents'  => array(),
+      // A lookup of filter IDs to filter URL identifiers.
+      'identifiers' => array(),
     );
     if (!empty($this->options['controller_filter'])) {
       $controller_filter = $this->options['controller_filter'];
@@ -242,14 +246,25 @@ class views_dependent_filters_handler_filter_dependent extends views_handler_fil
         }
 
         $dependency_info['controllers'][$controller_filter] = $controller_values;
+
+        $identifier = $filters[$controller_filter]->options['expose']['identifier'];
+        $dependency_info['identifiers'][$controller_filter] = $identifier;
       }
     }
     $dependency_info['dependents'] = array_values(array_filter($this->options['dependent_filters']));
+    // Populate the identifiers lookup with our dependent filters.
+    foreach ($dependency_info['dependents'] as $dependent_filter_id) {
+      $identifier = $filters[$dependent_filter_id]->options['expose']['identifier'];
+      $dependency_info['identifiers'][$dependent_filter_id] = $identifier;
+    }
 
     //dsm($form_state['input'], 'input');
+    $filters = $this->view->display_handler->get_handlers('filter');
     foreach ($dependency_info['controllers'] as $filter_id => $controller_values) {
+      // Get the form identifier.
+      $identifier = $filters[$filter_id]->options['expose']['identifier'];
       // Get the input for this filter.
-      $input = $form_state['input'][$filter_id];
+      $input = $form_state['input'][$identifier];
       // Convert values for non-multiple filters to an array.
       if (!$this->view->filter[$filter_id]->options['expose']['multiple']) {
         $input = array($input);

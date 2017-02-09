@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * @file
+ * DRealty Office UI controllers.
+ */
+
 class DrealtyOfficeUIController extends EntityDefaultUIController {
 
   public function hook_menu() {
@@ -7,28 +12,16 @@ class DrealtyOfficeUIController extends EntityDefaultUIController {
     $id_count = count(explode('/', $this->path));
     $wildcard = isset($this->entityInfo['admin ui']['menu wildcard']) ? $this->entityInfo['admin ui']['menu wildcard'] : '%' . $this->entityType;
 
-    $items[$this->path] = array(
-      'title' => 'Drealty Offices',
-      'description' => 'Manage Drealty Listing Content',
-      'page callback' => 'drealty_office_admin',
-      'access arguments' => array('access drealty admin'),
-      'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+    $items['drealty_office/add'] = array(
+      'title' => 'Add dRealty Listing',
+      'title callback' => 'check_plain',
+      'page callback' => 'drealty_office_form_wrapper',
+      'page arguments' => array('add', drealty_office_create(array('rets_imported' => FALSE, 'active' => 1))),
+      'access arguments' => array('create drealty listing'),
       'file' => 'drealty.office.admin.inc',
       'file path' => drupal_get_path('module', $this->entityInfo['module']) . '/includes',
+      'type' => MENU_NORMAL_ITEM,
     );
-
-
-      $items['drealty_office/add'] = array(
-        'title' => 'Add dRealty Listing',
-        'title callback' => 'check_plain',
-        'page callback' => 'drealty_office_form_wrapper',
-        'page arguments' => array('add', drealty_office_create(array('rets_imported' => FALSE))),
-        'access arguments' => array('create drealty listing'),
-        'file' => 'drealty.office.admin.inc',
-        'file path' => drupal_get_path('module', $this->entityInfo['module']) . '/includes',
-        'type' => MENU_NORMAL_ITEM,
-      );
-    
 
     $items['drealty_office/' . $wildcard] = array(
       'title callback' => 'drealty_office_page_title',
@@ -67,7 +60,7 @@ class DrealtyOfficeUIController extends EntityDefaultUIController {
       'access callback' => 'drealty_access',
       'access arguments' => array('delete', 1),
       'type' => MENU_LOCAL_TASK,
-      'context' => MENU_CONTEXT_INLINE,
+      'context' => MENU_CONTEXT_PAGE | MENU_CONTEXT_INLINE,
       'weight' => 10,
       'file' => 'drealty.office.admin.inc',
       'file path' => drupal_get_path('module', $this->entityInfo['module']) . '/includes'
@@ -115,7 +108,6 @@ class DrealtyOfficeUIController extends EntityDefaultUIController {
 
 }
 
-
 /**
  * Page callback for adding listings.
  */
@@ -136,60 +128,7 @@ function drealty_office_admin($type = 'new') {
   $edit = $_POST;
   if (isset($edit['operation']) && ($edit['operation'] == 'delete') && isset($edit['listings']) && $edit['listings']) {
     return drupal_get_form('drealty_office_multiple_delete_confirm');
-  } else {
-    return drupal_get_form('drealty_office_admin_overview', $type);
   }
-}
-
-/**
- * Form builder for the listing admin overview form.
- */
-function drealty_office_admin_overview($form, &$form_state, $arg) {
-  $header = array(
-    'mls_id' => array('data' => t('Office MLS Id'), 'field' => 'rets_id'),
-    'title' => array('data' => t('Title'), 'field' => 'label'),
-    'type' => array('data' => t('Bundle'), 'field' => 'type'),
-    'updated' => array('data' => t('Changed'), 'field' => 'created'),
-    'operations' => array('data' => t('Operations')),
-  );
-
-  $query = db_select('drealty_office', 'd')->extend('PagerDefault')->extend('TableSort');
-  $result = $query
-    ->fields('d', array('id', 'rets_id', 'label'))
-    ->limit(10)
-    ->orderByHeader($header)
-    ->execute();
-
-  $lids = array();
-  foreach ($result as $row) {
-    $lids[] = $row->id;
-  }
-
-  $listings = entity_load('drealty_office', $lids);
-
-  $options = array();
-
-  foreach ($listings as $listing) {
-
-    $links = menu_contextual_links('drealty', 'drealty_office', array($listing->id));
-
-    $options[$listing->id] = array(
-      'mls_id' => array('data' => array('#type' => 'link', '#title' => $listing->rets_id, '#href' => 'drealty_office/' . $listing->id)),
-      'title' => $listing->label,
-      'type' => $listing->type,      
-      'updated' => format_date($listing->changed, 'short'),
-      'operations' => theme('links', array('links' => $links, 'attributes' => array('class' => array('links', 'inline', 'operations')))),
-    );
-  }
-  $form['listings'] = array(
-    '#type' => 'tableselect',
-    '#header' => $header,
-    '#options' => $options,
-    '#empty' => t('No listings available.'),
-  );
-
-  $form['pager'] = array('#theme' => 'pager');
-  return $form;
 }
 
 /**
@@ -206,6 +145,9 @@ function drealty_office_form_wrapper($op, $listing) {
   } else {
     drupal_set_title(t('<em>@op @type</em> listing @title : #@rets_id', array('@op' => ucfirst($op), '@type' => $listing->type, '@title' => $listing->label, '@rets_id' => $listing->rets_key)), PASS_THROUGH);
   }
+  if($op == 'delete') {
+    return drupal_get_form('drealty_office_form_delete_confirm', $listing);
+  }
   return drupal_get_form('drealty_office_edit_form', $op, $listing);
 }
 
@@ -216,9 +158,8 @@ function drealty_office_edit_form($form, &$form_state, $op, $listing) {
 
   $form_state['listing'] = $listing;
 
-
-  if ($listing->rets_imported) {
-    
+  if ($op == 'delete') {
+    return drupal_get_form('drealty_office_form_delete_confirm', $listing);
   }
 
   field_attach_form('drealty_office', $listing, $form, $form_state);
@@ -243,12 +184,12 @@ function drealty_office_edit_form($form, &$form_state, $op, $listing) {
     '#submit' => $submit + array('drealty_office_edit_form_submit'),
   );
 
-  if (!empty($listing->name) && !$listing->rets_imported) {
+  if (!empty($listing->name)) {
     $form['actions']['delete'] = array(
       '#type' => 'submit',
       '#value' => t('Delete listing'),
-      '#suffix' => l(t('Cancel'), 'admin/content/drealty_offices'),
-      '#submit' => $submit + array('drealty_office_form_submit_delete'),
+      '#suffix' => l(t('Cancel'), 'admin/content/drealty_office'),
+      '#submit' => $submit + array('drealty_office_form_delete_confirm'),
       '#weight' => 45,
     );
   }
@@ -267,5 +208,51 @@ function drealty_office_edit_form_submit($form, &$form_state) {
   // save the listing
   $listing->save();
   // redirect back to the content list
-  $form_state['redirect'] = 'admin/content/drealty_offices';
+  $form_state['redirect'] = 'admin/content/drealty_office';
+}
+
+/**
+ * Confirmation page before deleting an office.
+ */
+function drealty_office_form_delete_confirm($form, &$form_state, $listing = FALSE) {
+  $form = array();
+
+  if ($listing) {
+    $form_state['listing'] = $listing;
+  }
+  else {
+    $listing = $form_state['listing'];
+    $form_state['redirect'] = 'drealty_office/' . $listing->id . '/delete';
+  }
+
+
+  if ($listing->rets_imported) {
+    $form['message']['#markup'] = t('This Office has been created by RETS importer. If you delete it now, it might still be re-imported later on.');
+  }
+
+  $cancel = 'admin/content/drealty_office';
+
+  return confirm_form($form,
+    t('Are you sure you want to delete %name Office?',
+      array('%name' => $listing->label)),
+    $cancel,
+    t('By deleting this Office, any field content related to this Office will be lost!'),
+    t('Delete Office'),
+    t('Cancel'));
+}
+
+
+/**
+ * Submit handler for the listing form.
+ */
+function drealty_office_form_delete_confirm_submit($form, &$form_state) {
+  $listing = $form_state['listing'];
+  if ($listing && $listing->id) {
+    entity_delete('drealty_office', $listing->id);
+    drupal_set_message('Office profile was successfully deleted', 'status', TRUE);
+    $form_state['redirect'] = 'admin/content/drealty_office';
+  }
+  else {
+    drupal_set_message('Could not delete specified Office profile', 'error');
+  }
 }

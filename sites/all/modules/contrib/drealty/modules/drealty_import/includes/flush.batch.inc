@@ -8,9 +8,35 @@ function drealty_import_flush_form($form, &$form_state) {
     '#markup' => '<h4>' . t('Perform Flush?') . '</h4>',
   );
 
+  $form['flush_delete_options'] = array(
+    '#title' => t('Flush Entity Options'),
+    '#tree' => TRUE,
+    '#type' => 'fieldset',
+    '#collapsed' => FALSE,
+    '#collapsible' => TRUE,
+  );
+
+  $options = variable_get('flush_delete_options', array());
+  $form['flush_delete_options']['drealty_listing'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Delete all drealty_listing entities',
+  );
+
+  $types = array('drealty_office', 'drealty_agent', 'drealty_openhouse');
+  foreach ($types as $type) {
+    if (module_exists($type)) {
+      $form['flush_delete_options'][$type] = array(
+        '#type' => 'checkbox',
+        '#title' => 'Delete all ' . $type . ' entities',
+        '#default_value' => isset($options[$type]) ? $options[$type] : 0,
+      );
+    }
+  }
+
   $form['confirm_action'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Yes, I want to flush all data in the site.')
+    '#title' => t('Yes, I want to flush all data in the site for selected entities.'),
+    '#required' => TRUE,
   );
 
   $form['actions'] = array('#type' => 'actions');
@@ -25,48 +51,65 @@ function drealty_import_flush_form($form, &$form_state) {
 }
 
 /**
+ * Validate handler.
+ */
+function drealty_import_flush_form_validate($form, &$form_state) {
+  $vals = $form_state['values'];
+  $selected = array_filter($vals['flush_delete_options']);
+  if (empty($selected)) {
+    form_set_error('[flush_delete_options]', 'You need to pick at least one option to continue.');
+  }
+}
+
+/**
  * Submit handler.
  */
 function drealty_import_flush_form_submit($form, &$form_state) {
-  $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'drealty_listing');
-  $results = $query->execute();
+  $entity_types = array_filter($form_state['values']['flush_delete_options']);
 
-  foreach ($results['drealty_listing'] as $record) {
-    $operations[] = array('drealty_import_flush_item', array('entity_type' => 'drealty_listing', 'entity_id' => $record->id, 'details' => t('Deleting listing entity id @key...', array('@key' => $record->id))));
-  }
+  if ($form_state['values']['confirm_action'] == 1 && !empty(array_filter($entity_types))) {
+    $entity_types = array_keys($entity_types);
 
-  if (module_exists('drealty_office')) {
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'drealty_office');
-    $results = $query->execute();
+    foreach ($entity_types as $type) {
+      $module_exists = TRUE;
+      if ($type != 'drealty_listing') {
+        $module_exists = module_exists($type);
+      }
+      if ($module_exists) {
+        $query = new EntityFieldQuery();
+        $query->entityCondition('entity_type', $type);
+        $results = $query->execute();
 
-    foreach ($results['drealty_office'] as $record) {
-      $operations[] = array('drealty_import_flush_item', array('entity_type' => 'drealty_office', 'entity_id' => $record->id, 'details' => t('Deleting office entity id @key...', array('@key' => $record->id))));
+        if (!empty($results)) {
+          foreach ($results[$type] as $record) {
+            $operations[] = array(
+              'drealty_import_flush_item',
+              array(
+                'entity_type' => 'drealty_office',
+                'entity_id' => $record->id,
+                'details' => t('Deleting ' . $type . ' entity id @key...', array('@key' => $record->id))
+              )
+            );
+          }
+        }
+      }
+    }
+
+    if (!empty($operations)) {
+      $batch = array(
+        'operations' => $operations,
+        'title' => t('Performing drealty flush.'),
+        'init_message' => t('Initializing'),
+        'error_message' => t('An error occurred.'),
+        'finished' => 'drealty_import_flush_batch_finished',
+        'file' => drupal_get_path('module', 'drealty_import') . '/includes/flush.batch.inc',
+      );
+      batch_set($batch);
+    }
+    else {
+      drupal_set_message('There are no records of ' . $type .' entities in the database. ', 'warning');
     }
   }
-
-  if (module_exists('drealty_agent')) {
-    $query = new EntityFieldQuery();
-    $query->entityCondition('entity_type', 'drealty_agent');
-    $results = $query->execute();
-
-    foreach ($results['drealty_agent'] as $record) {
-      $operations[] = array('drealty_import_flush_item', array('entity_type' => 'drealty_agent', 'entity_id' => $record->id, 'details' => t('Deleting agent entity id @key...', array('@key' => $record->id))));
-    }
-  }
-
-  $batch = array(
-    'operations' => $operations,
-    'title' => t('Performing drealty flush.'),
-    'init_message' => t('Initializing'),
-    'error_message' => t('An error occurred.'),
-    'finished' => 'drealty_import_flush_batch_finished',
-    'file' => drupal_get_path('module', 'drealty_import') . '/includes/flush.batch.inc',
-  );
-
-  batch_set($batch);
-  $form_state['redirect'] = 'admin/drealty/drealty-import';
 }
 
 function drealty_import_flush_item($entity_type, $entity_id, $message, &$context) {

@@ -12,5 +12,6 @@ var app = angular.module('hib_angular', ['node', 'nodes', 'ngRoute']).
             templateUrl: Drupal.settings.angularjsApp.basePath + 'rets_search/display'
         }).
     otherwise({redirectTo:'/'});
-    
+
 });
+

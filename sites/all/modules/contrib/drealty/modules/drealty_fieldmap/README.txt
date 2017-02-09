@@ -30,3 +30,6 @@ Configuration
 After you enable this module, the configuration form can be found under:
   Drealty => Drealty Connections => Configure Listings (for your specific connections created). Next to each resource class you will see a "MAP FIELDS" link, which will take you to a field mapping form
   of the specific class.
+
+When mapping the fields through this module after the initial mapping has been done, the fields that have been mapped at least once for each particular resource/class will have a background color applied to them
+to facilitate visual distinction when adding more field mappings later on.

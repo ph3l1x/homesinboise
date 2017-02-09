@@ -12,11 +12,15 @@ function drealty_agent_schema() {
       'uid' => array('type' => 'int', 'not null' => TRUE, 'default' => 0, 'description' => 'UID of the user that created the listing.'),
       'conid' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'description' => 'The connection Id'),
       'hash' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'default' => '', 'description' => 'MD5 Hash used to determine if a listing has changed.'),
+      'media_hash' => array('type' => 'varchar', 'length' => 255, 'not null' => TRUE, 'initial' => 0, 'default' => '', 'description' => 'MD5 Hash used to determine if listing Media has changed.'),
       'class' => array('type' => 'int', 'not null' => FALSE, 'default' => 0, 'description' => 'The Resource Class from the MLS'),
       'created' => array('type' => 'int', 'not null' => TRUE, 'default' => 0, 'description' => 'Date the listing was created in the system.'),
       'changed' => array('type' => 'int', 'not null' => TRUE, 'default' => 0, 'description' => 'Last date the listing was changed/updated in the system'),
+      'active'=> array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 1, 'description' => 'Whether an Agent is active or not.'),
       'rets_key' => array('type' => 'varchar', 'length' => 64, 'not null' => FALSE, 'default' => NULL, 'description' => 'A unique identifier for this record from the source system. Typically this is the MLS #, however systems like Interealty use a sysid field. Select the apporpriate field.'),
       'rets_id' => array('type' => 'varchar', 'length' => 64, 'not null' => FALSE, 'default' => NULL, 'description' => 'The unique MLS # used to look up an individual listing.'),
+      'inactive_date' => array('type' => 'int', 'not null' => FALSE, 'default' => NULL, 'description' => 'Date the entity was set as inactive.'),
+      'rets_modification_timestamp' => array('type' => 'varchar', 'length' => 128, 'not null' => FALSE, 'default' => NULL, 'description' => 'RETS field that indicates whether entity data has been modified.'),
     ),
     'primary key' => array('id'),
   );
@@ -87,4 +91,14 @@ function drealty_agent_schema() {
   );
 
   return $schema;
+}
+
+/**
+ * Add Active field to keep track of agent status.
+ */
+function drealty_agent_update_7300(&$sandbox) {
+  db_add_field('drealty_agent', 'active', array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 1, 'description' => 'Whether an Agent is active or not.'));
+  db_add_field('drealty_agent', 'media_hash', array('type' => 'varchar', 'initial' => 0, 'length' => 255, 'not null' => TRUE, 'default' => '', 'description' => 'MD5 Hash used to determine if listing Media has changed.'));
+  db_add_field('drealty_agent', 'inactive_date', array('type' => 'int', 'not null' => FALSE, 'default' => NULL, 'description' => 'Date the entity was set as inactive.'));
+  db_add_field('drealty_agent', 'rets_modification_timestamp', array('type' => 'varchar', 'length' => 128, 'not null' => FALSE, 'default' => NULL, 'description' => 'RETS field that indicates whether entity data has been modified.'));
 }
