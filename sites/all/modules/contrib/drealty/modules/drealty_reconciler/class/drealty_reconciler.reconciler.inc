@@ -33,7 +33,6 @@ class DrealtyReconciler {
       $resource = $this->dm->FetchResource($class->rid);
       $listing = FALSE;
       $list_entities = array();
-      $wrapper = entity_metadata_wrapper($item['entity_type'], $item['id']);
 
       $field_mappings = $connection->FetchFieldMappings($resource, $class);
       $key_field = $field_mappings['rets_key']->systemname;
@@ -54,7 +53,6 @@ class DrealtyReconciler {
       if ($item['active'] == 0 && variable_get('drealty_reconciler_delete', 0) == 1) {
         if (!empty($list_entities) && in_array($item['entity_type'], $list_entities)) {
           entity_delete($item['entity_type'], $item['id']);
-          module_invoke_all('entity_delete', $wrapper->value(), $item['entity_type']);
           watchdog('drealty_reconcile', "Deleted inactive entity @type: (MLS: @mls ID: @code)", array('@type' => $item['entity_type'], "@mls" => $item['rets_id'], "@code" => $item['id']), WATCHDOG_NOTICE);
         }
       }
@@ -71,12 +69,11 @@ class DrealtyReconciler {
         }
 
         try {
-          if ($wrapper) {
+          if ($wrapper = entity_metadata_wrapper($item['entity_type'], $item['id'])) {
             if (!isset($listing) || !$listing) {
               if (variable_get('drealty_reconciler_delete', 0) == 1) {
                 if (!empty($list_entities) && in_array($item['entity_type'], $list_entities)) {
                   entity_delete($item['entity_type'], $item['id']);
-                  module_invoke_all('entity_delete', $wrapper->value(), $item['entity_type']);
                   watchdog('drealty_reconcile', "Deleted inactive entity @type: (MLS: @mls ID: @code)", array('@type' => $item['entity_type'], "@mls" => $item['rets_id'], "@code" => $item['id']), WATCHDOG_NOTICE);
                 }
               }
@@ -90,7 +87,6 @@ class DrealtyReconciler {
                   ->condition('class', $item['class'])
                   ->condition('rets_key', $item['rets_key'])
                   ->execute();
-                module_invoke_all('entity_update', $wrapper->value(), $item['entity_type']);
               }
             }
             elseif ($listing && is_array($listing)) {
@@ -100,7 +96,6 @@ class DrealtyReconciler {
                 ->condition('class', $item['class'])
                 ->condition('rets_key', $item['rets_key'])
                 ->execute();
-              module_invoke_all('entity_update', $wrapper->value(), $item['entity_type']);
             }
           }
         } catch (Exception $e) {

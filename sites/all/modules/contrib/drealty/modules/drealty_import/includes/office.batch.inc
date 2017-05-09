@@ -25,8 +25,7 @@ function drealty_import_office_import_form($form, &$form_state) {
 
   $form['confirm_action'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Yes, I want to do an office import of all data for this resource.'),
-    '#required' => TRUE,
+    '#title' => t('Yes, I want to do an office import of all data for this resource.')
   );
 
   $form['actions'] = array('#type' => 'actions');
@@ -49,10 +48,9 @@ function drealty_import_office_import_form_submit($form, &$form_state) {
   $connection = end($connection);
   $mappings = $connection->ResourceMappings();
 
-  // Perform import queries.
+  // perform queries
   if ($connection->active == 1) {
     $dm = new drealtyDaemon();
-    $classes_enabled = FALSE;
 
     foreach ($mappings as $mapping) {
       if ($mapping->entity_type != 'drealty_office') {
@@ -63,7 +61,6 @@ function drealty_import_office_import_form_submit($form, &$form_state) {
       $classes = $connection->FetchClasses($resource);
       foreach ($classes as $key => $class) {
         if ($class->enabled && $items = $dm->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, 'resources', TRUE)) {
-          $classes_enabled = TRUE;
 
           foreach ($items as $item) {
             $operations[] = array(
@@ -74,29 +71,22 @@ function drealty_import_office_import_form_submit($form, &$form_state) {
               )
             );
           }
-
-          $batch = array(
-            'operations' => $operations,
-            'title' => t('Creating queue jobs'),
-            'init_message' => t('Initializing'),
-            'error_message' => t('An error occurred.'),
-            'finished' => 'drealty_import_office_import_batch_finished',
-            'file' => drupal_get_path('module', 'drealty_import') . '/includes/office.batch.inc',
-          );
-
-          batch_set($batch);
-          $form_state['redirect'] = 'admin/drealty/drealty-import/office-import';
         }
       }
-
-      if (!$classes_enabled) {
-        drupal_set_message('There are no enabled Classes for ' .
-          $mapping->entity_type . ' resource. Please, enable at least one class ' .
-          'here: <a href="/admin/drealty/connections/manage/' . $connection->name .
-          '/resource/' . $mapping->entity_type . '">Configure</a>', 'error');
-      }
     }
+
+    $batch = array(
+      'operations' => $operations,
+      'title' => t('Creating queue jobs'),
+      'init_message' => t('Initializing'),
+      'error_message' => t('An error occurred.'),
+      'finished' => 'drealty_import_office_import_batch_finished',
+      'file' => drupal_get_path('module', 'drealty_import') . '/includes/office.batch.inc',
+    );
+
+    batch_set($batch);
   }
+  $form_state['redirect'] = 'admin/drealty/drealty-import';
 }
 
 /**

@@ -119,7 +119,6 @@ function drealty_reconciler_cron_queue_info() {
 
   $queues['drealty_reconciler'] = array(
     'worker callback' => 'drealty_reconciler_process_item',
-    'time' => 120,
   );
 
   return $queues;

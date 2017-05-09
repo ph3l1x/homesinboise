@@ -254,7 +254,7 @@ function timeAgo($time)
                         <div class="forSaleText">FOR SALE</div>
                     </div>
                     <div class="row col-sm-3">
-                        <div class="listPrice"><?php print money_format("%10.0n", $listPrice); ?></div>
+                        <div class="listPrice"><?php print money_format("%10.0n", $listPrice); ?></div><?php var_dump($dateListed); ?>
                         <div class="listedDays"> Listed: <?php print timeAgo(strtotime($dateListed)) . ' ago'; ?></div>
                     </div>
                     <div class="row col-sm-3">

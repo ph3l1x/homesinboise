@@ -1,27 +1,20 @@
 <?php
 /**
  * @file
- * DRealty RETS metadata classes.
+ * dRealty RETS metadata classes.
  */
 
-/**
- * Class for handling Drealty resources Metadata.
- */
 class drealtyMetaData {
 
   private $defaultCache = 'cache';
 
-  /**
-   * Constructor.
-   */
   function __construct() {
     drealty_load_phrets();
   }
 
   /**
    * Internal Function to log errors.
-   *
-   * @param phRETS $rets
+   * @param phRETS $rets 
    */
   private function handleRetsError(phRETS $rets) {
     $error = $rets->Error();
@@ -30,9 +23,9 @@ class drealtyMetaData {
 
   /**
    *
-   * @param int $conid
+   * @param integer $conid
    * @param drealtyRetsResource $resource
-   * @return drealtyRetsField[]
+   * @return drealtyRetsField[] 
    */
   function GetActiveFields($conid, $resource) {
 
@@ -43,16 +36,15 @@ class drealtyMetaData {
       ->execute()
       ->fetchAllAssoc('systemname');
 
-    return empty($fields) ? TRUE : FALSE;
+    return empty($fields) ? $FALSE : FALSE;
   }
 
   /**
-   * Retrieve resource mappings for a given connnection.
-   *
-   * @param int $conid
-   *
+   * Retrieve resource mappings for a given connnection
+   * @param integer $conid
    * @return drealtyResourceMapping[]
    *  or FALSE if no mappings are found
+   *   
    */
   function GetResourceMappings($conid) {
 
@@ -84,8 +76,8 @@ class drealtyMetaData {
     if (isset($class)) {
       $query->condition('cid', $class->cid);
     }
-
-    if (isset($type)) {
+    
+    if(isset($type)) {
       $query->condition('field_api_type', $type);
     }
 
@@ -123,7 +115,7 @@ class drealtyMetaData {
     if (isset($class)) {
       $query->condition('cid', $class);
     }
-    if (isset($type)) {
+    if(isset($type)) {
       $query->condition('field_api_type', $type);
     }
 
@@ -146,7 +138,7 @@ class drealtyMetaData {
   function FetchMediaObjectTimestampFields($conid, $class = NULL, $resource = NULL) {
 
     $query = db_select('drealty_media_objects_mapping', 'm')
-      ->distinct(TRUE)
+      ->distinct(true)
       ->fields('m', array('rets_timestamp_field'))
       ->condition('rets_timestamp_field', NULL, 'IS NOT')
       ->condition('conid', $conid);
@@ -163,16 +155,14 @@ class drealtyMetaData {
     return empty($mappings) ? FALSE : $mappings;
   }
 
-  /**
-   *
-   */
+
   function ExportFieldMappings($conid) {
     $mappings = db_select('drealty_field_mappings', 'm')
       ->fields('m')
       ->condition('conid', $conid)
       ->execute()
       ->fetchAll();
-
+    
     if (!empty($mappings)) {
       foreach ($mappings as $mapping) {
         $mapping->data = unserialize($mapping->data);
@@ -182,12 +172,11 @@ class drealtyMetaData {
   }
 
   /**
-   * Function to return drealtyRetsFields from the database.
-   *
-   * @param int $conid
+   * Function to return drealtyRetsFields from the database
+   * 
+   * @param integer $conid
    * @param drealtyRetsResource $resource
    * @param drealtyRetsClass $class
-   *
    * @return drealtyRetsField[]
    */
   function FetchFields($conid, $resource = NULL, $class = NULL) {
@@ -214,12 +203,11 @@ class drealtyMetaData {
   }
 
   /**
-   * Function to return drealtyRetsFields from the database.
+   * Function to return drealtyRetsFields from the database
    *
-   * @param int $conid
+   * @param integer $conid
    * @param drealtyRetsResource $resource
    * @param drealtyRetsClass $class
-   *
    * @return drealtyRetsField[]
    */
   function FetchMediaObjects($conid, $cid = NULL, $rid = NULL, $oid = NULL) {
@@ -245,14 +233,15 @@ class drealtyMetaData {
     return empty($fields) ? FALSE : $fields;
   }
 
+
   /**
-   * Function to update drealty_fields table with fresh Metadata values from RETS.
+   * Function to update drealty_fields table with fresh Metadata values from RETS
    *
-   * @param int $conid
+   * @param integer $conid
    * @param drealtyRetsResource $resource
    * @param drealtyRetsClass $class
    */
-  public function UpdateDrealtyMetadata($conid = NULL, $resource = NULL, $class = NULL) {
+  public function UpdateDrealtyMetadata($conid = null, $resource = null, $class = null) {
     $dc = new drealtyConnection();
 
     if ($dc->connect($conid)) {
@@ -260,7 +249,7 @@ class drealtyMetaData {
       $results = $dc->rets->GetMetadata($resource->systemname, $class->systemname);
       if ($results) {
 
-        // Make sure we don't have any stray fields for this connection / resource / class.
+        // make sure we don't have any stray fields for this connection / resource / class
         db_delete('drealty_fields')
           ->condition('conid', $conid)
           ->condition('class', $class->systemname)
@@ -287,8 +276,7 @@ class drealtyMetaData {
             $fields[$newField->systemname] = $newField;
           }
         } // end foreach
-      }
-      else {
+      } else {
         $this->handleRetsError($dc->rets);
       }
 
@@ -301,7 +289,7 @@ class drealtyMetaData {
 
         foreach ($object_types as $type) {
           db_insert('drealty_media_objects')
-            ->fields(array('conid', 'rid', 'cid', 'type', 'standardname', 'description', 'mimetype', 'visiblename', 'objecttimestamp', 'objectcount'))
+            ->fields(array('oid', 'conid', 'rid', 'cid', 'type', 'standardname', 'description', 'mimetype', 'visiblename', 'objecttimestamp', 'objectcount'))
             ->values(array(
               'conid' => $conid,
               'rid' => $resource->rid,
@@ -312,7 +300,7 @@ class drealtyMetaData {
               'mimetype' => $type['MimeType'],
               'visiblename' => $type['VisibleName'],
               'objecttimestamp' => $type['ObjectTimeStamp'],
-              'objectcount' => $type['ObjectCount'],
+              'objectcount' => $type['ObjectCount']
             ))
             ->execute();
         }
@@ -325,11 +313,9 @@ class drealtyMetaData {
   }
 
   /**
-   * Retreive a drealtyRetsClass from the db.
-   *
-   * @param int $id
-   *
-   * @return drealtyRetsClass
+   * Retreive a drealtyRetsClass from the db
+   * @param integer $id
+   * @return drealtyRetsClass 
    */
   public function FetchClass($id) {
     $result = db_select('drealty_classes', 'dc')
@@ -341,24 +327,18 @@ class drealtyMetaData {
     return empty($result) ? FALSE : $result;
   }
 
-  /**
-   *
-   */
   public function FetchEnabledClasses($conid) {
     $classes = db_select('drealty_classes', 'dc')
       ->fields('dc')
-      ->condition('enabled', TRUE);
-    if (isset($conid) && !empty($conid)) {
-      $classes->condition('conid', $conid);
-    }
-    $classes->execute()
+      ->condition('enabled', TRUE)
+      ->execute()
       ->fetchAllAssoc('systemname');
     return $classes;
   }
 
   /**
    *
-   * @param int $conid
+   * @param integer $conid
    * @param drealtyRetsResource $resource
    * @return drealtyRetsClass[]
    */
@@ -374,7 +354,7 @@ class drealtyMetaData {
       ->fetchAllAssoc('systemname');
 
     if (empty($classes)) {
-      // We didn't find any classes so we'll need to get the metadata from the RETS provider.
+      // we didn't find any classes so we'll need to get the metadata from the RETS provider
       $dc = new drealtyConnection();
       if ($dc->connect($conid)) {
         $metadata = $dc->rets->GetMetadataClasses($resource->systemname);
@@ -395,8 +375,7 @@ class drealtyMetaData {
               $classes[$newClass->systemname] = $newClass;
             }
           } // end foreach
-        }
-        else {
+        } else {
           $this->handleRetsError($dc->rets);
         }
         $dc->disconnect();
@@ -408,7 +387,7 @@ class drealtyMetaData {
   /**
    *
    * @param int $rid
-   * @return drealtyRetsResource
+   * @return drealtyRetsResource 
    */
   function FetchResource($rid) {
     $resource = db_select('drealty_resources', 'dr')
@@ -428,12 +407,12 @@ class drealtyMetaData {
    * finding none there it will retrieve them from the RETS Server.
    *
    * @param int $conid
-   *   Connection ID. The connection to retrieve the resources for.
+   *  Connection ID. The connection to retrieve the resources for.
    * @param bool $update
-   *   Passing TRUE will cause the resources to be refreshed from the RETS server.
-   *
+   *  Passing TRUE will cause the resources to be refreshed from the RETS server.
    * @return array()
    *  Returns and array() of resources.
+   *
    */
   function FetchResources($conid) {
     $resources = array();
@@ -445,7 +424,7 @@ class drealtyMetaData {
       ->fetchAllAssoc('systemname');
 
     if (empty($resources)) {
-      // We didn't find any classes so we'll need to get the metadata from the RETS provider.
+      // we didn't find any classes so we'll need to get the metadata from the RETS provider
       $dc = new drealtyConnection();
       if ($dc->connect($conid)) {
         $metadata = $dc->rets->GetMetadataResources();
@@ -464,11 +443,10 @@ class drealtyMetaData {
             if (drupal_write_record('drealty_resources', $newResource)) {
               $resources[$newResource->systemname] = $newResource;
             }
-          } // End foreach
-          // set the static cache.
+          } // end foreach
+          // set the static cache
           $cache = $resources;
-        }
-        else {
+        } else {
           $this->handleRetsError($dc->rets);
         }
         $dc->disconnect();
@@ -477,35 +455,24 @@ class drealtyMetaData {
     return empty($resources) ? FALSE : $resources;
   }
 
-  /**
-   *
-   */
   function get_correlation_mls_system_name($correlation_name, $resource, $conid) {
     $result = db_result(db_query("SELECT systemName FROM {drealty_fields} WHERE correlation = '%s' AND resource = '%s' AND conid = %d", $correlation_name, $resource, $conid));
     if (!empty($result)) {
       return $result;
-    }
-    else {
+    } else {
       return FALSE;
     }
   }
 
-  /**
-   *
-   */
   function get_correlation_field_name($correlation_name, $resource, $conid) {
     $result = db_result(db_query("SELECT cck_field_name FROM {drealty_fields} WHERE correlation = '%s' AND resource = '%s' AND conid = %d", $correlation_name, $resource, $conid));
     if (!empty($result)) {
       return $result;
-    }
-    else {
+    } else {
       return FALSE;
     }
   }
 
-  /**
-   *
-   */
   function RemoveFields($conid) {
 
     db_delete("drealty_fields")
@@ -514,9 +481,6 @@ class drealtyMetaData {
     cache_clear_all("drealty_fields_", $this->defaultCache, TRUE);
   }
 
-  /**
-   *
-   */
   function RemoveClasses($conid) {
     db_delete("drealty_classes")
       ->condition("conid", $conid)
@@ -524,9 +488,6 @@ class drealtyMetaData {
     cache_clear_all("drealty_classes_", $this->defaultCache, TRUE);
   }
 
-  /**
-   *
-   */
   function RemoveResources($conid) {
     db_delete("drealty_resources")
       ->condition("conid", $conid)
@@ -534,9 +495,6 @@ class drealtyMetaData {
     cache_clear_all("drealty_resources_", $this->defaultCache, TRUE);
   }
 
-  /**
-   *
-   */
   function RemoveFieldMappings($conid) {
     db_delete("drealty_field_mappings")
       ->condition("conid", $conid)
@@ -544,9 +502,6 @@ class drealtyMetaData {
     cache_clear_all("drealty_field_mapping_", $this->defaultCache, TRUE);
   }
 
-  /**
-   *
-   */
   function RemoveResourceMappings($conid) {
     db_delete("drealty_resource_mappings")
       ->condition("conid", $conid)
@@ -555,9 +510,7 @@ class drealtyMetaData {
   }
 
 }
-/**
- *
- */
+
 class drealtyRetsField {
 
   public $fid;
@@ -576,9 +529,7 @@ class drealtyRetsField {
   public $lastupdate;
 
 }
-/**
- *
- */
+
 class drealtyRetsClass {
 
   public $cid;
@@ -602,20 +553,19 @@ class drealtyRetsClass {
   public $query_type = DREALTY_QUERY_TYPE_DEFAULT;
   public $chunk_size = 500;
   public $override_status_query_text;
+  public $do_geocoding = FALSE;
+  public $geocoder_handler;
   public $offset_field;
   public $offset_amount;
   public $offset_max;
   public $photo_timestamp_field;
   public $media_lastupdate;
   public $expired_handler;
-
 }
-/**
- *
- */
+
 class drealtyRetsResource {
 
-  // TODO: Remove chunk_size and selection_values from the schema as they are not used.
+  //TODO: Remove chunk_size and selection_values from the schema as they are not used.
   public $rid;
   public $conid;
   public $systemname;
@@ -626,9 +576,7 @@ class drealtyRetsResource {
   public $chunk_size;
 
 }
-/**
- *
- */
+
 class drealtyFieldMapping {
 
   public $conid;
@@ -641,9 +589,7 @@ class drealtyFieldMapping {
   public $hash_exclude;
 
 }
-/**
- *
- */
+
 class drealtyResourceMapping {
 
   public $mid;

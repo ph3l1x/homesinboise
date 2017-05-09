@@ -35,8 +35,7 @@ function drealty_import_flush_form($form, &$form_state) {
 
   $form['confirm_action'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Yes, I want to flush all data in the site for selected entities.'),
-    '#required' => TRUE,
+    '#title' => t('Yes, I want to flush all data in the site for selected entities.')
   );
 
   $form['actions'] = array('#type' => 'actions');
@@ -48,17 +47,6 @@ function drealty_import_flush_form($form, &$form_state) {
   );
 
   return $form;
-}
-
-/**
- * Validate handler.
- */
-function drealty_import_flush_form_validate($form, &$form_state) {
-  $vals = $form_state['values'];
-  $selected = array_filter($vals['flush_delete_options']);
-  if (empty($selected)) {
-    form_set_error('[flush_delete_options]', 'You need to pick at least one option to continue.');
-  }
 }
 
 /**
@@ -80,36 +68,26 @@ function drealty_import_flush_form_submit($form, &$form_state) {
         $query->entityCondition('entity_type', $type);
         $results = $query->execute();
 
-        if (!empty($results)) {
-          foreach ($results[$type] as $record) {
-            $operations[] = array(
-              'drealty_import_flush_item',
-              array(
-                'entity_type' => 'drealty_office',
-                'entity_id' => $record->id,
-                'details' => t('Deleting ' . $type . ' entity id @key...', array('@key' => $record->id))
-              )
-            );
-          }
+        foreach ($results[$type] as $record) {
+          $operations[] = array('drealty_import_flush_item', array('entity_type' => 'drealty_office', 'entity_id' => $record->id, 'details' => t('Deleting ' . $type . ' entity id @key...', array('@key' => $record->id))));
         }
       }
+
     }
 
-    if (!empty($operations)) {
-      $batch = array(
-        'operations' => $operations,
-        'title' => t('Performing drealty flush.'),
-        'init_message' => t('Initializing'),
-        'error_message' => t('An error occurred.'),
-        'finished' => 'drealty_import_flush_batch_finished',
-        'file' => drupal_get_path('module', 'drealty_import') . '/includes/flush.batch.inc',
-      );
-      batch_set($batch);
-    }
-    else {
-      drupal_set_message('There are no records of ' . $type .' entities in the database. ', 'warning');
-    }
+    $batch = array(
+      'operations' => $operations,
+      'title' => t('Performing drealty flush.'),
+      'init_message' => t('Initializing'),
+      'error_message' => t('An error occurred.'),
+      'finished' => 'drealty_import_flush_batch_finished',
+      'file' => drupal_get_path('module', 'drealty_import') . '/includes/flush.batch.inc',
+    );
+
+    batch_set($batch);
   }
+
+  $form_state['redirect'] = 'admin/drealty/drealty-import';
 }
 
 function drealty_import_flush_item($entity_type, $entity_id, $message, &$context) {

@@ -33,11 +33,7 @@ function drealty_token_info() {
         ),
         'last_updated' => array(
           'name' => t('Last updated'),
-          'description' => t('Timestamp for the last successful update. (%date)',
-            array(
-              '%date' => format_date(REQUEST_TIME, 'custom', 'Y-m-d\TH:i:s', NULL, NULL),
-            )
-          ),
+          'description' => t('Timestamp for the last successful update. (%date)', array('%date' => format_date(REQUEST_TIME, 'custom', 'Y-m-d\TH:i:s', NULL, NULL))),
           'type' => 'date',
         ),
       ),
@@ -60,15 +56,12 @@ function drealty_tokens($type, $tokens, array $data = array(), array $options = 
         case 'systemname':
           $replacements[$original] = $sanitize ? check_plain($class->systemname) : $class->systemname;
           break;
-
         case 'standardname':
           $replacements[$original] = $sanitize ? check_plain($class->standardname) : $class->standardname;
           break;
-
         case 'visiblename':
           $replacements[$original] = $sanitize ? check_plain($class->visiblename) : $class->visiblename;
           break;
-
         case 'last_updated':
           $replacements[$original] = format_date($class->lastupdate, 'custom', 'Y-m-d\TH:i:s', NULL, NULL);
       }

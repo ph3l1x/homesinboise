@@ -8,9 +8,16 @@ dependencies[] = drealty_import
 dependencies[] = entity
 
 files[] = class/drealty_reconciler.reconciler.inc
-; Information added by Drupal.org packaging script on 2016-12-27
-version = "7.x-3.0"
+; Information added by Drupal.org packaging script on 2016-04-25
+version = "7.x-3.0-beta6+25-dev"
 core = "7.x"
 project = "drealty"
-datestamp = "1482836287"
+datestamp = "1461549242"
+
+
+; Information added by Drupal.org packaging script on 2016-07-01
+version = "7.x-3.0-rc1"
+core = "7.x"
+project = "drealty"
+datestamp = "1467402541"
 

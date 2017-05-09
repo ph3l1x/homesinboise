@@ -1,14 +1,5 @@
 <?php
 
-/**
- * Implements hook_views_api().
- */
-function drealty_office_views_api() {
-  return array(
-    'api' => 3,
-  );
-}
-
 function drealty_office_entity_info() {
   $entities = array();
   $entities['drealty_office'] = array(

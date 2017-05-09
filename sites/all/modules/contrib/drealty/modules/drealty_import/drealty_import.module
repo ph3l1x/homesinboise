@@ -186,7 +186,6 @@ function drealty_import_cron_queue_info() {
 
   $queues['drealty_import'] = array(
     'worker callback' => 'drealty_import_process_item',
-    'time' => 120,
   );
 
   return $queues;

@@ -76,7 +76,6 @@ function drealty_import_process_queue_item($item, $message, &$context) {
       $import->processQueueItem($item->data);
       $context['message'] = 'Processing remote identifier ' . $item->data['remote_id'];
       $context['results'][] = $item->data['remote_id'];
-      $import->cron_queue->deleteItem($item);
     }
     catch (Exception $e) {
       $import->cron_queue->releaseItem($item);

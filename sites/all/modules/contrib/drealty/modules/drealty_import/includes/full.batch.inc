@@ -10,7 +10,7 @@
  */
 function drealty_import_full_import_form($form, &$form_state) {
   $form['header'] = array(
-    '#markup' => t('Perform Full Import of RETS Listings?'),
+    '#markup' => t('Perform Full Import of Listings?'),
   );
 
   $options = array();
@@ -29,9 +29,8 @@ function drealty_import_full_import_form($form, &$form_state) {
   );
 
   $form['confirm_action'] = array(
-    '#required' => TRUE,
     '#type' => 'checkbox',
-    '#title' => t('Yes, I want to do a full import of all data for listings resource.'),
+    '#title' => t('Yes, I want to do a full import of all data for this resource.'),
   );
 
   $form['actions'] = array('#type' => 'actions');
@@ -56,8 +55,7 @@ function drealty_import_full_import_form_submit($form, &$form_state) {
 
   if ($connection->active == 1) {
     $dm = new drealtyDaemon();
-    $classes_enabled = FALSE;
-
+    
     foreach ($mappings as $mapping) {
       if ($mapping->entity_type != 'drealty_listing') {
         continue;
@@ -68,14 +66,12 @@ function drealty_import_full_import_form_submit($form, &$form_state) {
 
       foreach ($classes as $key => $class) {
         if ($class->enabled && $items = $dm->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, 'resources', TRUE)) {
-          $classes_enabled = TRUE;
-
           foreach ($items as $item) {
             $operations[] = array(
               "drealty_import_full_import_populate_queue",
               array(
                 'item' => $item,
-                'details' => t('Populating queue for @class class and entity KEY = @key...', array('@class' => $class->systemname, '@key' => $item['remote_id'])),
+                'details' => t('Populating queue for @class id @key...', array('@class' => $item['class']->systemname, '@key' => $item['remote_id'])),
               ),
             );
           }
@@ -91,18 +87,11 @@ function drealty_import_full_import_form_submit($form, &$form_state) {
           );
 
           batch_set($batch);
-          $form_state['redirect'] = 'admin/drealty/drealty-import/full-import';
         }
-      }
-
-      if (!$classes_enabled) {
-        drupal_set_message('There are no enabled Classes for ' .
-          $mapping->entity_type . ' resource. Please, enable at least one class ' .
-          'here: <a href="/admin/drealty/connections/manage/' . $connection->name .
-          '/resource/' . $mapping->entity_type . '">Configure</a>', 'error');
       }
     }
   }
+  $form_state['redirect'] = 'admin/drealty/drealty-import';
 }
 
 /**

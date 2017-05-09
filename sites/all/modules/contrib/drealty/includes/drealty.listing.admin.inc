@@ -11,6 +11,16 @@ class DrealtyListingUIController extends EntityDefaultUIController {
     $id_count = count(explode('/', $this->path));
     $wildcard = isset($this->entityInfo['admin ui']['menu wildcard']) ? $this->entityInfo['admin ui']['menu wildcard'] : '%' . $this->entityType;
 
+    $items[$this->path] = array(
+      'title' => 'Drealty Listings',
+      'description' => 'Manage Drealty Listing Content',
+      'page callback' => 'drealty_listing_admin',
+      'access arguments' => array('access drealty admin'),
+      'type' => MENU_LOCAL_TASK | MENU_NORMAL_ITEM,
+      'file' => 'drealty.listing.admin.inc',
+      'file path' => drupal_get_path('module', $this->entityInfo['module']) . '/includes',
+    );
+
     $items['drealty_listing/add'] = array(
       'title' => 'Add dRealty Listing',
       'page callback' => 'drealty_listing_add_page',
@@ -25,7 +35,7 @@ class DrealtyListingUIController extends EntityDefaultUIController {
         'title' => $type->label,
         'title callback' => 'check_plain',
         'page callback' => 'drealty_listing_form_wrapper',
-        'page arguments' => array('add', drealty_listing_create(array('rets_imported' => FALSE, 'type' => $type->type, 'active' => 1))),
+        'page arguments' => array('add', drealty_listing_create(array('rets_imported' => FALSE, 'type' => $type->type))),
         'access arguments' => array('create drealty listing'),
         'file' => 'drealty.listing.admin.inc',
         'file path' => drupal_get_path('module', $this->entityInfo['module']) . '/includes',
@@ -138,7 +148,62 @@ function drealty_listing_admin($type = 'new') {
   $edit = $_POST;
   if (isset($edit['operation']) && ($edit['operation'] == 'delete') && isset($edit['listings']) && $edit['listings']) {
     return drupal_get_form('drealty_listing_multiple_delete_confirm');
+  } else {
+    return drupal_get_form('drealty_listing_admin_overview', $type);
   }
+}
+
+/**
+ * Form builder for the listing admin overview form.
+ */
+function drealty_listing_admin_overview($form, &$form_state, $arg) {
+  $header = array(
+    'id' => array('data' => t('Listing Id'), 'field' => 'id'),
+    'mls_id' => array('data' => t('MLS #'), 'field' => 'rets_id'),
+    'title' => array('data' => t('Title'), 'field' => 'label'),
+    'type' => array('data' => t('Type'), 'field' => 'type'),
+    'updated' => array('data' => t('Changed'), 'field' => 'created'),
+    'operations' => array('data' => t('Operations')),
+  );
+
+  $query = db_select('drealty_listing', 'd')->extend('PagerDefault')->extend('TableSort');
+  $result = $query
+    ->fields('d', array('id', 'rets_id', 'label'))
+    ->limit(10)
+    ->orderByHeader($header)
+    ->execute();
+
+  $lids = array();
+  foreach ($result as $row) {
+    $lids[] = $row->id;
+  }
+
+  $listings = entity_load('drealty_listing', $lids);
+
+  $options = array();
+
+  foreach ($listings as $listing) {
+
+    $links = menu_contextual_links('drealty', 'drealty_listing', array($listing->id));
+
+    $options[$listing->id] = array(
+      'id' => $listing->id,
+      'mls_id' => array('data' => array('#type' => 'link', '#title' => $listing->rets_id, '#href' => 'drealty_listing/' . $listing->id)),
+      'title' => $listing->label,
+      'type' => $listing->type,
+      'updated' => format_date($listing->changed, 'short'),
+      'operations' => theme('links', array('links' => $links, 'attributes' => array('class' => array('links', 'inline', 'operations')))),
+    );
+  }
+  $form['listings'] = array(
+    '#type' => 'tableselect',
+    '#header' => $header,
+    '#options' => $options,
+    '#empty' => t('No listings available.'),
+  );
+
+  $form['pager'] = array('#theme' => 'pager');
+  return $form;
 }
 
 /**

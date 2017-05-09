@@ -2,8 +2,9 @@
 
 /**
  * @file
- * DRealty's centralized import functionality.
+ * DRealty's import functionality.
  */
+
 
 /**
  * Helper class to implement phRETS functionality.
@@ -54,9 +55,7 @@ class drealtyDaemon {
 
   /**
    * Retrieves the current state of the queue.
-   *
    * @return DrupalQueue
-   *   Retrieve specified queue.
    */
   public static function getQueue($queue) {
     return DrupalQueue::get($queue);
@@ -66,7 +65,7 @@ class drealtyDaemon {
    * Update Media Objects configuration.
    */
   public function mediaObjectsConfigure() {
-    $connections = $this->dc->FetchConfiguredConnections();
+    $connections = $this->dc->FetchConnections();
     db_delete("drealty_media_objects")->execute();
     foreach ($connections as $connection) {
       if ($this->dc->connect($connection->conid)) {
@@ -79,7 +78,7 @@ class drealtyDaemon {
             if ($object_types = $this->dc->rets->GetMetadataObjects($resource->systemname)) {
               foreach ($object_types as $type) {
                 db_insert('drealty_media_objects')
-                  ->fields(array('conid', 'rid', 'cid', 'type', 'standardname', 'description', 'mimetype', 'visiblename', 'objecttimestamp', 'objectcount'))
+                  ->fields(array('oid', 'conid', 'rid', 'cid', 'type', 'standardname', 'description', 'mimetype', 'visiblename', 'objecttimestamp', 'objectcount'))
                   ->values(array(
                     'conid' => $connection->conid,
                     'rid' => $resource->rid,
@@ -90,7 +89,7 @@ class drealtyDaemon {
                     'mimetype' => $type['MimeType'],
                     'visiblename' => $type['VisibleName'],
                     'objecttimestamp' => $type['ObjectTimeStamp'],
-                    'objectcount' => $type['ObjectCount'],
+                    'objectcount' => $type['ObjectCount']
                   ))
                   ->execute();
               }
@@ -100,21 +99,20 @@ class drealtyDaemon {
         $this->dc->disconnect();
       }
     }
+
     unset($connections, $mappings, $classes);
     // cache_clear_all();
   }
 
+  // @todo:  unify all error message display/logging with MessageErrorLogger() function
+
   /**
    * Initiate data import from RETS.
-   *
+   * 
    * @param string $src_type
    *   Processing RETS basic fields (= resources) or Media Objects (= media).
-   * @param bool $increment
-   *   Whether to implement incremental update.
-   *
-   * @return bool
    */
-  public function run($src_type, $increment = FALSE) {
+  public function run($src_type) {
     $connections = $this->dc->FetchConnections();
     if ($src_type == 'media') {
       $this->media_queue->deleteQueue();
@@ -128,14 +126,14 @@ class drealtyDaemon {
           foreach ($classes as $class) {
             if ($src_type == 'resources') {
               if ($class->enabled && $class->lifetime <= time() - ($class->lastupdate + 60)) {
-                $this->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, $src_type, FALSE, $increment);
+                $this->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, $src_type);
                 $class->lastupdate = time();
                 drupal_write_record('drealty_classes', $class, 'cid');
               }
             }
             elseif ($src_type == 'media' && $class->enabled && $class->process_images) {
               $time_now = time() - 60;
-              $this->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, $src_type, FALSE, $increment);
+              $this->ProcessRetsClass($connection, $resource, $class, $mapping->entity_type, $src_type);
               $class->media_lastupdate = $time_now;
               drupal_write_record('drealty_classes', $class, 'cid');
             }
@@ -150,12 +148,12 @@ class drealtyDaemon {
     return TRUE;
   }
 
+
   /**
    * Provides a report to match listings in database vs. RETS system.
    *
    * @param drealtyConnectionEntity $connection
-   *
-   * @return array|mixed
+   * @return array
    */
   public function BuildConnectionReport(drealtyConnectionEntity $connection) {
     $mappings = $connection->ResourceMappings();
@@ -168,7 +166,10 @@ class drealtyDaemon {
     foreach ($mappings as $mapping) {
       $resource = $this->dm->FetchResource($mapping->rid);
       // Only do it for Listings (not Offices, Agents, or any other resources)
-      if ($resource && in_array($resource->systemname, array('Property', 'Listing'))) {
+      if ($resource && in_array($resource->systemname, array(
+        'Property',
+        'Listing',
+      ))) {
         $classes = $connection->FetchClasses($resource);
         foreach ($classes as $class) {
           if ($class->enabled) {
@@ -285,7 +286,6 @@ class drealtyDaemon {
   }
 
   /**
-   * Process the current class for import.
    *
    * @param drealtyConnectionEntity $connection
    * @param drealtyRetsResource $resource
@@ -357,7 +357,7 @@ class drealtyDaemon {
 
     // At this point we have data waiting to be processed. Need to process the
     // data which will insert/update/delete the listing data as nodes.
-    if ($process && $process_type == 'resources') {
+    if ($process  && $process_type == 'resources') {
       if ($return_items && is_array($process)) {
         return $process;
       }
@@ -391,7 +391,6 @@ class drealtyDaemon {
   }
 
   /**
-   * Processing Class based on entity KEY.
    *
    * @param drealtyConnectionEntity $connection
    * @param drealtyRetsResource $resource
@@ -415,7 +414,7 @@ class drealtyDaemon {
     );
 
     if ($this->dc->connect($connection->conid)) {
-      // First run the Search based on the KEY value only.
+      // First run the Search based on the KEY value only
       $search = $rets->SearchQuery($resource->systemname, $class->systemname, $query, $options);
 
       if ($error = $rets->Error()) {
@@ -445,6 +444,22 @@ class drealtyDaemon {
 
           // @todo: for now, for incremental updates, we'll be queueing media items by parent Resource modification timestamp. Anyway, processing only if media_hash differs.
           // @todo:  OR query doesn't work now. How to account for various Media Timestamps ?  https://groups.google.com/forum/#!topic/phrets/ZiaCvNYLKxA
+//          if($class->media_lastupdate != 0) {
+//        //          $cond = array();
+//              $time = format_date($class->media_lastupdate, 'custom', 'Y-m-d') .'T00:00:00+';
+//            if(!empty($class->rets_timestamp_field)) {
+//              $q .= ',(' . $class->rets_timestamp_field . '=' . $time . ')';
+//            }
+////            foreach ($time_fields as $f) {
+////              $cond[] = '(' . $f . '=' . $time . ')';
+////            }
+////            if (count($cond) > 1) {
+////              $q .= ',(' . implode('|', $cond). ')';
+////            }
+////            elseif (count($cond) == 1) {
+////              $q .= ',' . implode('', $cond);
+////            }
+//          }
           $options['Select'] = implode(',', $hash_fields);
         }
       }
@@ -468,7 +483,7 @@ class drealtyDaemon {
                 'remote_id' => $listing[$resource->keyfield],
               );
 
-              if ($return_items) {
+              if($return_items) {
                 $queue_items[] = $queue_item;
               }
               else {
@@ -483,7 +498,7 @@ class drealtyDaemon {
                 'key_field' => $key_field,
                 'key_value' => $listing[$key_field],
                 'entity_type' => $entity_type,
-                'media_hash' => $this->calculate_hash($listing, $connection, $class, $hash_fields),
+                'media_hash' => $this->calculate_hash($listing, $connection, $class, $hash_fields)
               );
               $queue_items[] = $queue_item;
               $this->populate_queue('drealty_media', array($queue_item));
@@ -522,7 +537,6 @@ class drealtyDaemon {
   }
 
   /**
-   * Processing Class based on PRICE field, no Offset.
    *
    * @param drealtyConnectionEntity $connection
    * @param drealtyRetsResource $resource
@@ -564,7 +578,8 @@ class drealtyDaemon {
       $offset_query = "$query,({$class->offset_field}={$offset_start}-{$offset_end})";
       $count = 0;
 
-      // $options['Select'] = implode(',', $this->get_fields($connection->conid, $class->cid));.
+//      $options['Select'] = implode(',', $this->get_fields($connection->conid, $class->cid));
+
       if ($process_type == 'media') {
         $hash_fields = array();
         $time_fields = $this->dm->FetchMediaObjectTimestampFields($connection->conid, $class->cid);
@@ -574,6 +589,22 @@ class drealtyDaemon {
 
           // @todo: for now, for incremental updates, we'll be queueing media items by parent Resource modification timestamp. Anyway, processing only if media_hash differs.
           // @todo:  OR query doesn't work now. How to account for various Media Timestamps ?  https://groups.google.com/forum/#!topic/phrets/ZiaCvNYLKxA
+//          if($class->media_lastupdate != 0) {
+//        //          $cond = array();
+//              $time = format_date($class->media_lastupdate, 'custom', 'Y-m-d') .'T00:00:00+';
+//            if(!empty($class->rets_timestamp_field)) {
+//              $q .= ',(' . $class->rets_timestamp_field . '=' . $time . ')';
+//            }
+////            foreach ($time_fields as $f) {
+////              $cond[] = '(' . $f . '=' . $time . ')';
+////            }
+////            if (count($cond) > 1) {
+////              $q .= ',(' . implode('|', $cond). ')';
+////            }
+////            elseif (count($cond) == 1) {
+////              $q .= ',' . implode('', $cond);
+////            }
+//          }
           $options['Select'] = implode(',', $hash_fields);
         }
       }
@@ -595,7 +626,7 @@ class drealtyDaemon {
                 'remote_id' => $listing[$resource->keyfield],
               );
 
-              if ($return_items) {
+              if($return_items) {
                 $queue_items[] = $queue_item;
               }
               else {
@@ -610,7 +641,7 @@ class drealtyDaemon {
                 'key_field' => $key_field,
                 'key_value' => $listing[$key_field],
                 'entity_type' => $entity_type,
-                'media_hash' => $this->calculate_hash($listing, $connection, $class, $hash_fields),
+                'media_hash' => $this->calculate_hash($listing, $connection, $class, $hash_fields)
               );
               $queue_items[] = $queue_item;
               $this->populate_queue('drealty_media', array($queue_item));
@@ -645,7 +676,6 @@ class drealtyDaemon {
   }
 
   /**
-   * Processing Class based on supported Offset while searching.
    *
    * @param drealtyConnectionEntity $connection
    * @param drealtyRetsResource $resource
@@ -669,13 +699,14 @@ class drealtyDaemon {
     if ($this->dc->connect($connection->conid)) {
       // Prepare the query.
       $q = implode('),(', $query);
-      // $fields = $this->get_fields($connection->conid, $class->cid);.
+//      $fields = $this->get_fields($connection->conid, $class->cid);
+
       $options = array(
         'Format' => 'COMPACT-DECODED',
         'Limit' => "$limit",
         'Count' => '0',
-        // 'RestrictedIndicator' => 'xxxx',
-        //        'Select' => implode(',', $fields), // @todo: Search fails when uncommented. Should we just skip it? How resource intensive this is?
+//        'RestrictedIndicator' => 'xxxx',
+//        'Select' => implode(',', $fields), // @todo: Search fails when uncommented. Should we just skip it? How resource intensive this is?
       );
 
       if ($process_type == 'media') {
@@ -687,20 +718,30 @@ class drealtyDaemon {
 
           // @todo: for now, for incremental updates, we'll be queueing media items by parent Resource modification timestamp. Anyway, processing only if media_hash differs.
           // @todo:  OR query doesn't work now. How to account for various Media Timestamps ?  https://groups.google.com/forum/#!topic/phrets/ZiaCvNYLKxA
+//          if($class->media_lastupdate != 0) {
+//        //          $cond = array();
+//              $time = format_date($class->media_lastupdate, 'custom', 'Y-m-d') .'T00:00:00+';
+//            if(!empty($class->rets_timestamp_field)) {
+//              $q .= ',(' . $class->rets_timestamp_field . '=' . $time . ')';
+//            }
+////            foreach ($time_fields as $f) {
+////              $cond[] = '(' . $f . '=' . $time . ')';
+////            }
+////            if (count($cond) > 1) {
+////              $q .= ',(' . implode('|', $cond). ')';
+////            }
+////            elseif (count($cond) == 1) {
+////              $q .= ',' . implode('', $cond);
+////            }
+//          }
           $options['Select'] = implode(',', $hash_fields);
         }
       }
 
       // Do the actual search.
-      $modified = variable_get('drealty_import_modified_span', 0);
-      if ($increment && $modified != 0 && !empty($class->rets_timestamp_field)) {
-        if (in_array($modified, array(4, 6, 12))) {
-          $date = substr(format_date(strtotime('-' . $modified . ' hours'), 'custom', 'c'), 0, -6) . '+';
-        }
-        else {
-          $date = format_date(strtotime('-' . $modified . ' days'), 'custom', 'Y-m-d') . 'T00:00:00+';
-        }
-        $search = $rets->SearchQuery($resource->systemname, $class->systemname, $q . ',(' . $class->rets_timestamp_field . '=' . $date . ')', $options);
+      if ($increment && variable_get('drealty_import_modified_span', 0) != 0 && !empty($class->rets_timestamp_field)) {
+        $date = format_date(strtotime('-' . variable_get('drealty_import_modified_span', 3) . ' days'), 'custom', 'Y-m-d');
+        $search = $rets->SearchQuery($resource->systemname, $class->systemname, $q . ',(' . $class->rets_timestamp_field . '=' . $date .'T00:00:00+)', $options);
       }
       else {
         $search = $rets->SearchQuery($resource->systemname, $class->systemname, "$q", $options);
@@ -710,6 +751,7 @@ class drealtyDaemon {
       if ($search && $rets->NumRows() > 0) {
         while ($listing = $rets->FetchRow($search)) {
           // Calculate the hash.
+
           if ($process_type == 'resources') {
             $listing['hash'] = $this->calculate_hash($listing, $connection, $class);
             $queue_item = array(
@@ -722,8 +764,8 @@ class drealtyDaemon {
               'result' => $listing,
               'remote_id' => $listing[$resource->keyfield],
             );
-
-            if ($return_items) {
+            
+            if($return_items) {
               $queue_items[] = $queue_item;
             }
             else {
@@ -738,7 +780,7 @@ class drealtyDaemon {
               'key_field' => $key_field,
               'key_value' => $listing[$key_field],
               'entity_type' => $entity_type,
-              'media_hash' => $this->calculate_hash($listing, $connection, $class, $hash_fields),
+              'media_hash' => $this->calculate_hash($listing, $connection, $class, $hash_fields)
             );
             $queue_items[] = $queue_item;
             $this->populate_queue('drealty_media', array($queue_item));
@@ -764,7 +806,7 @@ class drealtyDaemon {
       unset($items);
 
       if ($rets->NumRows() > 0) {
-        if ($return_items) {
+        if($return_items) {
           return $queue_items;
         }
         return TRUE;
@@ -786,12 +828,9 @@ class drealtyDaemon {
     return FALSE;
   }
 
-  /**
-   *
-   */
   protected function populate_queue($queue_name, $items = array()) {
     $queue = $this->getQueue($queue_name);
-    foreach ($items as $item) {
+    foreach($items as $item) {
       $queue->createItem($item);
     }
   }
@@ -805,16 +844,11 @@ class drealtyDaemon {
     $resource = $this->dm->FetchResource($class->rid);
     $field_mappings = $connection->FetchFieldMappings($resource, $class);
     $key_field = $field_mappings['rets_key']->systemname;
-    $item_context = array(
-      'field_mappings' => $field_mappings,
-      'connection' => $connection,
-      'resource' => $resource,
-      'key_field' => $key_field
-    );
+    $item_context = array('field_mappings' => $field_mappings, 'connection' => $connection, 'resource' => $resource, 'key_field' => $key_field);
 
     $hash_fields = array();
     if ($class->process_images) {
-      if ($time_fields = $this->dm->FetchMediaObjectTimestampFields($connection->conid, $class->cid)) {
+      if($time_fields = $this->dm->FetchMediaObjectTimestampFields($connection->conid, $class->cid)) {
         $hash_fields = array_merge($time_fields, array($key_field));
       }
     }
@@ -822,20 +856,21 @@ class drealtyDaemon {
     if (!$rets_item) {
       $query = "({$key_field}={$listing->rets_key})";
 
-      // $fields = implode(',', $this->get_fields($connection->conid, $class->cid));
-      //      if ($class->process_images && $time_fields) {
-      //        foreach ($time_fields as $k) {
-      //          if (!in_array($k, array_values($fields)) {
-      //            $fields[] = $k;
-      //          }
-      //        }
-      //      }.
+//      $fields = implode(',', $this->get_fields($connection->conid, $class->cid));
+//      if ($class->process_images && $time_fields) {
+//        foreach ($time_fields as $k) {
+//          if (!in_array($k, array_values($fields)) {
+//            $fields[] = $k;
+//          }
+//        }
+//      }
+
       $params = array(
         'Format' => 'COMPACT-DECODED',
         'Limit' => "1",
         'Count' => '0',
-        // 'RestrictedIndicator' => 'xxxx',
-        //        'Select' => $fields,  // @todo:   with fields uncommented it doesn't return any results (??? where it fails)
+//        'RestrictedIndicator' => 'xxxx',
+//        'Select' => $fields,  // @todo:   with fields uncommented it doesn't return any results (??? where it fails)
       );
 
       if ($this->dc->connect($connection->conid)) {
@@ -876,26 +911,18 @@ class drealtyDaemon {
       if ($item && is_array($item)) {
         $listing->hash = $this->calculate_hash($item, $connection, $class);
         // Set as active in case it was disabled before (e.g. off market, cancelled, etc.).
-        $listing->active = 1;
+        $listing->active = 1; 
         $this->set_field_data($listing, $item, $field_mappings, $listing->entityType(), $class, TRUE);
         $item_context['rets_item'] = $item;
-        if ($class->process_images) {
+        if($class->process_images) {
           // Calculate entity MediaHash value based only on EntityKey and all values of the mapped Media timestamp fields.
           $media_hash = $this->calculate_hash($item, $connection, $class, $hash_fields);
-          if ($listing->media_hash != $media_hash) {
-            $rets_item = array(
-              'conid' => $connection->conid,
-              'rid' => $resource->rid,
-              'cid' => $class->cid,
-              'key_field' => $key_field,
-              'key_value' => $listing->rets_key,
-              'entity_type' => $listing->entityType(),
-              'media_hash' => 99,
-            );
+          if($listing->media_hash != $media_hash) {
+            $rets_item = array('conid' => $connection->conid, 'rid' => $resource->rid, 'cid' => $class->cid,
+              'key_field' => $key_field, 'key_value' => $listing->rets_key, 'entity_type' => $listing->entityType(), 'media_hash' => 99);
             $success = $this->import_single_resource_media($rets_item, $listing);
-            if ($success) {
-              // @todo: when to set it? what if there's no media? look for returned code?
-              $listing->media_hash = $media_hash;
+            if($success) {
+              $listing->media_hash = $media_hash; // @todo: when to set it? what if there's no media? look for returned code?
             }
           }
         }
@@ -921,7 +948,6 @@ class drealtyDaemon {
 
   /**
    * Process Drealty queue items which contain BASIC mapped fields data.
-   *
    * @param drealtyConnectionEntity $connection
    * @param drealtyRetsResource $resource
    * @param drealtyRetsClass $class
@@ -939,15 +965,11 @@ class drealtyDaemon {
       ->fields("t", array($key_field, "hash", "id"))
       ->condition("conid", $connection->conid)
       ->condition('class', $class->cid);
-
-    if (in_array($entity_type, array(
-      'drealty_listing',
-      'drealty_office',
-      'drealty_agent'
-    ))) {
+    
+    if(in_array($entity_type, array('drealty_listing', 'drealty_office', 'drealty_agent'))) {
       $existing_query->addField('t', 'active');
     }
-
+    
     $existing_items = $existing_query->execute()->fetchAllAssoc($key_field);
 
     // Get the fieldmappings.
@@ -1009,8 +1031,7 @@ class drealtyDaemon {
           $item->class = $class->cid;
           $item->rets_imported = TRUE;
           $item->uid = $user->uid;
-          // @todo: There's no ACTIVE field on OpenHouse entity - this creates PHP notices
-          $item->active = 1;
+          $item->active = 1;  // @todo: There's no ACTIVE field on OpenHouse entity - this creates PHP notices
           $item->inactive_date = NULL;
           $item->media_hash = 0;
 
@@ -1037,7 +1058,7 @@ class drealtyDaemon {
           }
           catch (Exception $e) {
             $this->MessageErrorLogger($e->getMessage(), array(), 'drush', 'error');
-            // $this->queue->releaseItem($queue_item); //@todo: what if exception saving due to fields errors? entity is not saved. delete queue item? or let it be stuck ?
+//            $this->queue->releaseItem($queue_item); //@todo: what if exception saving due to fields errors? entity is not saved. delete queue item? or let it be stuck ?
           }
           unset($item);
         }
@@ -1056,13 +1077,13 @@ class drealtyDaemon {
       drupal_get_messages();
       drupal_static_reset();
     }
-
+    
     // @todo:  if RETS_QUERY changed from the time the items where first imported with Drush - this will cause setting INACTIVE listings that are not inactive. Better use reconciler logic?
     // https://www.drupal.org/node/1803422
-    // Handle expired listings.
-    //    if (count($in_rets) && in_array($entity_type, array('drealty_listing', 'drealty_office', 'drealty_agent'))) {
-    //      $this->handle_expired($in_rets, $entity_type, $connection->conid, $class);
-    //    }
+    // Handle expired listings. 
+//    if (count($in_rets) && in_array($entity_type, array('drealty_listing', 'drealty_office', 'drealty_agent'))) {
+//      $this->handle_expired($in_rets, $entity_type, $connection->conid, $class);
+//    }
   }
 
   /**
@@ -1106,6 +1127,7 @@ class drealtyDaemon {
     return TRUE;
   }
 
+
   /**
    * Import all of the Media Objects data from RETS and assign to entity fields.
    *
@@ -1120,7 +1142,7 @@ class drealtyDaemon {
       $save_entity = TRUE;
     }
 
-    if (!$db_entity && $entity_exists = $this->entityExists($rets_item['entity_type'], $rets_item['key_value'], NULL, $rets_item['conid'], $rets_item['cid'])) {
+    if (!$db_entity && $entity_exists = $this->entityExists($rets_item['entity_type'], $rets_item['key_value'], $rets_item['conid'], $rets_item['cid'])) {
       $entity_exists = reset($entity_exists);
       $db_entity = entity_load($rets_item['entity_type'], array($entity_exists->id));
       $db_entity = reset($db_entity);
@@ -1137,17 +1159,12 @@ class drealtyDaemon {
           foreach ($mappings as $f_name => $f_val) {
             if ($obj = $this->dm->FetchMediaObjects($rets_item['conid'], NULL, NULL, $f_val->media_obj_id)) {
               $obj = reset($obj);
-              $mapped_fields[$f_val->field_name] = array(
-                'field_name' => $f_val->field_name,
-                'format' => $f_val->data['format'],
-                'field_type' => $f_val->field_api_type,
-                'obj_type' => $obj->type
-              );
+              $mapped_fields[$f_val->field_name] = array('field_name' => $f_val->field_name, 'format' => $f_val->data['format'], 'field_type' => $f_val->field_api_type, 'obj_type' => $obj->type);
             }
           }
         }
 
-        if (count($mapped_fields) && ($this->dc->is_connected() || (!$this->dc->is_connected() && $this->dc->connect($rets_item['conid'])))) {
+        if (count($mapped_fields) && ($this->dc->is_connected() || ( !$this->dc->is_connected() && $this->dc->connect($rets_item['conid']) ) )) {
           foreach ($mapped_fields as $m => $v) {
             $resource = $this->dm->FetchResource($rets_item['rid']);
             $format = ($v['format'] == 'data') ? 0 : 1;
@@ -1155,11 +1172,11 @@ class drealtyDaemon {
             if (isset($mappings[$v['field_name']]->data['media_resource'])) {
               $field = db_select('drealty_field_mappings', 'm')
                 ->fields('m', array('field_name'))
-                ->condition('conid', $rets_item['conid'])
-                ->condition('cid', $rets_item['cid'])
-                ->condition('rid', $rets_item['rid'])
-                ->condition('systemname', $mappings['field_high_res']->data['resource_field'])
-                ->execute()->fetchField();
+              ->condition('conid', $rets_item['conid'])
+              ->condition('cid', $rets_item['cid'])
+              ->condition('rid', $rets_item['rid'])
+              ->condition('systemname', $mappings['field_high_res']->data['resource_field'])
+              ->execute()->fetchField();
 
               if ($field && isset($db_entity->{$field}) && !empty($db_entity->{$field})) {
                 $val = is_array($db_entity->{$field}) ? $db_entity->{$field}[LANGUAGE_NONE][0]['value'] : $db_entity->{$field};
@@ -1188,17 +1205,13 @@ class drealtyDaemon {
                   }
                 }
                 if ($rets_media_items) {
-                  module_invoke_all('drealty_media_entity_process', array(
-                    'media' => $rets_media_items,
-                    'rets_item' => $rets_item,
-                    'fieldname' => $v['field_name']
-                  ));
+                  module_invoke_all('drealty_media_entity_process', array('media' => $rets_media_items, 'rets_item' => $rets_item, 'fieldname' => $v['field_name']));
                 }
               }
             }
             elseif ($results = $this->dc->rets->GetObject($resource->systemname, $v['obj_type'], $rets_item['key_value'], '*', $format)) {
               $i = 0;
-              if (count($results) == 1 && $results[0]['Success'] === FALSE) {
+              if(count($results) == 1 && $results[0]['Success'] === FALSE) {
                 continue;
               }
               else {
@@ -1221,10 +1234,9 @@ class drealtyDaemon {
         if (count($media_field_items)) {
           $this->set_media_field_data($media_field_items, $db_entity);
           $db_entity->media_hash = $rets_item['media_hash'];
-          if (isset($save_entity)) {
+          if(isset($save_entity)) {
             $db_entity->changed = time();
             $db_entity->save();
-            module_invoke_all('entity_update', $db_entity, $rets_item['entity_type']);
             $this->MessageErrorLogger("Saved entity.", array(), 'drush', 'notice');
           }
           return TRUE;
@@ -1244,6 +1256,7 @@ class drealtyDaemon {
       }
     }
   }
+
 
   /**
    * Function to handle the logic of what to do with expired listings.
@@ -1268,8 +1281,7 @@ class drealtyDaemon {
         ->fields(array(
           'changed' => REQUEST_TIME,
           'active' => 0,
-          'inactive_date' => REQUEST_TIME,
-        ))
+          'inactive_date' => REQUEST_TIME))
         ->condition('conid', $conid)
         ->condition('class', $class->cid)
         ->condition('rets_key', $item->rets_key)
@@ -1292,7 +1304,7 @@ class drealtyDaemon {
     $cache = &drupal_static(__FUNCTION__);
     $tmp = '';
 
-    if (!empty($forced_items)) {
+    if(!empty($forced_items)) {
       foreach ($forced_items as $i) {
         $tmp .= drupal_strtolower(trim($items[$i]));
       }
@@ -1310,7 +1322,7 @@ class drealtyDaemon {
         $cache[$connection->conid][$class->cid] = $field_mappings;
       }
       $fields = $cache[$connection->conid][$class->cid];
-
+      
       foreach ($fields as $field) {
         switch ($field->field_api_type) {
           case 'addressfield':
@@ -1332,8 +1344,9 @@ class drealtyDaemon {
     return md5($tmp);
   }
 
+
   /**
-   * Get mapped fields from database.
+   *
    */
   public function get_fields($conid, $class_id) {
     $results = db_select('drealty_field_mappings', 'dfm')
@@ -1348,13 +1361,12 @@ class drealtyDaemon {
         case 'addressfield':
         case 'location':
         case 'geofield':
-          if (!empty($result->data) && $data = unserialize($result->data)) {
+        if (!empty($result->data) && $data = unserialize($result->data)) {
             foreach ($data as $item) {
               $fields[] = $item;
             }
           }
           break;
-
         default:
           $fields[] = $result->systemname;
       }
@@ -1363,7 +1375,7 @@ class drealtyDaemon {
   }
 
   /**
-   * Set media mapped fields values.
+   *
    */
   protected function set_media_field_data($media_field_items, &$db_entity) {
 
@@ -1372,7 +1384,7 @@ class drealtyDaemon {
       $field_info = field_info_field($item['field_name']);
       $field_instance = field_info_instance($item['entity_type'], $item['field_name'], $class->bundle);
 
-      if (in_array($item['field_type'], array('image', 'file'))) {
+      if(in_array($item['field_type'], array('image', 'file'))) {
         $media_dir = file_default_scheme() . "://";
         $media_dir = !empty($field_instance['settings']['file_directory']) ? $media_dir . $field_instance['settings']['file_directory'] : $media_dir;
 
@@ -1395,9 +1407,9 @@ class drealtyDaemon {
             $this->DeleteOldFieldFiles($db_entity, $item['field_name']);
             $db_entity->{$item['field_name']} = array();
 
-            if (isset($item['items']) && count($item['items'])) {
+            if(isset($item['items']) && count($item['items'])) {
               foreach ($item['items'] as $media) {
-                if ($item['field_type'] == 'image') {
+                if($item['field_type'] == 'image') {
                   $filename = $media['Content-ID'] . '-' . REQUEST_TIME . '-' . $media['Object-ID'] . '.jpg';
                 }
                 else {
@@ -1407,15 +1419,15 @@ class drealtyDaemon {
                 $filepath = !empty($field_instance['settings']['file_directory']) ? $media_dir . '/' . $filename : $media_dir . $filename;
 
                 if (strlen($media['Data']) > 170 && $item['format'] == 'data') {
-                  // Ensure that there is enough data to actually make a file.
+                  //ensure that there is enough data to actually make a file.
                   $file = file_save_data($media['Data'], $filepath, FILE_EXISTS_REPLACE);
                 }
                 elseif (!empty($media['Location']) && $item['format'] == 'url') {
                   $file = system_retrieve_file($media['Location'], $filepath, $managed = TRUE, $replace = FILE_EXISTS_REPLACE);
                 }
 
-                if ($file) {
-                  if ($item['field_type'] == 'image') {
+                if($file) {
+                  if($item['field_type'] == 'image') {
                     $file->alt = 'Resource #' . $db_entity->rets_id . ': image #' . $media['Object-ID'];
                     $file->title = !empty($media['Content-Description']) ? $media['Content-Description'] : $file->alt;
                   }
@@ -1429,20 +1441,18 @@ class drealtyDaemon {
               }
             }
             break;
-
           case 'text_with_summary':
           case 'text_long':
             $db_entity->{$item['field_name']} = array();
-            if (isset($item['items']) && count($item['items'])) {
+            if(isset($item['items']) && count($item['items'])) {
               foreach ($item['items'] as $media) {
                 $db_entity->{$item['field_name']}[LANGUAGE_NONE][]['value'] = !empty($media['Data']) ? $media['Data'] : NULL;
               }
             }
             break;
-
           case 'text':
             $db_entity->{$item['field_name']} = array();
-            if (isset($item['items']) && count($item['items'])) {
+            if(isset($item['items']) && count($item['items'])) {
               foreach ($item['items'] as $media) {
                 if (!empty($media['Location'])) {
                   $db_entity->{$item['field_name']}[LANGUAGE_NONE][]['value'] = $media['Location'];
@@ -1450,10 +1460,9 @@ class drealtyDaemon {
               }
             }
             break;
-
           case 'link_field':
             $db_entity->{$item['field_name']} = array();
-            if (isset($item['items']) && count($item['items'])) {
+            if(isset($item['items']) && count($item['items'])) {
               foreach ($item['items'] as $media) {
                 $link_title = ($field_instance['settings']['title'] == 'value') ? $field_instance['settings']['title_value'] : $field_instance['settings']['title_value'];
                 if (!empty($media['Location'])) {
@@ -1475,13 +1484,11 @@ class drealtyDaemon {
   }
 
   /**
-   * Set basic RETS mapped fields values.
+   *
    */
   public function set_field_data(&$item, $rets_item, $field_mappings, $entity_type, $class) {
 
     foreach ($field_mappings as $mapping) {
-      $item->{$mapping->field_name} = array();
-
       switch ($mapping->field_api_type) {
         case 'addressfield':
           // Get the default country code if one exists for the address.
@@ -1517,6 +1524,7 @@ class drealtyDaemon {
           else {
             $item->{$mapping->field_name}[LANGUAGE_NONE][0]['premise'] = NULL;
           }
+          $item->{$mapping->field_name}[LANGUAGE_NONE][0]['premise'] = isset($mapping->data['address_2']) ? $rets_item[$mapping->data['address_2']] : NULL;
           $item->{$mapping->field_name}[LANGUAGE_NONE][0]['locality'] = isset($mapping->data['city']) ? $rets_item[$mapping->data['city']] : NULL;
           $item->{$mapping->field_name}[LANGUAGE_NONE][0]['administrative_area'] = isset($mapping->data['state']) ? $rets_item[$mapping->data['state']] : NULL;
           $item->{$mapping->field_name}[LANGUAGE_NONE][0]['sub_administrative_area'] = isset($mapping->data['county']) ? $rets_item[$mapping->data['county']] : NULL;
@@ -1535,15 +1543,16 @@ class drealtyDaemon {
           break;
 
         case 'geofield':
-          if (isset($rets_item[$mapping->data['lat']]) && isset($rets_item[$mapping->data['lon']])
-            && is_numeric($rets_item[$mapping->data['lat']]) && is_numeric($rets_item[$mapping->data['lon']])
-          ) {
+          $item->{$mapping->field_name} = array();
+          if(isset($rets_item[$mapping->data['lat']]) && isset($rets_item[$mapping->data['lon']])
+              && is_numeric($rets_item[$mapping->data['lat']]) && is_numeric($rets_item[$mapping->data['lon']])) {
             $item->{$mapping->field_name}[LANGUAGE_NONE][0]['lat'] = $rets_item[$mapping->data['lat']];
             $item->{$mapping->field_name}[LANGUAGE_NONE][0]['lon'] = $rets_item[$mapping->data['lon']];
           }
           break;
 
         case 'entityreference':
+          $item->{$mapping->field_name} = array();
           if (!empty($mapping->data['field_value']) && isset($rets_item[$mapping->data['field_value']])) {
             $field_info = field_info_field($mapping->field_name);
             $multi_value = _drealty_check_rets_field_cardinality($this->dc->FetchConnection($class->conid), $class->rid, $class->systemname, $mapping->data['field_value']);
@@ -1582,6 +1591,7 @@ class drealtyDaemon {
           break;
 
         case 'taxonomy_term_reference':
+          $item->{$mapping->field_name} = array();
           if (isset($rets_item[$mapping->systemname]) && !empty($rets_item[$mapping->systemname])) {
             $item->{$mapping->field_name}[LANGUAGE_NONE][0]['value'] = $rets_item[$mapping->systemname];
             $item->{$mapping->field_name}[LANGUAGE_NONE][0]['tid'] = NULL;
@@ -1659,11 +1669,7 @@ class drealtyDaemon {
     }
     else {
       $error = $rets->Error();
-      watchdog('drealty', "drealty encountered an error: (Type: @type Code: @code Msg: @text)", array(
-        "@type" => $error['type'],
-        "@code" => $error['code'],
-        "@text" => $error['text']
-      ), WATCHDOG_ERROR);
+      watchdog('drealty', "drealty encountered an error: (Type: @type Code: @code Msg: @text)", array("@type" => $error['type'], "@code" => $error['code'], "@text" => $error['text']), WATCHDOG_ERROR);
     }
   }
 
@@ -1672,20 +1678,17 @@ class drealtyDaemon {
    */
   public function MessageErrorLogger($msg, $options = array(), $storage = 'both', $error_type = WATCHDOG_ERROR) {
     if (drupal_is_cli() && function_exists('drush_main') && in_array($storage, array('both', 'drush'))) {
-      if (is_integer($error_type)) {
-        switch ($error_type) {
+      if(is_integer($error_type)) {
+        switch($error_type) {
           case WATCHDOG_NOTICE:
             $error_type = 'notice';
             break;
-
           case WATCHDOG_ERROR:
             $error_type = 'error';
             break;
-
           case WATCHDOG_WARNING:
             $error_type = 'warning';
             break;
-
           case WATCHDOG_INFO:
             $error_type = 'success';
             break;
@@ -1701,26 +1704,19 @@ class drealtyDaemon {
   /**
    * EntityFieldQuery to check if Drealty entity still exists in the database.
    */
-  public function entityExists($entity_type, $key = NULL, $mls = NULL, $conid = NULL, $cid = NULL) {
-    if (!$key && !$mls) {
-      return FALSE;
-    }
+  public function entityExists($entity_type, $key, $conid = NULL, $cid = NULL) {
     $query = new EntityFieldQuery();
     $query->entityCondition('entity_type', $entity_type);
-    if (!empty($key)) {
-      $query->propertyCondition('rets_key', $key);
-    }
-    if (!empty($mls)) {
-      $query->propertyCondition('rets_id', $mls);
-    }
-    if (!empty($conid)) {
+    $query->propertyCondition('rets_key', $key);
+    if(!empty($conid)) {
       $query->propertyCondition('conid', $conid);
     }
-    if (!empty($cid)) {
+    if(!empty($cid)) {
       $query->propertyCondition('class', $cid);
     }
     $result = $query->execute();
     return $result ? $result[$entity_type] : FALSE;
   }
-
 }
+
+

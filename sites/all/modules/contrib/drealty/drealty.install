@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Installation functions for dRealty.
@@ -68,9 +67,9 @@ function drealty_uninstall() {
   global $conf;
 
   $listings = db_select('drealty_listing', 'dl')
-    ->fields('dl', array('id'))
-    ->execute()
-    ->fetchAllAssoc('id');
+      ->fields('dl', array('id'))
+      ->execute()
+      ->fetchAllAssoc('id');
 
   // Need to delete all the listings this way so that we can clean up the database and remove all the images properly.
   foreach ($listings as $listing) {
@@ -79,9 +78,9 @@ function drealty_uninstall() {
 
   // Bypass entity_load() as we cannot use it here.
   $types = db_select('drealty_listing_type', 'dlt')
-    ->fields('dlt')
-    ->execute()
-    ->fetchAllAssoc('type');
+      ->fields('dlt')
+      ->execute()
+      ->fetchAllAssoc('type');
 
   foreach ($types as $name => $type) {
     field_attach_delete_bundle('drealty_listing', $name);
@@ -168,6 +167,8 @@ function drealty_schema() {
       'query_type' => array('type' => 'int', 'unsigned' => TRUE, 'size' => 'tiny', 'not null' => TRUE, 'default' => DREALTY_QUERY_TYPE_DEFAULT),
       'chunk_size' => array('type' => 'int', 'unsigned' => TRUE, 'size' => 'normal', 'not null' => TRUE, 'default' => 500),
       'override_status_query_text' => array('type' => 'varchar', 'length' => 255, 'not null' => FALSE, 'default' => ''),
+      'do_geocoding' => array('type' => 'int', 'size' => 'tiny', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0),
+      'geocoder_handler' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
       'offset_field' => array('type' => 'varchar', 'length' => 50, 'not null' => FALSE),
       'offset_amount' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0),
       'offset_max' => array('type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE, 'default' => 0),
@@ -438,77 +439,47 @@ function drealty_update_7308(&$sandbox) {
 
 /**
  * Add Media Objects Config and Mapping tables. Update table values.
- *
- * @param array $sandbox
- *
+ * @param $sandbox
  * @return string
- *
- * @throws \DrupalUpdateException
  */
 function drealty_update_7309(&$sandbox) {
   $schema = drupal_get_schema_unprocessed('drealty');
 
   foreach ($schema as $name => $table) {
-    if (strpos($name, 'drealty_media_objects') !== FALSE && !db_table_exists($name)) {
+    if (strpos($name, 'drealty_media_objects') !== FALSE) {
       db_create_table($name, $table);
     }
   }
 
   $daemon = new drealtyDaemon();
-  $resp = $daemon->mediaObjectsConfigure();
-  if ($resp && isset($resp['error'])) {
-    throw new DrupalUpdateException($resp['error']);
-  }
+  $daemon->mediaObjectsConfigure();
 
   $dc = new drealtyConnection();
-  if (!$dc->rets) {
-    throw new DrupalUpdateException('Could not load phRETS library.');
-  }
 
   $connections = $dc->FetchConfiguredConnections();
-  if (db_field_exists('drealty_classes', 'image_field_name')) {
-    $classes_update = db_select('drealty_classes', 'c')
-      ->condition('c.process_images', 1)
-      ->condition('c.image_field_name', NULL, 'IS NOT')
-      ->fields('c', array('cid', 'conid', 'rid', 'image_field_name', 'object_type', 'photo_timestamp_field', 'rets_timestamp_field'))
-      ->execute()->fetchAllAssoc('cid');
-  }
+  $backwards_update = db_select('drealty_classes', 'c')
+    ->condition('c.process_images', 1)
+    ->condition('c.image_field_name', NULL, 'IS NOT')
+    ->fields('c', array('cid', 'conid', 'rid', 'image_field_name','object_type', 'photo_timestamp_field', 'rets_timestamp_field'));
+  $classes_update = $backwards_update->execute()->fetchAllAssoc('cid');
 
-  if ($connections && $classes_update) {
-    foreach ($classes_update as $upd_cid => $upd_class) {
-      if (isset($connections[$upd_class->conid]) && $connection = $dc->FetchConnection($upd_class->conid)) {
-        $media_objects = $connection->FetchMediaObjects($upd_class->cid, $upd_class->rid);
-        if ($media_objects && isset($media_objects[$upd_class->object_type])) {
-          $timestamp = !empty($upd_class->photo_timestamp_field) ? $upd_class->photo_timestamp_field : $upd_class->rets_timestamp_field;
-          $connection->CreateFieldMediaObjectMapping($media_objects[$upd_class->object_type]->oid, $upd_class->rid, $upd_class->cid, $upd_class->image_field_name, $timestamp, 'image', array(
-            'format' => 'data',
-            'type' => $media_objects[$upd_class->object_type]->oid,
-          ), 0);
-        }
-      }
+  foreach ($classes_update as $upd_cid => $upd_class) {
+    $connection = $connections[$upd_class->conid];
+
+    $media_objects = $connection->FetchMediaObjects($upd_class->cid, $upd_class->rid);
+    if($media_objects && isset($media_objects[$upd_class->object_type])) {
+      $timestamp = !empty($upd_class->photo_timestamp_field) ? $upd_class->photo_timestamp_field : $upd_class->rets_timestamp_field;
+      $connection->CreateFieldMediaObjectMapping($media_objects[$upd_class->object_type]->oid, $upd_class->rid, $upd_class->cid, $upd_class->image_field_name, $timestamp, 'image', array('format' => 'data', 'type' => $media_objects[$upd_class->object_type]->oid), 0);
     }
   }
 
-  if (!db_field_exists('drealty_classes', 'media_lastupdate')) {
-    db_add_field('drealty_classes', 'media_lastupdate', array('type' => 'int', 'not null' => TRUE, 'initial' => 0));
-  }
-  if (!db_field_exists('drealty_listing', 'media_hash')) {
-    db_add_field('drealty_listing', 'media_hash', array('type' => 'varchar', 'initial' => 0, 'length' => 255, 'not null' => TRUE, 'default' => '', 'description' => 'MD5 Hash used to determine if listing Media has changed.'));
-  }
+  db_add_field('drealty_classes', 'media_lastupdate', array('type' => 'int', 'not null' => TRUE, 'initial' => 0));
+  db_add_field('drealty_listing', 'media_hash', array('type' => 'varchar', 'initial' => 0, 'length' => 255, 'not null' => TRUE, 'default' => '', 'description' => 'MD5 Hash used to determine if listing Media has changed.'));
 
   db_drop_field('drealty_classes', 'photo_timestamp_field');
   db_drop_field('drealty_classes', 'image_field_name');
   db_drop_field('drealty_classes', 'image_dir');
   db_drop_field('drealty_classes', 'object_type');
 
-  return "Added Media Objects Config and Mapping tables. Update values.";
-}
-
-/**
- * Drop Geocoder plugin fields.
- */
-function drealty_update_7310(&$sandbox) {
-  db_drop_field('drealty_classes', 'do_geocoding');
-  db_drop_field('drealty_classes', 'geocoder_handler');
-  return "Dropped Geocoder plugin fields.";
+  return "Add Media Objects Config and Mapping tables. Update values.";
 }

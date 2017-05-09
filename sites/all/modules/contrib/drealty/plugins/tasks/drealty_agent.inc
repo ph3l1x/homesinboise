@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Handle the 'drealty_agent' override task.
@@ -33,7 +32,7 @@ function drealty_drealty_agent_page_manager_tasks() {
     'disabled' => variable_get('drealty_drealty_agent_disabled', TRUE),
     'enable callback' => 'drealty_drealty_agent_enable',
   );
-}
+};
 
 /**
  * Menu alter callback.

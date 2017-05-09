@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @file
  * Handle the 'drealty_office' override task.
@@ -33,7 +32,7 @@ function drealty_drealty_office_page_manager_tasks() {
     'disabled' => variable_get('drealty_drealty_office_disabled', TRUE),
     'enable callback' => 'drealty_drealty_office_enable',
   );
-}
+};
 
 /**
  * Menu alter callback.

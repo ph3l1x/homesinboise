@@ -30,12 +30,11 @@ class DrealtyImport {
    */
   public function processQueueItem($item) {
     try {
-      $dm = new drealtyDaemon();
       $entity_type = $item['entity_type'];
       $metadata = new drealtyMetaData();
 
       // check if the entity exists
-      $listing = $dm->entityExists($entity_type, $item['result'][$item['key_field']]);
+      $listing = $this->entityExists($entity_type, $item['result'][$item['key_field']]);
       if (!($listing)) {
         $entity = $this->create($item['connection'], $item['class'], $item['class_bundle'], $item['remote_id'], $item['result'][$item['key_field']], $entity_type);
         entity_save($entity_type, $entity); // @todo: do we need to save it here ????
@@ -49,6 +48,7 @@ class DrealtyImport {
         }
       }
 
+      $dm = new drealtyDaemon();
       $dm->update_single_listing($entity, $item['result']);
     }
     catch (Exception $e) {
@@ -81,5 +81,18 @@ class DrealtyImport {
       $entity->rets_imported = 1;
     }
     return $entity;
+  }
+
+  /**
+   * Check if a drealty entity exists by its rets key value.
+   * @param $rets_key
+   * @return bool
+   */
+  public function entityExists($entity_type, $rets_key) {
+    $query = new EntityFieldQuery();
+    $query->entityCondition('entity_type', $entity_type);
+    $query->propertyCondition('rets_key', $rets_key);
+    $result = $query->execute();
+    return $result ? $result[$entity_type] : FALSE;
   }
 }

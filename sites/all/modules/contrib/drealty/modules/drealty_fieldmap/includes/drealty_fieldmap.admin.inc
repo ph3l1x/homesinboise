@@ -505,16 +505,16 @@ function drealty_fieldmap_second_form_validate($form, &$form_state) {
         }
 
         // Missing field name.
-        if (!isset($field['field_name']) || empty($field['field_name'])) {
+        if (!$field['field_name']) {
           form_set_error('create_rets_entity_fields][' . $f_label . '][fieldset][add_field][' . $field_label . '][field_name', t('Add new ' . $f_label . ' field: you need to provide a field name.'));
         }
 
         // Missing widget type.
-        if (!isset($field['widget_type']) || empty($field['widget_type'])) {
+        if (!$field['widget_type']) {
           form_set_error('create_rets_entity_fields][' . $f_label . '][fieldset][add_field][' . $field_label . '][widget_type', t('Add new ' . $f_label . ' field: you need to select a widget.'));
         }
         // Wrong widget type.
-        elseif (isset($field['type']) && !empty($field['type'])) {
+        elseif ($field['type']) {
           $widget_types = field_ui_widget_type_options($field['type']);
           if (!isset($widget_types[$field['widget_type']])) {
             form_set_error('create_rets_entity_fields][' . $f_label . '][fieldset][add_field][' . $field_label . '][widget_type', t('Add new ' . $f_label . ' field: invalid widget.'));
@@ -554,14 +554,13 @@ function drealty_fieldmap_second_form_submit($form, &$form_state) {
         $field = array(
           'field_name' => $data['field_name'],
           'type' => $data['type'],
-          'settings' => array(),
-          'entity_types' => array(),
+          'settings' => array( /*'max_length' => 64,*/),
+          'entity_types' => array('drealty_listing', 'drealty_office', 'drealty_agent', 'drealty_openhouse'),
         );
         if ($multi_value == 'LookupMulti') {
           $field['cardinality'] = -1;
         }
-        // @TODO:   don't know if it can be accomplished: for list type fields 
-        // set allowed values configuration:
+        // @TODO:   don't know if it can be accomplished
         /*  if(in_array($data['type'], array('list_text', 'list_integer', 'list_boolean'))) {
             $list_options = _drealty_fieldmap_get_rets_metadata_options($dc, $rets_conn['connection']->conid, $rets_conn['resource']->systemname, $rets_conn['class']->systemname);
             $field['settings'] = array(
